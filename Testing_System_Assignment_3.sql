@@ -234,7 +234,18 @@ WHERE Fullname LIKE 'T%6';
 -- Question 12: Xoá tất cả các Exam tạo trước ngày 31/12/2019
 DELETE FROM Exam WHERE CreateDate < 20191231;
 
--- Question 12: Xoá tất cả các Question có nội dung bắt đầu bằng "ABC"
+-- Question 13: Xoá tất cả các Question có nội dung bắt đầu bằng "ABC"
 DELETE FROM Question WHERE Content LIKE 'ABC%';
 
-SELECT * FROM Question;
+-- Question 14: Update thông tin của Student có ID là 5 thành tên "Nguyen Thanh Luan" và email "luan@vti.com.vn"
+UPDATE StudentAccount SET
+Fullname = 'Nguyen Thanh Luan',
+Email = 'luan@vti.com.vn'
+WHERE StudentID = 5;
+
+-- Question 15: Update khoa của học sinh có ID là 3 thành khoa Marketing
+UPDATE StudentAccount SET
+DepartmentID = (SELECT DepartmentID FROM Department WHERE DepartmentName = 'Marketing')
+WHERE StudentID = 3;
+
+SELECT * FROM StudentAccount;
