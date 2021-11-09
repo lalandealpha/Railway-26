@@ -104,13 +104,13 @@ INSERT INTO Department (DepartmentName) VALUES
 	('Japanese'),
 	('English'),
 	('IT'),
-    ('French'),
-    ('Chinese'),
-    ('Marketing'),
-    ('Korean'),
-    ('Finance'),
-    ('Economics'),
-    ('Biology');
+	('French'),
+	('Chinese'),
+	('Marketing'),
+	('Korean'),
+	('Finance'),
+	('Economics'),
+	('Biology');
 
 INSERT INTO `Position` (PositionName) VALUES
 	('Admin'),
@@ -130,18 +130,18 @@ INSERT INTO TeacherAccount (Email, Username, Fullname, DepartmentID, CreateDate)
 	('teacher3@gmail.com', 'teacher333', 'TEACHER333', 3, 20181003),
 	('teacher4@gmail.com', 'teacher4444', 'TEACHER4444', 2, 20181210),
 	('teacher5@gmail.com', 'teacher55555', 'TEACHER55555', 3, 20190727),
-    ('teacher6@gmail.com', 'teacher666', 'TEACHER666', 5, 20191120),
-    ('teacher7@gmail.com', 'teacher777777777', 'TEACHER777777777', 2, 20200401),
+	('teacher6@gmail.com', 'teacher666', 'TEACHER666', 5, 20191120),
+	('teacher7@gmail.com', 'teacher777777777', 'TEACHER777777777', 2, 20200401),
 	('teacher8@gmail.com', 'teacher888888', 'TEACHER888888', 2, 20200401);
 
 INSERT INTO Class (ClassName, CreatorID, CreateDate) VALUES
 	('JAP1', 2, 20211107),
 	('ENG10', 4, 20201130),
 	('RAILWAY26', 3, 20220507),
-    ('FRE3', 5, 20181107),
+	('FRE3', 5, 20181107),
 	('MAR11', 1, 20190218),
-    ('ECO47', 2, 20210221),
-    ('BIO69', 4, 20200328);
+	('ECO47', 2, 20210221),
+	('BIO69', 4, 20200328);
 
 INSERT INTO ClassAccount (ClassID, StudentID, JoinDate) VALUES
 	(1, 2, 20211107),
@@ -165,19 +165,19 @@ INSERT INTO QuestionCategory (CategoryName) VALUES
 INSERT INTO Question (Content, CategoryID, TypeID, CreatorID, CreateDate) VALUES
 	('ABCD GHIJK?', 2, 2, 4, 20211030),
 	('Use SELECT Syntax to query data from some tables', 6, 1, 5, 20211015),
-    ('How is the weather today?', 2, 2, 3, 20210826),
-    ('UDISK KSAJNGS?', 5, 1, 2, 20200622),
-    ('HKUSDHSKDF?', 1, 2, 7, 20191103),
-    ('Set fire to the rain?', 6, 1, 8, 20211109);
+	('How is the weather today?', 2, 2, 3, 20210826),
+	('UDISK KSAJNGS?', 5, 1, 2, 20200622),
+	('HKUSDHSKDF?', 1, 2, 7, 20191103),
+	('Set fire to the rain?', 6, 1, 8, 20211109);
 
 INSERT INTO Answer (Content, QuestionID, isCorrect) VALUES
 	('DZXDEGSEF', 1, 'False'),
 	('SELECT * FROM table_name', 2, 'True'),
-    ('Today is a new day to learn somthing', 3, 'False'),
-    ('Today is rainy', 3, 'True'),
-    ('Its rainy', 3, 'True'),
-    ('No, today is hot', 3, 'False'),
-    ('Well, good morning', 3, 'False'),
+	('Today is a new day to learn somthing', 3, 'False'),
+	('Today is rainy', 3, 'True'),
+	('Its rainy', 3, 'True'),
+	('No, today is hot', 3, 'False'),
+	('Well, good morning', 3, 'False'),
 	('SELECT FROM ABC', 2, 'False'),
 	('Nothing is impossible', 2, 'True'),
 	('Here are some answers', 2, 'False');
@@ -185,21 +185,21 @@ INSERT INTO Answer (Content, QuestionID, isCorrect) VALUES
 INSERT INTO Exam (`Code`, Title, `Duration(Mins)`, CategoryID, CreatorID, CreateDate) VALUES
 	(4778, 'First Exam', 60, 2, 4, 20201216),
 	(2685, 'Second Exam', 45, 6, 3, 20210514),
-    (233, 'Third Exam', 90, 1, 2, 20190720),
-    (9853, 'Mini Exam', 15, 5, 4, 20200308);
+	(233, 'Third Exam', 90, 1, 2, 20190720),
+	(9853, 'Mini Exam', 15, 5, 4, 20200308);
 
 INSERT INTO ExamQuestion (ExamID, QuestionID) VALUES
 	(1, 1),
 	(1, 4),
-    (1, 5),
-    (2, 1),
-    (2, 3),
-    (2, 4),
-    (3, 2),
-    (3, 3),
-    (3, 5),
-    (3, 6),
-    (4, 2);
+	(1, 5),
+	(2, 1),
+	(2, 3),
+	(2, 4),
+	(3, 2),
+	(3, 3),
+	(3, 5),
+	(3, 6),
+	(4, 2);
     
 -- Question 2: Lấy ra tất cả các phòng ban
 SELECT * FROM Department;
