@@ -84,7 +84,7 @@ CREATE TABLE Exam (
 	ExamId SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	`Code` SMALLINT NOT NULL,
 	Title VARCHAR (50) NOT NULL,
-    Timelimit TIME NOT NULL,
+    `Duration(Mins)` TINYINT NOT NULL,
 	CategoryID TINYINT UNSIGNED,
 	CreatorID SMALLINT UNSIGNED,
 	CreateDate DATE,
@@ -126,7 +126,7 @@ INSERT INTO StudentAccount (Email, Username, Fullname, DepartmentID, PositionID,
 
 INSERT INTO TeacherAccount (Email, Username, Fullname, DepartmentID, CreateDate) VALUES
 	('teacher1@gmail.com', 'teacher1', 'TEACHER1', 1, 20171130),
-	('teacher2@gmail.com', 'teacher22', 'TEACHER22', 1, 20180520),
+	('teacher2@gmail.com', 'teacher22', 'TEACHER22', 4, 20180520),
 	('teacher3@gmail.com', 'teacher333', 'TEACHER333', 3, 20181003),
 	('teacher4@gmail.com', 'teacher4444', 'TEACHER4444', 2, 20181210),
 	('teacher5@gmail.com', 'teacher55555', 'TEACHER55555', 3, 20190727),
@@ -165,7 +165,10 @@ INSERT INTO QuestionCategory (CategoryName) VALUES
 INSERT INTO Question (Content, CategoryID, TypeID, CreatorID, CreateDate) VALUES
 	('ABCD GHIJK?', 2, 2, 4, 20211030),
 	('Use SELECT Syntax to query data from some tables', 6, 1, 5, 20211015),
-    ('How is the weather today?', 2, 2, 3, 20210826);
+    ('How is the weather today?', 2, 2, 3, 20210826),
+    ('UDISK KSAJNGS?', 5, 1, 2, 20200622),
+    ('HKUSDHSKDF?', 1, 2, 7, 20191103),
+    ('Set fire to the rain?', 6, 1, 8, 20211109);
 
 INSERT INTO Answer (Content, QuestionID, isCorrect) VALUES
 	('DZXDEGSEF', 1, 'False'),
@@ -174,17 +177,29 @@ INSERT INTO Answer (Content, QuestionID, isCorrect) VALUES
     ('Today is rainy', 3, 'True'),
     ('Its rainy', 3, 'True'),
     ('No, today is hot', 3, 'False'),
-    ('Well, good morning', 3, 'False');
+    ('Well, good morning', 3, 'False'),
+	('SELECT FROM ABC', 2, 'False'),
+	('Nothing is impossible', 2, 'True'),
+	('Here are some answers', 2, 'False');
 
-INSERT INTO Exam (`Code`, Title, Timelimit, CategoryID, CreatorID, CreateDate) VALUES
-	(4778, 'First Exam', '00:60:00', 2, 4, 20201216),
-	(2685, 'Second Exam', '00:45:00', 6, 3, 20210514),
-    (233, 'Third Exam', '00:90:00', 1, 2, 20190720),
-    (9853, 'Mini Exam', '00:15:00', 5, 4, 20200308);
+INSERT INTO Exam (`Code`, Title, `Duration(Mins)`, CategoryID, CreatorID, CreateDate) VALUES
+	(4778, 'First Exam', 60, 2, 4, 20201216),
+	(2685, 'Second Exam', 45, 6, 3, 20210514),
+    (233, 'Third Exam', 90, 1, 2, 20190720),
+    (9853, 'Mini Exam', 15, 5, 4, 20200308);
 
 INSERT INTO ExamQuestion (ExamID, QuestionID) VALUES
 	(1, 1),
-	(2, 2);
+	(1, 4),
+    (1, 5),
+    (2, 1),
+    (2, 3),
+    (2, 4),
+    (3, 2),
+    (3, 3),
+    (3, 5),
+    (3, 6),
+    (4, 2);
     
 -- Question 2: Lấy ra tất cả các phòng ban
 SELECT * FROM Department;
@@ -193,51 +208,51 @@ SELECT * FROM Department;
 SELECT DepartmentId FROM Department
 WHERE DepartmentName = 'IT';
 
--- Question 4: Lấy ra thông tin TeacherAccount có Fullname dài nhất (cách 1)
+-- Question 4: Lấy ra thông tin giáo viên có Fullname dài nhất (cách 1)
 SELECT * FROM TeacherAccount
 ORDER BY LENGTH(Fullname) DESC
 LIMIT 1;
 
--- Question 4: Lấy ra thông tin TeacherAccount có Fullname dài nhất (cách 2)
+-- Question 4: Lấy ra thông tin giáo viên có Fullname dài nhất (cách 2)
 SELECT * FROM TeacherAccount
-WHERE Fullname = (SELECT MAX(Fullname) FROM TeacherAccount);
+WHERE LENGTH(Fullname) = (SELECT MAX(LENGTH(Fullname)) FROM TeacherAccount);
 
--- Question 5: Lấy ra thông tin TeacherAccount có Fullname dài nhất và thuộc phòng ban có ID bằng 1
+-- Question 5: Lấy ra thông tin giáo viên có Fullname dài nhất và thuộc phòng ban có ID bằng 3
 SELECT * FROM TeacherAccount
-WHERE Fullname = (SELECT MAX(Fullname) FROM TeacherAccount WHERE DepartmentID = 1);
+WHERE LENGTH(Fullname) = (SELECT MAX(LENGTH(Fullname)) FROM TeacherAccount WHERE DepartmentID = 3);
 
--- Question 6: Lấy ra tên lớp đã lập trước ngày 30/22/2021
+-- Question 6: Lấy ra tên lớp đã lập trước ngày 30/12/2020
 SELECT ClassName FROM Class
-WHERE CreateDate < 20211230;
+WHERE CreateDate < 20201230;
 
--- Question 7: Lấy ra ID của Question có ít nhất 4 Answers
+-- Question 7: Lấy ra ID của các câu hỏi có ít nhất 4 câu trả lời
 SELECT QuestionID, COUNT(AnswerID) FROM Answer 
 GROUP BY QuestionID HAVING COUNT(AnswerID) >= 4;
 
--- Question 8: Lấy ra các mã Exam có Timelimit ít nhất 60 phút và tạo trước ngày 01/04/2020
-SELECT Code FROM Exam
-WHERE Timelimit >= '00:60:00' AND CreateDate < 20200401;
+-- Question 8: Lấy ra các mã bài thi có thời gian ít nhất 60 phút và tạo trước ngày 01/04/2021
+SELECT `Code` FROM Exam
+WHERE `Duration(Mins)` >= 60 AND CreateDate < 20210401;
 
 -- Question 9: Lấy ra 5 lớp đã lập gần đây nhất
 SELECT * FROM Class
 ORDER BY CreateDate DESC
 LIMIT 5;
 
--- Question 10: Đếm số giáo viên thuộc phòng ban có ID là 2
+-- Question 10: Đếm số giáo viên thuộc phòng ban tiếng Anh 
 SELECT COUNT(TeacherID) FROM TeacherAccount 
-WHERE DepartmentID = 2;
+WHERE DepartmentID = (SELECT DepartmentID FROM Department WHERE DepartmentName = 'English');
 
--- Question 11: Lấy ra thông tin giáo viên có Fullname bắt đầu bằng T và kết thúc b
+-- Question 11: Lấy ra thông tin giáo viên có Fullname bắt đầu bằng "T" và kết thúc bằng "6"
 SELECT * FROM TeacherAccount
 WHERE Fullname LIKE 'T%6';
 
--- Question 12: Xoá tất cả các Exam tạo trước ngày 31/12/2019
+-- Question 12: Xoá tất cả các bài kiểm tra tạo trước ngày 31/12/2019
 DELETE FROM Exam WHERE CreateDate < 20191231;
 
--- Question 13: Xoá tất cả các Question có nội dung bắt đầu bằng "ABC"
+-- Question 13: Xoá tất cả các câu hỏi có nội dung bắt đầu bằng "ABC"
 DELETE FROM Question WHERE Content LIKE 'ABC%';
 
--- Question 14: Update thông tin của Student có ID là 5 thành tên "Nguyen Thanh Luan" và email "luan@vti.com.vn"
+-- Question 14: Update thông tin của học sinh có ID là 5 thành tên "Nguyen Thanh Luan" và Email "luan@vti.com.vn"
 UPDATE StudentAccount SET
 Fullname = 'Nguyen Thanh Luan',
 Email = 'luan@vti.com.vn'
