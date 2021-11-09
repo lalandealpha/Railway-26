@@ -226,6 +226,10 @@ SELECT ClassName FROM Class
 WHERE CreateDate < 20201230;
 
 -- Question 7: Lấy ra ID của các câu hỏi có ít nhất 4 câu trả lời
+SELECT QuestionID FROM Answer 
+GROUP BY QuestionID HAVING COUNT(AnswerID) >= 4;
+
+-- Question 7: Lấy ra ID của các câu hỏi có ít nhất 4 câu trả lời (kèm theo số câu trả lời)
 SELECT QuestionID, COUNT(AnswerID) FROM Answer 
 GROUP BY QuestionID HAVING COUNT(AnswerID) >= 4;
 
