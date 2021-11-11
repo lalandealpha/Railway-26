@@ -66,6 +66,17 @@ FROM
             GROUP BY Question.Content) AS query2) AS query3
 WHERE query1.Count_of_exams = query3.Highest_count;
 
+SELECT ExamQuestion.QuestionID, Question.Content 
+FROM ExamQuestion 
+INNER JOIN Question ON Question.Question = ExamQuestion.QuestionID
+GROUP BY ExamQuestion.QuestionID
+HAVING COUNT(ExamQuestion.QuestionID) =	(SELECT MAX(QuestionCount) 
+										FROM
+											(SELECT COUNT(ExamQuestion.QuestionID) AS QuestionCount 
+											FROM ExamQuestion
+											GROUP BY ExamQuestion.QuestionID) 
+										AS TableCount);
+
 -- Question 6: Thống kê mỗi Chủ đề câu hỏi được sử dụng bao nhiêu lần tương ứng với các câu hỏi theo thứ tự tăng dần
 SELECT
 	QuestionCategory.CategoryName,
@@ -81,7 +92,7 @@ SELECT
 	Question.Content AS Question_Content,
     COUNT(ExamQuestion.ExamID) AS Count_of_exams
 FROM ExamQuestion
-LEFT JOIN Question
+RIGHT JOIN Question
 ON ExamQuestion.QuestionID = Question.QuestionID
 GROUP BY Question.Content;
 

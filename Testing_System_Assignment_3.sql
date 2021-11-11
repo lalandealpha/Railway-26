@@ -214,10 +214,17 @@ ORDER BY LENGTH(Fullname) DESC
 LIMIT 1;
 
 -- Question 4: Lấy ra thông tin giáo viên có Fullname dài nhất (cách 2)
-SELECT * FROM TeacherAccount
+SELECT * FROM TeacherAccount;
+SELECT max(length(Fullname)) FROM TeacherAccount;
+SELECT * 
+FROM TeacherAccount
 WHERE LENGTH(Fullname) = (SELECT MAX(LENGTH(Fullname)) FROM TeacherAccount);
 
 -- Question 5: Lấy ra thông tin giáo viên có Fullname dài nhất và thuộc phòng ban có ID bằng 3
+SELECT MAX(LENGTH(Fullname))
+FROM TeacherAccount
+WHERE DepartmentID = 3;
+
 SELECT * FROM TeacherAccount
 WHERE LENGTH(Fullname) = (SELECT MAX(LENGTH(Fullname)) FROM TeacherAccount WHERE DepartmentID = 3);
 
