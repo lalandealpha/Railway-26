@@ -207,8 +207,8 @@ INSERT INTO ExamQuestion (ExamID, QuestionID) VALUES
 -- Question 1: Lấy ra danh sách học viên và phòng ban của họ
 SELECT 
 	StudentAccount.StudentID,
-    StudentAccount.Fullname AS StudentName,
-    Department.DepartmentName
+	StudentAccount.Fullname AS StudentName,
+	Department.DepartmentName
 FROM StudentAccount
 JOIN Department 
 ON StudentAccount.DepartmentID = Department.DepartmentID;
@@ -216,7 +216,7 @@ ON StudentAccount.DepartmentID = Department.DepartmentID;
 -- Question 2: Lấy ra thông tin account giáo viên được tạo sau ngày 01/12/2018
 SELECT
 	TeacherAccount.*,
-    Department.DepartmentName
+	Department.DepartmentName
 FROM TeacherAccount
 JOIN Department
 ON TeacherAccount.DepartmentID = Department.DepartmentID
@@ -225,7 +225,7 @@ WHERE TeacherAccount.CreateDate > 20181201;
 -- Question 3: Lấy ra thông tin của tất cả Mentor
 SELECT
 	StudentAccount.*,
-    `Position`.PositionName
+	`Position`.PositionName
 FROM StudentAccount
 JOIN `Position`
 ON StudentAccount.PositionID = `Position`.PositionID
@@ -260,10 +260,11 @@ FROM
     GROUP BY Question.Content) AS query1,
     
     (SELECT MAX(query2.Count_of_exams) AS Highest_count
-	FROM	(SELECT
-				Question.Content AS Question_Content,
-				COUNT(ExamQuestion.ExamID) AS Count_of_exams
-			FROM ExamQuestion
+	FROM
+		(SELECT
+			Question.Content AS Question_Content,
+            COUNT(ExamQuestion.ExamID) AS Count_of_exams
+            FROM ExamQuestion
             JOIN Question
             ON ExamQuestion.QuestionID = Question.QuestionID
             GROUP BY Question.Content) AS query2) AS query3
@@ -322,7 +323,7 @@ WHERE query1.Answer_Count = query3.Highest_Count;
 -- Question 9: Thống kê số lượng học viên trong mỗi lớp
 SELECT
 	Class.ClassName,
-    COUNT(ClassAccount.StudentID) AS Number_of_students
+	COUNT(ClassAccount.StudentID) AS Number_of_students
 FROM Class
 LEFT JOIN ClassAccount
 ON Class.ClassID = ClassAccount.ClassID
@@ -332,7 +333,7 @@ GROUP BY Class.ClassName;
 -- Tương tự câu 5, trước hết liệt kê từng vị trí kèm theo số lượng học viên
 SELECT
 	`Position`.PositionName AS Position,
-    COUNT(StudentAccount.StudentID) AS StudentCount
+	COUNT(StudentAccount.StudentID) AS StudentCount
 FROM `Position`
 JOIN StudentAccount
 ON StudentAccount.PositionID = `Position`.PositionID
@@ -362,7 +363,7 @@ WHERE query1.StudentCount = query3.LowestCount;
 -- Question 11: Thống kê mỗi lớp có bao nhiêu Admin, Mentor, Student -> chưa nghĩ ra
 SELECT
 	Class.ClassName,
-    Position.PositionName
+	Position.PositionName
 FROM Class
 LEFT JOIN ClassAccount
 ON Class.ClassID = ClassAccount.ClassID
