@@ -66,9 +66,9 @@ FROM
             GROUP BY Question.Content) AS query2) AS query3
 WHERE query1.Count_of_exams = query3.Highest_count;
 
-SELECT ExamQuestion.QuestionID, Question.Content 
+SELECT Question.Content 
 FROM ExamQuestion 
-INNER JOIN Question ON Question.Question = ExamQuestion.QuestionID
+INNER JOIN Question ON Question.QuestionID = ExamQuestion.QuestionID
 GROUP BY ExamQuestion.QuestionID
 HAVING COUNT(ExamQuestion.QuestionID) =	(SELECT MAX(QuestionCount) 
 										FROM
