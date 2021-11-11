@@ -71,7 +71,7 @@ SELECT
 	QuestionCategory.CategoryName,
     COUNT(Question.QuestionID) AS QuestionCount
 FROM Question
-JOIN QuestionCategory
+LEFT JOIN QuestionCategory
 ON Question.CategoryID = QuestionCategory.CategoryID
 GROUP BY QuestionCategory.CategoryName
 ORDER BY QuestionCount;
@@ -81,7 +81,7 @@ SELECT
 	Question.Content AS Question_Content,
     COUNT(ExamQuestion.ExamID) AS Count_of_exams
 FROM ExamQuestion
-JOIN Question
+LEFT JOIN Question
 ON ExamQuestion.QuestionID = Question.QuestionID
 GROUP BY Question.Content;
 
