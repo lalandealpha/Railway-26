@@ -99,7 +99,6 @@ FOREIGN KEY (ExamID) REFERENCES Exam (ExamID),
 FOREIGN KEY (QuestionID) REFERENCES Question (QuestionID)
 );
 
--- Question 1: Thêm record vào tất cả các table
 INSERT INTO Department (DepartmentName) VALUES
 	('Japanese'),
 	('English'),
