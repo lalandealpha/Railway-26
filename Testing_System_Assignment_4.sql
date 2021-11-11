@@ -243,7 +243,7 @@ HAVING COUNT(TeacherAccount.TeacherID) > 2;
 -- Trước hết, đưa ra danh sách câu hỏi kèm theo thống kê số lượng bài thi nó được sử dụng
 SELECT
 	Question.Content AS Question_Content,
-	COUNT(ExamQuestion.ExamID) AS Count_of_exams
+    COUNT(ExamQuestion.ExamID) AS Count_of_exams
 FROM ExamQuestion
 JOIN Question
 ON ExamQuestion.QuestionID = Question.QuestionID
@@ -283,7 +283,7 @@ ORDER BY QuestionCount;
 -- Question 7: Thống kê mỗi Câu hỏi được sử dụng trong bao nhiêu bài thi
 SELECT
 	Question.Content AS Question_Content,
-	COUNT(ExamQuestion.ExamID) AS Count_of_exams
+    COUNT(ExamQuestion.ExamID) AS Count_of_exams
 FROM ExamQuestion
 JOIN Question
 ON ExamQuestion.QuestionID = Question.QuestionID
@@ -303,7 +303,7 @@ SELECT query1.Question_Content
 FROM
 	(SELECT
 		Question.Content AS Question_Content,
-		COUNT(Answer.AnswerID) AS Answer_Count
+        COUNT(Answer.AnswerID) AS Answer_Count
 		FROM Question
 		JOIN Answer
 		ON Question.QuestionID = Answer.QuestionID
@@ -313,7 +313,7 @@ FROM
 	FROM 
 		(SELECT
 			Question.Content AS Question_Content,
-			COUNT(Answer.AnswerID) AS Answer_Count
+            COUNT(Answer.AnswerID) AS Answer_Count
 			FROM Question
 			JOIN Answer
 			ON Question.QuestionID = Answer.QuestionID
@@ -323,7 +323,7 @@ WHERE query1.Answer_Count = query3.Highest_Count;
 -- Question 9: Thống kê số lượng học viên trong mỗi lớp
 SELECT
 	Class.ClassName,
-	COUNT(ClassAccount.StudentID) AS Number_of_students
+    COUNT(ClassAccount.StudentID) AS Number_of_students
 FROM Class
 LEFT JOIN ClassAccount
 ON Class.ClassID = ClassAccount.ClassID
@@ -333,7 +333,7 @@ GROUP BY Class.ClassName;
 -- Tương tự câu 5, trước hết liệt kê từng vị trí kèm theo số lượng học viên
 SELECT
 	`Position`.PositionName AS Position,
-	COUNT(StudentAccount.StudentID) AS StudentCount
+    COUNT(StudentAccount.StudentID) AS StudentCount
 FROM `Position`
 JOIN StudentAccount
 ON StudentAccount.PositionID = `Position`.PositionID
@@ -343,7 +343,7 @@ SELECT query1.*
 FROM 
 	(SELECT
 		`Position`.PositionName AS Position,
-		COUNT(StudentAccount.StudentID) AS StudentCount
+        COUNT(StudentAccount.StudentID) AS StudentCount
 		FROM `Position`
 		JOIN StudentAccount
 		ON StudentAccount.PositionID = `Position`.PositionID
@@ -353,7 +353,7 @@ FROM
 	FROM 
 		(SELECT
 		`Position`.PositionName AS Position,
-		COUNT(StudentAccount.StudentID) AS StudentCount
+        COUNT(StudentAccount.StudentID) AS StudentCount
 		FROM `Position`
 		JOIN StudentAccount
 		ON StudentAccount.PositionID = `Position`.PositionID
