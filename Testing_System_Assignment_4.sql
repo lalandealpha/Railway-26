@@ -167,17 +167,30 @@ FROM
 		GROUP BY `Position`.PositionName) AS query2) AS query3
 WHERE query1.StudentCount = query3.LowestCount;
 
--- Question 11: Thống kê mỗi lớp có bao nhiêu Admin, Mentor, Student -> chưa nghĩ ra
+-- Question 11: Thống kê mỗi lớp có bao nhiêu Admin, Mentor, Student
+-- Trường hợp yêu cầu tất cả các lớp kể cả các lớp không có thành viên nào
 SELECT
 	Class.ClassName,
-	Position.PositionName
+	Position.PositionName,
+    COUNT(ClassAccount.StudentID)
 FROM Class
 LEFT JOIN ClassAccount
 ON Class.ClassID = ClassAccount.ClassID
 LEFT JOIN StudentAccount
 ON ClassAccount.StudentID = StudentAccount.StudentID
 LEFT JOIN `Position`
-ON StudentAccount.PositionID = `Position`.PositionID;
+ON StudentAccount.PositionID = `Position`.PositionID
+GROUP BY Class.ClassName, Position.PositionName;
+-- Trường hợp chỉ thống kê các lớp có thành viên (hoặc sử dụng INNER JOIN)
+SELECT
+	Class.ClassName,
+	Position.PositionName,
+    COUNT(ClassAccount.StudentID)
+FROM Class, ClassAccount, StudentAccount, `Position`
+WHERE Class.ClassID = ClassAccount.ClassID
+AND ClassAccount.StudentID = StudentAccount.StudentID
+AND StudentAccount.PositionID = `Position`.PositionID
+GROUP BY Class.ClassName, Position.PositionName;
 
 -- Question 12: Lấy ra thông tin chi tiết (tất cả thông tin liên quan) của các câu hỏi
 SELECT
