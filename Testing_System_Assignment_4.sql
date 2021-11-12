@@ -65,17 +65,15 @@ FROM
             ON ExamQuestion.QuestionID = Question.QuestionID
             GROUP BY Question.Content) AS query2) AS query3
 WHERE query1.Count_of_exams = query3.Highest_count;
-
+-- Cách 2
 SELECT Question.Content 
 FROM ExamQuestion 
 INNER JOIN Question ON Question.QuestionID = ExamQuestion.QuestionID
 GROUP BY ExamQuestion.QuestionID
-HAVING COUNT(ExamQuestion.QuestionID) =	(SELECT MAX(QuestionCount) 
+HAVING COUNT(ExamQuestion.QuestionID) =	(SELECT MAX(query1) 
 										FROM
-											(SELECT COUNT(ExamQuestion.QuestionID) AS QuestionCount 
-											FROM ExamQuestion
-											GROUP BY ExamQuestion.QuestionID) 
-										AS TableCount);
+											(SELECT COUNT(ExamQuestion.QuestionID) AS query1 
+											FROM ExamQuestion GROUP BY ExamQuestion.QuestionID) AS query2);
 
 -- Question 6: Thống kê mỗi Chủ đề câu hỏi được sử dụng bao nhiêu lần tương ứng với các câu hỏi theo thứ tự tăng dần
 SELECT
