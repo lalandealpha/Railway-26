@@ -74,6 +74,20 @@ HAVING COUNT(ExamQuestion.QuestionID) =	(SELECT MAX(query1)
 										FROM
 											(SELECT COUNT(ExamQuestion.QuestionID) AS query1 
 											FROM ExamQuestion GROUP BY ExamQuestion.QuestionID) AS query2);
+-- Cách 3, sử dụng View
+DROP VIEW IF EXISTS Exam_count;
+
+CREATE VIEW Exam_count AS
+SELECT COUNT(ExamQuestion.QuestionID) AS Ex_count
+FROM ExamQuestion 
+GROUP BY ExamQuestion.QuestionID;
+
+SELECT Question.Content
+FROM ExamQuestion
+INNER JOIN Question 
+ON Question.QuestionID = ExamQuestion.QuestionID
+GROUP BY ExamQuestion.QuestionID
+HAVING COUNT(ExamQuestion.QuestionID) = (SELECT MAX(Ex_count) FROM Exam_count);
 
 -- Question 6: Thống kê mỗi Chủ đề câu hỏi được sử dụng bao nhiêu lần tương ứng với các câu hỏi theo thứ tự tăng dần
 SELECT
@@ -124,7 +138,17 @@ FROM
 			ON Question.QuestionID = Answer.QuestionID
 			GROUP BY Question.Content) AS query2) AS query3
 WHERE query1.Answer_Count = query3.Highest_Count;
-        
+-- Cách 2: Sử dụng View
+DROP VIEW IF EXISTS ques_count_view;
+CREATE VIEW ques_count_view AS
+SELECT
+	Question.Content AS Question_Content,
+    COUNT(Answer.AnswerID)
+FROM Question
+JOIN Answer
+ON Question.QuestionID = Answer.QuestionID
+GROUP BY Question.Content;
+
 -- Question 9: Thống kê số lượng học viên trong mỗi lớp
 SELECT
 	Class.ClassName,
