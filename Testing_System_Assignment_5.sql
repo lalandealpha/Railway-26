@@ -28,6 +28,9 @@ GROUP BY a.QuestionID
 HAVING COUNT(a.QuestionID) = (SELECT MAX(No_of_ques) FROM Ques_count_view);
 
 -- Question 3: Tạo view có chứa câu hỏi nội dung trên 30 kí tự và xoá nó đi.
+ALTER TABLE Question 
+ALTER COLUMN QuestionID SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT ON DELETE CASCADE; -- Gặp lỗi cú pháp?!?
+
 DROP VIEW IF EXISTS Ques_morethan20Char_view;
 
 CREATE VIEW Ques_morethan20Char_view AS
