@@ -85,7 +85,7 @@ BEGIN
     
    UNION
     
-    SELECT sa.Fullname
+	SELECT sa.Fullname
     FROM StudentAccount sa
     WHERE sa.Username LIKE ('%' || string_in || '%');
 END $$
