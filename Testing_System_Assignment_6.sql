@@ -1,12 +1,11 @@
 USE Testing_System_Assignment_1;
 
--- Question 1: Tạo Store để người dùng nhập vào tên phòng ban và in ra danh sách học viên của phòng ban đó.
+-- Question 1: Tạo Store để người dùng nhập vào tên phòng ban và in ra danh sách thông tin học viên của phòng ban đó.
 DROP PROCEDURE IF EXISTS get_acc_info;
-
 DELIMITER $$
 CREATE PROCEDURE get_acc_info (IN dept_name VARCHAR(20))
 BEGIN
-	SELECT s.StudentID, s.Fullname
+	SELECT s.*
     FROM StudentAccount s
     JOIN Department d
     ON d.DepartmentID = s.DepartmentID
@@ -18,7 +17,6 @@ CALL get_acc_info ('IT');
 
 -- Question 2: Tạo Store để in ra số lượng học viên lớp.
 DROP PROCEDURE IF EXISTS get_stu_count;
-
 DELIMITER $$
 CREATE PROCEDURE get_stu_count (IN class_name VARCHAR(20))
 BEGIN
@@ -34,7 +32,6 @@ CALL get_stu_count ('JAP1');
 
 -- Question 3: Tạo Store thống kê mỗi kiểu câu hỏi có bao nhiêu câu hỏi được tạo trong tháng hiện tại.
 DROP PROCEDURE IF EXISTS Ques_count_in_month;
-
 DELIMITER $$
 CREATE PROCEDURE Ques_count_in_month ()
 BEGIN
@@ -51,7 +48,6 @@ CALL Ques_count_in_month ();
 
 -- Question 4: Tạo Store để trả ra ID của loại câu hỏi có nhiều câu trả lời nhất.
 DROP PROCEDURE IF EXISTS most_answers_QuestionType;
-
 DELIMITER $$
 CREATE PROCEDURE most_answers_QuestionType(OUT Most_TypeID INT)
 BEGIN
@@ -77,33 +73,87 @@ SELECT QuestionType.TypeName
 FROM QuestionType
 WHERE QuestionType.TypeID = @most_typeID;
 
-/* Question 6: Tạo 1 Store cho phép người dùng nhập vào 1 chuỗi
-và trả về lớp có tên chứa chuỗi cuả người dùng nhập vào,
+/* Question 6: Tạo 1 Store cho phép người dùng nhập vào 1 chuỗi và trả về lớp có tên chứa chuỗi cuả người dùng nhập vào,
 hoặc trả về tên học viên Username chứa chuỗi của người dùng nhập vào*/
 DROP PROCEDURE IF EXISTS Find_string;
-
 DELIMITER $$
-CREATE PROCEDURE Find_string (IN string_var VARCHAR(50))
+CREATE PROCEDURE Find_string (IN string_in VARCHAR(50))
 BEGIN
 	SELECT c.ClassName
     FROM Class c
-    WHERE c.ClassName LIKE 'CONCAT(%, string_var, %)'
+    WHERE c.ClassName LIKE ('%' || string_in || '%')
     
-    UNION
+   UNION
     
     SELECT sa.Fullname
     FROM StudentAccount sa
-    WHERE sa.Username LIKE 'CONCAT(%, string_var, %)';
+    WHERE sa.Username LIKE ('%' || string_in || '%');
 END $$
 DELIMITER ;
 
 CALL Find_string ('a');
 
-/* Question 7: Viết 1 store cho phép người dùng nhập vào thông tin fullName, email và trong store sẽ tự động gán:
-username sẽ giống email nhưng bỏ phần @..mail đi
-positionID: sẽ có default là developer
-departmentID: sẽ được cho vào 1 phòng chờ
+/* Question 7: Viết 1 store cho phép người dùng nhập vào thông tin Fullname, email và trong store sẽ tự động tạo tài khoản học viên với:
+- Username sẽ giống email nhưng bỏ phần @..mail đi
+- PositionID: sẽ có default là student
+- DepartmentID: sẽ được cho vào 1 phòng chờ
+- Ngày tạo tài khoản là ngày hiện tại
 Sau đó in ra kết quả tạo thành công*/
+INSERT INTO Department (DepartmentName)
+VALUES ('Not yet assigned'); -- Tạo một phòng chờ
 
-SUBSTRING_INDEX(email_var, '@', 1)
+DROP PROCEDURE IF EXISTS auto_create_acc;
+DELIMITER $$
+CREATE PROCEDURE auto_create_acc (IN fullname_in VARCHAR(50), email_in VARCHAR(50))
+BEGIN
+	DECLARE username_in VARCHAR(50) DEFAULT SUBSTRING_INDEX(email_in, '@', 1);
+    DECLARE positionID_in VARCHAR(10) DEFAULT (SELECT PositionID FROM `Position` WHERE PositionName = 'Student');
+    DECLARE departmentID_in VARCHAR(20) DEFAULT (SELECT DepartmentID FROM Department WHERE DepartmentName = 'Not yet assigned');
+    
+	INSERT INTO StudentAccount (Email, Username, Fullname, DepartmentID, PositionID, CreateDate)
+    VALUES (email_in, username_in, fullname_in, departmentID_in, positionID_in, CURDATE());
+END $$
+DELIMITER ;
+
+CALL Testing_System_Assignment_1.auto_create_acc('Tran Hoang Long', 'longtran@gmail.com');
+
+/* Question 8: Viết 1 store cho phép người dùng nhập vào Essay hoặc Multiple-Choice 
+để thống kê câu hỏi Essay hoặc Multiple-choice nào có content dài nhất*/
+DROP PROCEDURE IF EXISTS longest_ques;
+DELIMITER $$
+CREATE PROCEDURE longest_ques (IN type_in VARCHAR(20))
+BEGIN
+	SELECT q.QuestionID, q.Content
+	FROM Question q
+	JOIN QuestionType qt
+	ON q.TypeID = qt.TypeID
+	WHERE qt.TypeName = type_in
+	AND LENGTH(q.Content) = (SELECT MAX(cont_length) FROM 	(SELECT LENGTH(Content) AS cont_length 
+															FROM Question q
+															JOIN QuestionType qt
+															ON q.TypeID = qt.TypeID
+															WHERE qt.TypeName = type_in) AS query1);
+END $$
+DELIMITER ;
+
+CALL longest_ques ('Essay');
+CALL longest_ques ('Multiple-Choice');
+
+-- Question 9: Viết 1 store cho phép người dùng xóa exam dựa vào ID.
+DROP PROCEDURE IF EXISTS del_exam;
+DELIMITER $$
+CREATE PROCEDURE del_exam (IN exID_in INT)
+BEGIN
+	DELETE FROM Exam WHERE ExamId = exID_in;
+END $$
+DELIMITER ;
+
+CALL del_exam (1);
+
+/* Question 10: Tìm ra các exam được tạo từ 3 năm trước và xóa các exam đó đi (sử dụng store ở câu 9 để xóa)
+Sau đó in số lượng record đã remove từ các table liên quan trong khi removing*/
+CALL del_exam (1)
+
+
+
 
