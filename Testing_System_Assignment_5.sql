@@ -1,5 +1,7 @@
 USE Testing_System_Assignment_1;
 
+SET SQL_SAFE_UPDATES = 0;
+
 -- Question 1: Tạo view có chứa danh sách giáo viên thuộc ban tiếng Anh.
 DROP VIEW IF EXISTS Eng_teacher_view;
 

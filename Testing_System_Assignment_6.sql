@@ -1,5 +1,7 @@
 USE Testing_System_Assignment_1;
 
+SET SQL_SAFE_UPDATES = 0;
+
 -- Question 1: Tạo Store để người dùng nhập vào tên phòng ban và in ra danh sách thông tin học viên của phòng ban đó.
 DROP PROCEDURE IF EXISTS get_acc_info;
 DELIMITER $$
@@ -140,20 +142,43 @@ CALL longest_ques ('Essay');
 CALL longest_ques ('Multiple-Choice');
 
 -- Question 9: Viết 1 store cho phép người dùng xóa exam dựa vào ID.
-DROP PROCEDURE IF EXISTS del_exam;
+DROP PROCEDURE IF EXISTS Del_exam;
 DELIMITER $$
-CREATE PROCEDURE del_exam (IN exID_in INT)
+CREATE PROCEDURE Del_exam (IN exID_in INT)
 BEGIN
 	DELETE FROM Exam WHERE ExamId = exID_in;
 END $$
 DELIMITER ;
 
-CALL del_exam (1);
+CALL Del_exam (1);
 
 /* Question 10: Tìm ra các exam được tạo từ 3 năm trước và xóa các exam đó đi (sử dụng store ở câu 9 để xóa)
 Sau đó in số lượng record đã remove từ các table liên quan trong khi removing*/
-CALL del_exam (1)
+CALL Del_exam (
+	(SELECT ExamId
+    FROM Exam
+    WHERE YEAR(CreateDate) <=  YEAR(NOW()) - 3)
+);
 
+/* Question 11:  Viết store cho phép người dùng xóa phòng ban bằng cách người dùng nhập vào tên phòng ban
+và các TeacherAccount thuộc phòng ban đó sẽ được chuyển về phòng ban default là phòng ban chờ làm việc*/
+DROP PROCEDURE IF EXISTS Del_department;
+DELIMITER $$
+CREATE PROCEDURE Del_Department (IN dep_name_in VARCHAR(20))
+BEGIN
+	UPDATE TeacherAccount ta
+	JOIN Department d
+	ON ta.DepartmentID = d.DepartmentID
+	SET ta.DepartmentID = (SELECT DepartmentID FROM Department WHERE DepartmentName = 'Not yet assigned')
+	WHERE d.DepartmentName = dep_name_in;
+    
+    DELETE FROM Department WHERE DepartmentName = dep_name_in;
+END $$
+DELIMITER ;
 
+CALL Del_department ('Chinese');
 
+-- Question 12: Viết store để in ra mỗi tháng có bao nhiêu câu hỏi được tạo trong năm nay.
 
+/* Question 13: Viết store để in ra mỗi tháng có bao nhiêu câu hỏi được tạo trong 6 tháng gần đây nhất
+(Nếu tháng nào không có thì sẽ in ra là "không có câu hỏi nào trong tháng")*/
