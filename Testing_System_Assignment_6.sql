@@ -83,13 +83,13 @@ CREATE PROCEDURE Find_string (IN string_in VARCHAR(50))
 BEGIN
 	SELECT c.ClassName
     FROM Class c
-    WHERE c.ClassName LIKE ('%' || string_in || '%')
+    WHERE c.ClassName LIKE CONCAT('%', string_in, '%')
     
    UNION
     
 	SELECT sa.Fullname
     FROM StudentAccount sa
-    WHERE sa.Username LIKE ('%' || string_in || '%');
+    WHERE sa.Username LIKE CONCAT('%', string_in, '%');
 END $$
 DELIMITER ;
 
