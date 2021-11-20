@@ -252,7 +252,7 @@ BEGIN
 	FROM Last_6months_view  m
 	LEFT JOIN This_year_ques_view ty
 	ON MONTH(ty.CreateDate) = SUBSTRING_INDEX(m.YearMonth, '-', -1)
-	GROUP BY YearMonth;
+	GROUP BY m.YearMonth;
 END $$
 DELIMITER ;
 
