@@ -114,10 +114,13 @@ BEGIN
     
 	INSERT INTO StudentAccount (Email, Username, Fullname, DepartmentID, PositionID, CreateDate)
     VALUES (email_in, username_in, fullname_in, departmentID_in, positionID_in, CURDATE());
+    
+    SELECT * FROM StudentAccount
+    WHERE Email = email_in;
 END $$
 DELIMITER ;
 
-CALL Testing_System_Assignment_1.auto_create_acc('Tran Hoang Long', 'longtran@gmail.com');
+CALL Testing_System_Assignment_1.auto_create_acc('Nguyen ABCD', 'abcde@gmail.com');
 
 /* Question 8: Viết 1 store cho phép người dùng nhập vào Essay hoặc Multiple-Choice 
 để thống kê câu hỏi Essay hoặc Multiple-choice nào có content dài nhất*/
@@ -152,12 +155,19 @@ DELIMITER ;
 
 CALL Del_exam (1);
 
-/* Question 10: Tìm ra các exam được tạo từ 3 năm trước và xóa các exam đó đi (sử dụng store ở câu 9 để xóa)
+/* Question 10: Tìm ra các exam được tạo từ 5 năm trước và xóa các exam đó đi (sử dụng store ở câu 9 để xóa)
 Sau đó in số lượng record đã remove từ các table liên quan trong khi removing*/
+CREATE OR REPLACE VIEW ExamId_view AS 
+SELECT ExamId
+FROM Exam
+WHERE YEAR(CreateDate) <=  YEAR(NOW()) - 5;
+
+SELECT * FROM ExamId_view;
+
+CALL Del_exam(ExamId_view);
+
 CALL Del_exam (
-	(SELECT ExamId
-    FROM Exam
-    WHERE YEAR(CreateDate) <=  YEAR(NOW()) - 3)
+	SELECT ExamId FROM Exam WHERE ExamID IN (SELECT ExamId FROM ExamId_view)
 );
 
 /* Question 11:  Viết store cho phép người dùng xóa phòng ban bằng cách người dùng nhập vào tên phòng ban
@@ -178,7 +188,63 @@ DELIMITER ;
 
 CALL Del_department ('Chinese');
 
--- Question 12: Viết store để in ra mỗi tháng có bao nhiêu câu hỏi được tạo trong năm nay.
+-- Question 12: Viết store để in ra mỗi tháng có bao nhiêu câu hỏi được tạo.
+DROP PROCEDURE IF EXISTS Ques_count_on_month;
+DELIMITER $$
+CREATE PROCEDURE Ques_count_on_month ()
+BEGIN
+	CREATE OR REPLACE VIEW 12months_list_view AS					-- Tạo 1 view chứa 12 tháng của năm nay.
+		SELECT CONCAT(YEAR(NOW()), '-', '01') AS YearMonth UNION
+		SELECT CONCAT(YEAR(NOW()), '-', '02') AS YearMonth UNION
+		SELECT CONCAT(YEAR(NOW()), '-', '03') AS YearMonth UNION
+		SELECT CONCAT(YEAR(NOW()), '-', '04') AS YearMonth UNION
+		SELECT CONCAT(YEAR(NOW()), '-', '05') AS YearMonth UNION
+		SELECT CONCAT(YEAR(NOW()), '-', '06') AS YearMonth UNION
+		SELECT CONCAT(YEAR(NOW()), '-', '07') AS YearMonth UNION
+		SELECT CONCAT(YEAR(NOW()), '-', '08') AS YearMonth UNION
+		SELECT CONCAT(YEAR(NOW()), '-', '09') AS YearMonth UNION
+		SELECT CONCAT(YEAR(NOW()), '-', '10') AS YearMonth UNION
+		SELECT CONCAT(YEAR(NOW()), '-', '11') AS YearMonth UNION
+		SELECT CONCAT(YEAR(NOW()), '-', '12') AS YearMonth;
+
+	CREATE OR REPLACE VIEW this_year_ques_view AS					-- Tạo 1 view chứa câu hỏi được tạo trong năm nay.
+	SELECT * FROM Question WHERE YEAR(CreateDate) = YEAR(NOW());
+    
+	SELECT m.*, COUNT(ty.QuestionID) AS Number_of_questions			-- Left Join view câu hỏi vào view 12 tháng.
+	FROM `12months_list_view` m
+	LEFT JOIN this_year_ques_view ty
+	ON MONTH(ty.CreateDate) = SUBSTRING_INDEX(m.YearMonth, '-', -1)
+	GROUP BY YearMonth;
+END $$
+DELIMITER ;
+
+CALL Ques_count_on_month;
 
 /* Question 13: Viết store để in ra mỗi tháng có bao nhiêu câu hỏi được tạo trong 6 tháng gần đây nhất
 (Nếu tháng nào không có thì sẽ in ra là "không có câu hỏi nào trong tháng")*/
+-- Hàm DATE_SUB cho ra kết quả 6 tháng gần nhất
+DROP PROCEDURE IF EXISTS Ques_count_on_6months;
+DELIMITER $$
+CREATE PROCEDURE Ques_count_on_6months ()
+BEGIN
+	CREATE OR REPLACE VIEW `6months_from_now_view` AS													-- Tạo view chứa 6 tháng trong năm nay.
+		SELECT CONCAT(YEAR(NOW()), '-', MONTH(DATE_SUB(NOW(), INTERVAL 5 MONTH))) AS YearMonth UNION
+		SELECT CONCAT(YEAR(NOW()), '-', MONTH(DATE_SUB(NOW(), INTERVAL 4 MONTH))) AS YearMonth UNION
+		SELECT CONCAT(YEAR(NOW()), '-', MONTH(DATE_SUB(NOW(), INTERVAL 3 MONTH))) AS YearMonth UNION
+		SELECT CONCAT(YEAR(NOW()), '-', MONTH(DATE_SUB(NOW(), INTERVAL 2 MONTH))) AS YearMonth UNION
+		SELECT CONCAT(YEAR(NOW()), '-', MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))) AS YearMonth UNION
+		SELECT CONCAT(YEAR(NOW()), '-', MONTH(NOW())) AS YearMonth;
+
+	CREATE OR REPLACE VIEW this_year_ques_view AS														-- Tạo view chứa câu hỏi trong năm nay.
+	SELECT * FROM Question WHERE YEAR(CreateDate) = YEAR(NOW());
+    
+	SELECT m.*, COUNT(ty.QuestionID) AS Number_of_questions												-- Left Join view câu hỏi vào view 6 tháng.
+	FROM `6months_from_now_view` m
+	LEFT JOIN this_year_ques_view ty
+	ON MONTH(ty.CreateDate) = SUBSTRING_INDEX(m.YearMonth, '-', -1)
+	GROUP BY YearMonth;
+    
+END $$
+DELIMITER ;
+
+CALL Ques_count_on_6months;

@@ -29,15 +29,15 @@ ON q.QuestionID = a.QuestionID
 GROUP BY a.QuestionID
 HAVING COUNT(a.QuestionID) = (SELECT MAX(No_of_ques) FROM Ques_count_view);
 
--- Question 3: Tạo view có chứa câu hỏi nội dung trên 30 kí tự và xoá nó đi.
-ALTER TABLE Question 
-ALTER COLUMN QuestionID SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT ON DELETE CASCADE; -- Gặp lỗi cú pháp?!?
+-- Question 3: Tạo view có chứa câu hỏi nội dung trên 115 kí tự và xoá nó đi.
 
 DROP VIEW IF EXISTS Ques_morethan20Char_view;
 
 CREATE VIEW Ques_morethan20Char_view AS
 SELECT * FROM Question
-WHERE LENGTH(Content) > 30;
+WHERE LENGTH(Content) > 115;
+
+SELECT * FROM Ques_morethan20Char_view;
 
 DELETE FROM Ques_morethan20Char_view;
 
@@ -54,7 +54,7 @@ GROUP BY t.DepartmentID;
 DROP VIEW IF EXISTS MaxTeacherCount_dep_view;
 
 CREATE VIEW MaxTeacherCount_dep_view AS
-SELECT d.DepartmentID, d.DepartmentName
+SELECT d.DepartmentID, d.DepartmentName, COUNT(t.TeacherID)
 FROM Department d
 JOIN TeacherAccount t
 ON d.DepartmentID = t.DepartmentID
@@ -74,4 +74,17 @@ ON q.CreatorID = t.TeacherID
 WHERE SUBSTRING_INDEX(t.Fullname,' ',1) = 'NGUYEN';
 
 SELECT * FROM Ques_by_NGUYEN_view;
+
+-- Cách 2: Dùng LIKE 
+DROP VIEW IF EXISTS Ques_by_NGUYEN_view;
+
+CREATE VIEW Ques_by_NGUYEN_view AS
+SELECT q.QuestionID, q.Content
+FROM Question q
+JOIN TeacherAccount t
+ON q.CreatorID = t.TeacherID
+WHERE t.Fullname LIKE 'NGUYEN%';
+
+SELECT * FROM Ques_by_NGUYEN_view;
+
 
