@@ -227,7 +227,7 @@ DROP PROCEDURE IF EXISTS Ques_count_on_6months;
 DELIMITER $$
 CREATE PROCEDURE Ques_count_on_6months ()
 BEGIN
-	CREATE OR REPLACE VIEW `6months_from_now_view` AS													-- Tạo view chứa 6 tháng trong năm nay.
+	CREATE OR REPLACE VIEW Last_6months_view AS															-- Tạo view chứa 6 tháng trong năm nay.
 		SELECT CONCAT(YEAR(NOW()), '-', MONTH(DATE_SUB(NOW(), INTERVAL 5 MONTH))) AS YearMonth UNION
 		SELECT CONCAT(YEAR(NOW()), '-', MONTH(DATE_SUB(NOW(), INTERVAL 4 MONTH))) AS YearMonth UNION
 		SELECT CONCAT(YEAR(NOW()), '-', MONTH(DATE_SUB(NOW(), INTERVAL 3 MONTH))) AS YearMonth UNION
@@ -235,16 +235,27 @@ BEGIN
 		SELECT CONCAT(YEAR(NOW()), '-', MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))) AS YearMonth UNION
 		SELECT CONCAT(YEAR(NOW()), '-', MONTH(NOW())) AS YearMonth;
 
-	CREATE OR REPLACE VIEW this_year_ques_view AS														-- Tạo view chứa câu hỏi trong năm nay.
+	CREATE OR REPLACE VIEW This_year_ques_view AS														-- Tạo view chứa câu hỏi trong năm nay.
 	SELECT * FROM Question WHERE YEAR(CreateDate) = YEAR(NOW());
     
 	SELECT m.*, COUNT(ty.QuestionID) AS Number_of_questions												-- Left Join view câu hỏi vào view 6 tháng.
-	FROM `6months_from_now_view` m
-	LEFT JOIN this_year_ques_view ty
+	FROM Last_6months_view m
+	LEFT JOIN This_year_ques_view ty
 	ON MONTH(ty.CreateDate) = SUBSTRING_INDEX(m.YearMonth, '-', -1)
 	GROUP BY YearMonth;
     
+	SELECT m.YearMonth,																					-- Dùng hàm Case đưa ra kết quả.
+		CASE
+		WHEN COUNT(ty.QuestionID) = 0 THEN 'No questions created'
+		ELSE COUNT(ty.QuestionID)
+		END AS Number_of_questions
+	FROM Last_6months_view  m
+	LEFT JOIN This_year_ques_view ty
+	ON MONTH(ty.CreateDate) = SUBSTRING_INDEX(m.YearMonth, '-', -1)
+	GROUP BY YearMonth;
 END $$
 DELIMITER ;
 
 CALL Ques_count_on_6months;
+
+   
