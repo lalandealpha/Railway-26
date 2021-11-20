@@ -42,7 +42,7 @@ BEGIN
     JOIN Question q
     ON q.TypeID = qt.TypeID
     WHERE YEAR(q.CreateDate) = YEAR(NOW()) AND MONTH(q.CreateDate) = MONTH(NOW())
-    GROUP BY q.QuestionID;
+    GROUP BY q.TypeID;
 END $$
 DELIMITER ;
 
@@ -60,9 +60,9 @@ BEGIN
 	INNER JOIN Answer
 	ON Answer.QuestionID = Question.QuestionID
 	GROUP BY Answer.QuestionID
-	HAVING COUNT(Answer.QuestionID) =	(SELECT MAX(query1) 
+	HAVING COUNT(Answer.QuestionID) =	(SELECT MAX(Ans_count) 
 										FROM 
-										(SELECT COUNT(Answer.QuestionID) AS query1 
+										(SELECT COUNT(Answer.QuestionID) AS Ans_count 
 										FROM Answer GROUP BY Answer.QuestionID) AS query2);
 END $$
 DELIMITER ;
@@ -93,7 +93,7 @@ BEGIN
 END $$
 DELIMITER ;
 
-CALL Find_string ('a');
+CALL Find_string ('En');
 
 /* Question 7: Viết 1 store cho phép người dùng nhập vào thông tin Fullname, email và trong store sẽ tự động tạo tài khoản học viên với:
 - Username sẽ giống email nhưng bỏ phần @..mail đi
@@ -128,7 +128,7 @@ DROP PROCEDURE IF EXISTS longest_ques;
 DELIMITER $$
 CREATE PROCEDURE longest_ques (IN type_in VARCHAR(20))
 BEGIN
-	SELECT q.QuestionID, q.Content
+	SELECT q.QuestionID, q.Content, LENGTH(q.Content) AS Content_length
 	FROM Question q
 	JOIN QuestionType qt
 	ON q.TypeID = qt.TypeID
@@ -155,20 +155,20 @@ DELIMITER ;
 
 CALL Del_exam (1);
 
-/* Question 10: Tìm ra các exam được tạo từ 5 năm trước và xóa các exam đó đi (sử dụng store ở câu 9 để xóa)
+/* Question 10: Tìm ra các exam được tạo từ 6 năm trước và xóa các exam đó đi (sử dụng store ở câu 9 để xóa)
 Sau đó in số lượng record đã remove từ các table liên quan trong khi removing*/
-CREATE OR REPLACE VIEW ExamId_view AS 
-SELECT ExamId
-FROM Exam
-WHERE YEAR(CreateDate) <=  YEAR(NOW()) - 5;
+DROP PROCEDURE IF EXISTS Del_exam_4years_ago;
+DELIMITER $$
+CREATE PROCEDURE Del_exam_4years_ago ()
+BEGIN
+DELETE FROM Exam 
+WHERE ExamId IN
+				(SELECT ExamId FROM Exam
+				WHERE YEAR(CreateDate) <=  YEAR(NOW()) - 5);
+END $$
+DELIMITER ;
 
-SELECT * FROM ExamId_view;
-
-CALL Del_exam(ExamId_view);
-
-CALL Del_exam (
-	SELECT ExamId FROM Exam WHERE ExamID IN (SELECT ExamId FROM ExamId_view)
-);
+CALL  Del_exam_4years_ago;
 
 /* Question 11:  Viết store cho phép người dùng xóa phòng ban bằng cách người dùng nhập vào tên phòng ban
 và các TeacherAccount thuộc phòng ban đó sẽ được chuyển về phòng ban default là phòng ban chờ làm việc*/
@@ -246,7 +246,7 @@ BEGIN
     
 	SELECT m.YearMonth,																					-- Dùng hàm Case đưa ra kết quả.
 		CASE
-		WHEN COUNT(ty.QuestionID) = 0 THEN 'No questions created'
+		WHEN COUNT(ty.QuestionID) = 0 THEN CONCAT('No questions created in ', m.YearMonth)
 		ELSE COUNT(ty.QuestionID)
 		END AS Number_of_questions
 	FROM Last_6months_view  m
@@ -257,5 +257,4 @@ END $$
 DELIMITER ;
 
 CALL Ques_count_on_6months;
-
    
