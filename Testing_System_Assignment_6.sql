@@ -168,7 +168,7 @@ WHERE ExamId IN
 END $$
 DELIMITER ;
 
-CALL  Del_exam_4years_ago;
+CALL  Del_exam_4years_ago ();
 
 /* Question 11:  Viết store cho phép người dùng xóa phòng ban bằng cách người dùng nhập vào tên phòng ban
 và các TeacherAccount thuộc phòng ban đó sẽ được chuyển về phòng ban default là phòng ban chờ làm việc*/
@@ -218,7 +218,7 @@ BEGIN
 END $$
 DELIMITER ;
 
-CALL Ques_count_on_month;
+CALL Ques_count_on_month ();
 
 /* Question 13: Viết store để in ra mỗi tháng có bao nhiêu câu hỏi được tạo trong 6 tháng gần đây nhất
 (Nếu tháng nào không có thì sẽ in ra là "không có câu hỏi nào trong tháng")*/
@@ -256,5 +256,5 @@ BEGIN
 END $$
 DELIMITER ;
 
-CALL Ques_count_on_6months;
+CALL Ques_count_on_6months ();
    
