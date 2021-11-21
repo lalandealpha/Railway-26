@@ -247,7 +247,7 @@ BEGIN
 	SELECT m.YearMonth,																					-- Dùng hàm Case đưa ra kết quả.
 		CASE
 		WHEN COUNT(ty.QuestionID) = 0 THEN CONCAT('No questions created in ', m.YearMonth)
-		ELSE COUNT(ty.QuestionID)
+		ELSE CONCAT(COUNT(ty.QuestionID), ' question(s) created')
 		END AS Number_of_questions
 	FROM Last_6months_view  m
 	LEFT JOIN This_year_ques_view ty
