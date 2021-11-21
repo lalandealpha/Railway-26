@@ -201,6 +201,72 @@ INSERT INTO ExamQuestion (ExamID, QuestionID) VALUES
 	(3, 6),
 	(4, 2);
     
+-- Thêm ràng buộc on delete cho các bảng.
+ALTER TABLE StudentAccount
+DROP CONSTRAINT `studentaccount_ibfk_1`;
+ALTER TABLE StudentAccount
+ADD CONSTRAINT `studentaccount_ibfk_1` FOREIGN KEY (`PositionID`) REFERENCES `Position` (`PositionID`) ON DELETE SET NULL;
+
+ALTER TABLE StudentAccount
+DROP CONSTRAINT `studentaccount_ibfk_2`;
+ALTER TABLE StudentAccount
+ADD CONSTRAINT `studentaccount_ibfk_2` FOREIGN KEY (`DepartmentID`) REFERENCES `Department` (`DepartmentID`) ON DELETE SET NULL;
+
+ALTER TABLE TeacherAccount
+DROP CONSTRAINT `teacheraccount_ibfk_1`;
+ALTER TABLE TeacherAccount
+ADD CONSTRAINT `teacheraccount_ibfk_1` FOREIGN KEY (`DepartmentID`) REFERENCES `Department` (`DepartmentID`) ON DELETE SET NULL;
+
+ALTER TABLE Class
+DROP CONSTRAINT  `class_ibfk_1`;
+ALTER TABLE Class
+ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`CreatorID`) REFERENCES `TeacherAccount` (`TeacherID`) ON DELETE SET NULL;
+
+ALTER TABLE ClassAccount
+DROP CONSTRAINT `classaccount_ibfk_1`;
+ALTER TABLE ClassAccount
+ADD CONSTRAINT `classaccount_ibfk_1` FOREIGN KEY (`ClassID`) REFERENCES `Class` (`ClassID`) ON DELETE CASCADE;
+ALTER TABLE ClassAccount
+DROP CONSTRAINT `classaccount_ibfk_2`;
+ALTER TABLE ClassAccount
+ADD CONSTRAINT `classaccount_ibfk_2` FOREIGN KEY (`StudentID`) REFERENCES `StudentAccount` (`StudentID`) ON DELETE SET NULL;
+
+ALTER TABLE Question
+DROP CONSTRAINT `question_ibfk_1`;
+ALTER TABLE Question
+ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`TypeID`) REFERENCES `QuestionType` (`TypeID`) ON DELETE SET NULL;
+ALTER TABLE Question
+DROP CONSTRAINT `question_ibfk_2`;
+ALTER TABLE Question
+ADD CONSTRAINT `question_ibfk_2` FOREIGN KEY (`CategoryID`) REFERENCES `QuestionCategory` (`CategoryID`) ON DELETE SET NULL;
+ALTER TABLE Question
+DROP CONSTRAINT `question_ibfk_3`;
+ALTER TABLE Question
+ADD CONSTRAINT `question_ibfk_3` FOREIGN KEY (`CreatorID`) REFERENCES `TeacherAccount` (`TeacherID`) ON DELETE CASCADE;
+
+ALTER TABLE Answer
+DROP CONSTRAINT `answer_ibfk_1`;
+ALTER TABLE Answer
+ADD CONSTRAINT `answer_ibfk_1` FOREIGN KEY (`QuestionID`) REFERENCES `Question` (`QuestionID`) ON DELETE CASCADE;
+
+ALTER TABLE Exam
+DROP CONSTRAINT `exam_ibfk_1`;
+ALTER TABLE Exam
+ADD CONSTRAINT `exam_ibfk_1` FOREIGN KEY (`CategoryID`) REFERENCES `QuestionCategory` (`CategoryID`) ON DELETE SET NULL;
+ALTER TABLE Exam
+DROP CONSTRAINT `exam_ibfk_2`;
+ALTER TABLE Exam
+ADD CONSTRAINT `exam_ibfk_2` FOREIGN KEY (`CreatorID`) REFERENCES `TeacherAccount` (`TeacherID`) ON DELETE CASCADE;
+
+ALTER TABLE ExamQuestion
+DROP CONSTRAINT `examquestion_ibfk_1`;
+ALTER TABLE ExamQuestion
+ADD CONSTRAINT `examquestion_ibfk_1` FOREIGN KEY (`ExamID`) REFERENCES `Exam` (`ExamId`) ON DELETE CASCADE;
+ALTER TABLE ExamQuestion
+DROP CONSTRAINT `examquestion_ibfk_2`;
+ALTER TABLE ExamQuestion
+ADD CONSTRAINT `examquestion_ibfk_2` FOREIGN KEY (`QuestionID`) REFERENCES `Question` (`QuestionID`) ON DELETE SET NULL;
+
 -- Question 2: Lấy ra tất cả các phòng ban
 SELECT * FROM Department;
 

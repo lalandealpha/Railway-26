@@ -155,20 +155,21 @@ DELIMITER ;
 
 CALL Del_exam (1);
 
-/* Question 10: Tìm ra các exam được tạo từ 6 năm trước và xóa các exam đó đi (sử dụng store ở câu 9 để xóa)
+/* Question 10: Tìm ra các exam được tạo từ 5 năm trước và xóa các exam đó đi (sử dụng store ở câu 9 để xóa)
 Sau đó in số lượng record đã remove từ các table liên quan trong khi removing*/
-DROP PROCEDURE IF EXISTS Del_exam_4years_ago;
+SET SQL_SAFE_UPDATES = 0;
+DROP PROCEDURE IF EXISTS Del_exam_5years_ago;
 DELIMITER $$
-CREATE PROCEDURE Del_exam_4years_ago ()
+CREATE PROCEDURE Del_exam_5years_ago ()
 BEGIN
 DELETE FROM Exam 
-WHERE ExamId IN
-				(SELECT ExamId FROM Exam
-				WHERE YEAR(CreateDate) <=  YEAR(NOW()) - 5);
+WHERE YEAR(CreateDate) <=  YEAR(NOW()) - 4;
 END $$
 DELIMITER ;
 
-CALL  Del_exam_4years_ago ();
+CALL  Del_exam_5years_ago ();
+
+SELECT @@ROWCOUNT;
 
 /* Question 11:  Viết store cho phép người dùng xóa phòng ban bằng cách người dùng nhập vào tên phòng ban
 và các TeacherAccount thuộc phòng ban đó sẽ được chuyển về phòng ban default là phòng ban chờ làm việc*/
@@ -189,9 +190,9 @@ DELIMITER ;
 CALL Del_department ('Chinese');
 
 -- Question 12: Viết store để in ra mỗi tháng có bao nhiêu câu hỏi được tạo.
-DROP PROCEDURE IF EXISTS Ques_count_on_month;
+DROP PROCEDURE IF EXISTS Ques_count_in_month;
 DELIMITER $$
-CREATE PROCEDURE Ques_count_on_month ()
+CREATE PROCEDURE Ques_count_in_month ()
 BEGIN
 	CREATE OR REPLACE VIEW 12months_list_view AS					-- Tạo 1 view chứa 12 tháng của năm nay.
 		SELECT CONCAT(YEAR(NOW()), '-', '01') AS YearMonth UNION
@@ -218,14 +219,14 @@ BEGIN
 END $$
 DELIMITER ;
 
-CALL Ques_count_on_month ();
+CALL Ques_count_in_month ();
 
 /* Question 13: Viết store để in ra mỗi tháng có bao nhiêu câu hỏi được tạo trong 6 tháng gần đây nhất
 (Nếu tháng nào không có thì sẽ in ra là "không có câu hỏi nào trong tháng")*/
 -- Hàm DATE_SUB cho ra kết quả 6 tháng gần nhất
-DROP PROCEDURE IF EXISTS Ques_count_on_6months;
+DROP PROCEDURE IF EXISTS Ques_count_in_6months;
 DELIMITER $$
-CREATE PROCEDURE Ques_count_on_6months ()
+CREATE PROCEDURE Ques_count_in_6months ()
 BEGIN
 	CREATE OR REPLACE VIEW Last_6months_view AS															-- Tạo view chứa 6 tháng trong năm nay.
 		SELECT CONCAT(YEAR(NOW()), '-', MONTH(DATE_SUB(NOW(), INTERVAL 5 MONTH))) AS YearMonth UNION
@@ -256,5 +257,5 @@ BEGIN
 END $$
 DELIMITER ;
 
-CALL Ques_count_on_6months ();
+CALL Ques_count_in_6months ();
    
