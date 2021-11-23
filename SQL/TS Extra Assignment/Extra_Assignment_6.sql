@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS Project_Modules;
 CREATE TABLE Project_Modules (
 	ModuleID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     ProjectID SMALLINT UNSIGNED NOT NULL,
-    EmployeeID SMALLINT UNSIGNED,
+    EmployeeID SMALLINT UNSIGNED NOT NULL UNIQUE,
     ProjectModulesDate DATE NOT NULL,											-- Ngày nhân viên hoàn thành Module theo kế hoạch
     ProjectModulesCompletedOn DATE,
     ProjectModulesDescription TEXT,
@@ -100,4 +100,6 @@ BEGIN
 END $$
 DELIMITER ;
 
-SELECT F_Not_Assisgned_Employee (5012);
+SELECT F_Not_Assisgned_Employee (5016);
+
+

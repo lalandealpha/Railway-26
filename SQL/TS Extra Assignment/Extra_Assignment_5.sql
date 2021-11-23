@@ -23,7 +23,7 @@ SELECT p.`Name`
 FROM product p
 JOIN productsubcategory ps
 ON p.ProductSubcategoryID = ps.ProductSubcategoryID
-WHERE ps.`Name` LIKE '%Bo%';
+WHERE ps.`Name` LIKE 'Bo%';
 
 -- Question 3: viết lệnh lấy ra sản phẩm có subcategory là Touring bikes và rẻ nhất.
 SELECT p.`Name`
@@ -43,15 +43,15 @@ AND p.ListPrice = 	(SELECT MIN(LP)
 SELECT c.`Name` AS Country, s.`Name` AS Province
 FROM countryregion c
 JOIN stateprovince s
-ON c.CountryRegionCode = s.CountryRegionCode;
+ON c.CountryRegionCode = s.CountryRegionCode
+ORDER BY Country;
 
 -- Question 2: Lấy danh sách province của 2 nước Canada và Germany.
 SELECT c.`Name` AS Country, s.`Name` AS Province
 FROM countryregion c
 JOIN stateprovince s
 ON c.CountryRegionCode = s.CountryRegionCode
-WHERE c.`Name` = 'Canada'
-OR c.`Name` = 'Germany';
+WHERE c.`Name` IN ('Canada', 'Germany');
 -- Cách 2: Dùng UNION SELECT
 SELECT c.`Name` AS Country, s.`Name` AS Province
 FROM countryregion c
