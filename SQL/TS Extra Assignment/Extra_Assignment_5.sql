@@ -65,5 +65,28 @@ JOIN stateprovince s
 ON c.CountryRegionCode = s.CountryRegionCode
 WHERE c.`Name` = 'Germany';
 
--- Question 3: 
-SELECT 
+-- Question 3: Lấy ra tất cả các đơn hàng offline, ngày tạo đơn, người bán, tiền thưởng.
+-- Không tìm thấy field BusinessEntityID
+SELECT 	soh.SalesOrderID, soh.OrderDate, 
+		sp.SalesPersonID, sp.Bonus, sp.SalesYTD
+FROM 	salesperson sp
+JOIN	salesorderheader soh
+ON		sp.SalesPersonID = soh.SalesPersonID
+WHERE	soh.OnlineOrderFlag = 0;
+
+-- Question 4: Lấy ra tất cả các đơn hàng offline, ngày tạo đơn, tên công việc, tiền thưởng.
+-- Không tìm thấy field JobTitle
+SELECT 	soh.SalesOrderID, soh.OrderDate, 
+		sp.SalesPersonID, sp.Bonus, sp.SalesYTD
+FROM 	salesperson sp
+JOIN	salesorderheader soh
+ON		sp.SalesPersonID = soh.SalesPersonID
+WHERE	soh.OnlineOrderFlag = 0;
+
+
+
+
+
+
+
+
