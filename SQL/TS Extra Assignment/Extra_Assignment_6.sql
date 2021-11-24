@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS Project_monitering;
-CREATE DATABASE Project_monitering;
-USE Project_monitering;
+DROP DATABASE IF EXISTS Project_monitoring;
+CREATE DATABASE Project_monitoring;
+USE Project_monitoring;
 
 -- Question 1: Tạo bảng với các ràng buộc, insert record.
 DROP TABLE IF EXISTS Employee;
@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS Project_Modules;
 CREATE TABLE Project_Modules (
 	ModuleID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     ProjectID SMALLINT UNSIGNED NOT NULL,
-    EmployeeID SMALLINT UNSIGNED NOT NULL UNIQUE,
+    EmployeeID SMALLINT UNSIGNED,
     ProjectModulesDate DATE NOT NULL,											-- Ngày nhân viên hoàn thành Module theo kế hoạch
     ProjectModulesCompletedOn DATE,
     ProjectModulesDescription TEXT,

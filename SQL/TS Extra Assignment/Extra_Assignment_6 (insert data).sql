@@ -1,4 +1,4 @@
-USE Project_monitering;
+USE Project_monitoring;
 
 insert into Employee (EmployeeLastName, EmployeeFirstName, EmployeeHireDate, SocialSecurityNumber) values ('Franklyn', 'Hortense', '2018-03-21', '0011136979');
 insert into Employee (EmployeeLastName, EmployeeFirstName, EmployeeHireDate, SocialSecurityNumber) values ('Raiman', 'Darwin', '2020-02-08', '1237483689');
@@ -73,7 +73,7 @@ insert into Projects (ProjectID, ManagerID, ProjectName, ProjectStartDate, Proje
 insert into Projects (ProjectID, ManagerID, ProjectName, ProjectStartDate, ProjectDescription, ProjectDetail, ProjectCompletedOn) values (5020, 4, 'Mat Lam Tam', '2019-08-07', 'Other disorders of lactation, delivered, with or without mention of antepartum condition', 'Ventri shunt-circula sys', null);
 
 insert into Project_Modules (ModuleID, ProjectID, EmployeeID, ProjectModulesDate, ProjectModulesCompletedOn, ProjectModulesDescription) values (73, 5012, 21, '2018-11-08', null, 'Destruction of Right Finger Phalanx, Open Approach');
-insert into Project_Modules (ModuleID, ProjectID, EmployeeID, ProjectModulesDate, ProjectModulesCompletedOn, ProjectModulesDescription) values (74, 5003, 36, '2020-06-12', '2020-11-27', 'Alteration of Left Wrist Region with Synthetic Substitute, Percutaneous Approach');
+insert into Project_Modules (ModuleID, ProjectID, EmployeeID, ProjectModulesDate, ProjectModulesCompletedOn, ProjectModulesDescription) values (74, 5003, 11, '2020-06-12', '2020-11-27', 'Alteration of Left Wrist Region with Synthetic Substitute, Percutaneous Approach');
 insert into Project_Modules (ModuleID, ProjectID, EmployeeID, ProjectModulesDate, ProjectModulesCompletedOn, ProjectModulesDescription) values (75, 5020, 25, '2019-08-14', '2021-09-23', 'Insertion of Multiple Channel Cochlear Prosthesis into Right Inner Ear, Open Approach');
 insert into Project_Modules (ModuleID, ProjectID, EmployeeID, ProjectModulesDate, ProjectModulesCompletedOn, ProjectModulesDescription) values (76, 5008, 33, '2019-03-09', '2020-11-15', 'Excision of Left Hand Vein, Percutaneous Endoscopic Approach');
 insert into Project_Modules (ModuleID, ProjectID, EmployeeID, ProjectModulesDate, ProjectModulesCompletedOn, ProjectModulesDescription) values (77, 5013, 20, '2018-11-16', null, 'Fragmentation in Right Ureter, Via Natural or Artificial Opening Endoscopic');
@@ -201,5 +201,5 @@ insert into Work_Done (WorkDoneID, EmployeeID, ModuleID, WorkDoneDate, WorkDoneD
 insert into Work_Done (WorkDoneID, EmployeeID, ModuleID, WorkDoneDate, WorkDoneDescription, WorkDoneStatus) values (98, 12, 88, '2019-05-01', 'Drainage of Right Radius, Percutaneous Endoscopic Approach, Diagnostic', 1);
 insert into Work_Done (WorkDoneID, EmployeeID, ModuleID, WorkDoneDate, WorkDoneDescription, WorkDoneStatus) values (99, 21, 95, '2020-02-02', 'Removal of Drainage Device from Nose, External Approach', 1);
 insert into Work_Done (WorkDoneID, EmployeeID, ModuleID, WorkDoneDate, WorkDoneDescription, WorkDoneStatus) values (100, 50, 94, '2019-10-11', 'Drainage of Esophagus with Drainage Device, Via Natural or Artificial Opening Endoscopic', 1);
-
+SET SQL_SAFE_UPDATES = 0;
 UPDATE Work_Done SET WorkDoneDate = NULL WHERE WorkDoneStatus = 0;
