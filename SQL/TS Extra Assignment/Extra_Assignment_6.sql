@@ -1,6 +1,7 @@
 DROP DATABASE IF EXISTS Project_monitoring;
 CREATE DATABASE Project_monitoring;
 USE Project_monitoring;
+SET SQL_SAFE_UPDATES = 0;
 
 -- Question 1: Tạo bảng với các ràng buộc, insert record.
 DROP TABLE IF EXISTS Employee;
@@ -52,17 +53,22 @@ FOREIGN KEY (ModuleID) REFERENCES Project_Modules (ModuleID) ON DELETE CASCADE
 );
 
 /* Question 2: Viết Procedure để xoá tất cả thông tin project đã hoàn thành
-sau 6 tháng kể từ thời điểm hiện tại. In ra số lượng record đã removed từ các table liên quan*/
+sau 3 tháng kể từ thời điểm hiện tại. In ra số lượng record đã removed từ các table liên quan*/
 DROP PROCEDURE IF EXISTS P_Del_Project_3months_ago;
 DELIMITER $$
 CREATE PROCEDURE P_Del_Project_3months_ago ()
 BEGIN
-DELETE FROM Projects 
-WHERE MONTH(NOW()) - MONTH(ProjectCompletedON) > 5;
+	DELETE 	FROM Projects 
+	WHERE 	YEAR(NOW()) - YEAR(ProjectCompletedON) > 0
+    OR 		(YEAR(ProjectCompletedON) = YEAR(NOW()) AND MONTH(NOW()) - MONTH(ProjectCompletedON) > 2);
+    
+    SELECT ROW_COUNT();
 END $$
 DELIMITER ;
 
-SELECT * FROM Projects WHERE MONTH(NOW()) - MONTH(ProjectCompletedON) > 5;
+-- check ket qua
+SELECT * FROM Projects WHERE MONTH(NOW()) - MONTH(ProjectCompletedON) > 3;
+
 CALL P_Del_Project_3months_ago ();
 
 -- Question 3: Viết Procedure in ra các Module đang được thực hiện.
