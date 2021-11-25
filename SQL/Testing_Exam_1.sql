@@ -186,21 +186,21 @@ insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate,
 insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (33, 3, 38, 1, 4761609495, '2021-07-10', '2021-11-24', '57 Johnson Court', '1', 'Family dsrpt-estrangmemt');
 insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (34, 5, 11, 1, 4272720506, '2021-06-27', '2021-10-24', '9 Moose Avenue', '1', 'Gen nonconv ep w intr ep');
 insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (35, 3, 45, 1, 3396616031, '2021-08-17', '2021-10-07', '00 Manufacturers Trail', '1', 'Renal colic');
-insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (36, 3, 11, 3, 4393805273, '2021-08-14', '2021-11-24', '4 Bartillon Plaza', '2', null);
+insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (36, 3, 11, 3, 4393805273, '2018-08-14', '2021-11-24', '4 Bartillon Plaza', '2', null);
 insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (37, 7, 28, 3, 3376995851, '2021-06-12', '2021-11-23', '4502 Mallory Parkway', '0', null);
 insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (38, 8, 12, 3, 2107001047, '2021-06-03', '2021-10-30', '97631 Evergreen Point', '2', 'TB skin/subcut-exam unkn');
 insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (39, 3, 3, 1, 3462156551, '2021-05-27', '2021-11-18', '20045 Cherokee Court', '1', 'Headache');
-insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (40, 2, 35, 2, 4704035757, '2021-07-11', '2021-10-27', '65736 Westridge Avenue', '2', 'Puerp compl NOS-postpart');
+insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (40, 2, 35, 2, 4704035757, '2018-07-11', '2021-10-27', '65736 Westridge Avenue', '2', 'Puerp compl NOS-postpart');
 insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (41, 9, 2, 1, 1255636388, '2021-07-29', '2021-11-17', '78819 Bobwhite Park', '1', 'Adv eff antineoplastic');
 insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (42, 1, 44, 2, 4962055440, '2021-07-26', '2021-11-03', '90 Mockingbird Pass', '1', 'Abn basal metabol study');
 insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (43, 6, 31, 3, 3247422349, '2017-07-05', '2021-09-30', '00 Mallard Road', '1', null);
 insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (44, 4, 15, 3, 1045932839, '2021-06-17', '2021-10-15', '8943 Caliangt Junction', '1', 'Radiotherapy encounter');
 insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (45, 4, 21, 1, 1203410041, '2019-06-01', '2021-10-14', '18 Bunting Avenue', '0', 'Cl skl w oth fx-mod coma');
-insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (46, 5, 30, 2, 603695384, '2021-06-15', '2021-10-08', '9 Rutledge Drive', '2', 'TB lung w cavit-micro dx');
-insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (47, 2, 48, 1, 2516112612, '2021-07-12', '2021-09-29', '5702 Carpenter Avenue', '1', 'Epimembranous nephritis');
+insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (46, 5, 30, 2, 603695384, '2019-06-15', '2021-10-08', '9 Rutledge Drive', '2', 'TB lung w cavit-micro dx');
+insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (47, 2, 48, 1, 2516112612, '2018-07-12', '2021-09-29', '5702 Carpenter Avenue', '1', 'Epimembranous nephritis');
 insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (48, 3, 44, 2, 4751901283, '2021-08-17', '2021-11-23', '09012 Lakeland Parkway', '1', 'Gc orchitis (acute)');
 insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (49, 9, 29, 2, 4426576630, '2021-07-28', '2021-10-25', '440 Clarendon Park', '0', null);
-insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (50, 1, 48, 2, 1064638394, '2028-08-03', '2021-11-23', '24 Atwood Parkway', '1', null);
+insert into Car_order (OrderID, CustomerID, CarID, Amount, SalePrice, OrderDate, DeliveryDate, DeliveryAddress, `Status`, Note) values (50, 1, 48, 2, 1064638394, '2018-08-03', '2021-11-23', '24 Atwood Parkway', '1', null);
 
 UPDATE Car_Order SET DeliveryDate = NULL WHERE `Status` = '2';
 
@@ -237,7 +237,7 @@ BEGIN
 										ON co.CarID = c.CarID
 										WHERE YEAR(DeliveryDate) = YEAR(NOW())
 										GROUP BY c.CarID) AS query1))
-										LIMIT 1;
+	LIMIT 1;
 	RETURN max_maker;
 END $$
 DELIMITER ;
@@ -250,11 +250,16 @@ DROP PROCEDURE IF EXISTS p_canceled_order_del;
 DELIMITER $$
 CREATE PROCEDURE p_canceled_order_del ()
 BEGIN
-DELETE FROM Car_Order
-WHERE YEAR(OrderDate) - YEAR(NOW()) > 0
-AND `Status` = '2';
+	DELETE FROM Car_Order
+	WHERE YEAR(NOW()) - YEAR(OrderDate) > 0
+	AND `Status` = '2';
+	SELECT ROW_COUNT();
 END $$
 DELIMITER ;
+
+SELECT * FROM Car_Order
+WHERE YEAR(NOW()) - YEAR(OrderDate) > 0
+AND `Status` = '2';
 
 CALL p_canceled_order_del ();
 
