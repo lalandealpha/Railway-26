@@ -219,24 +219,23 @@ SET GLOBAL log_bin_trust_function_creators = 1;
 DROP FUNCTION IF EXISTS f_get_max_maker;
 DELIMITER $$
 CREATE FUNCTION f_get_max_maker () RETURNS CHAR(6)
-BEGIN
+BEGIN												-- Status = 1, year = year(NOW()), SUM(amount) = MAX(SUM(amout))
 	DECLARE max_maker CHAR(6);
-	SELECT DISTINCT c.Maker INTO max_maker
+    SELECT c.Maker INTO max_maker
 	FROM Car c
 	JOIN Car_Order co
 	ON c.CarID = co.CarID
-	WHERE c.CarID IN	
-    
-    (SELECT co.CarID
-	FROM Car_Order co
-	GROUP BY co.CarID
-	HAVING COUNT(co.CarID) = 	(SELECT MAX(Car_count)
-								FROM	(SELECT COUNT(co.CarID)  AS Car_count
-										FROM Car_Order co
-										JOIN Car c
-										ON co.CarID = c.CarID
-										WHERE YEAR(DeliveryDate) = YEAR(NOW())
-										GROUP BY c.CarID) AS query1))
+	WHERE YEAR(DeliveryDate) = YEAR(NOW())
+	AND co.`Status` = '1'
+	GROUP BY c.Maker
+	HAVING SUM(Co.Amount) = (SELECT MAX(car_amount) FROM 
+													(SELECT SUM(Co.Amount) AS car_amount
+													FROM Car c
+													JOIN Car_Order co
+													ON c.CarID = co.CarID
+													WHERE YEAR(DeliveryDate) = YEAR(NOW())
+													AND co.`Status` = '1'
+													GROUP BY c.Maker) AS query1)
 	LIMIT 1;
 	RETURN max_maker;
 END $$
@@ -280,4 +279,6 @@ BEGIN
 END $$
 DELIMITER ;
 
-CALL p_get_order_info (10);
+CALL p_get_order_info (9);
+
+    
