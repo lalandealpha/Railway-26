@@ -199,7 +199,7 @@ DROP PROCEDURE IF EXISTS p_get_user_salary_v2;
 DELIMITER $$
 CREATE PROCEDURE p_get_user_salary_v2 (IN in_full_name VARCHAR(100), IN in_year VARCHAR(4), IN in_month VARCHAR(2))
 BEGIN
-	SELECT CONCAT(u.first_name, ' ',u.last_name) AS full_name, s.total_salary, d.`name` AS department, r.`name` AS role
+	SELECT CONCAT(u.first_name, ' ',u.last_name) AS full_name, s.total_salary AS salary, d.`name` AS department, r.`name` AS role
 	FROM users u
 	JOIN user_department ud
 	ON u.id = ud.user_id
