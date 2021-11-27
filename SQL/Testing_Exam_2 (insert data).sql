@@ -2,6 +2,7 @@ insert into departments (id, `name`, `description`, created_at, updated_at) valu
 insert into departments (id, `name`, `description`, created_at, updated_at) values (2, 'HR', 'Vaccination against tularemia', '2021-03-10', null);
 insert into departments (id, `name`, `description`, created_at, updated_at) values (3, 'IT', 'Allogeneic hematopoietic stem cell transpant without purging', '2020-12-23', null);
 insert into departments (id, `name`, `description`, created_at, updated_at) values (4, 'Delivery', 'Replacement of any type pacemaker device with dual-chamber device', '2021-01-03', null);
+insert into departments (id, `name`, `description`, created_at, updated_at) values (5, 'Not yet assigned', 'Waiting', '2021-10-17', null);
 
 insert into users (id, first_name, last_name, email, phone, employee_id, avatar, department_id, gender, age, created_at, updated_at) values (1, 'Sidonia', 'Peter', 'speter0@wired.com', '515-845-3889', '2476318698', 'Periph focal choroiditis', 4, 1, 33, '2019-02-03', null);
 insert into users (id, first_name, last_name, email, phone, employee_id, avatar, department_id, gender, age, created_at, updated_at) values (2, 'Raynor', 'Grason', 'rgrason1@xinhuanet.com', '686-762-3471', '2181292817', null, 2, 1, 41, '2018-08-11', null);
