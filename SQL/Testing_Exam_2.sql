@@ -191,4 +191,30 @@ ON s.user_role_id = ur.id
 GROUP BY d.`name`
 ORDER BY total_salary_by_dept DESC;
 
--- 
+-- Question 6: 
+
+/* Question 7: Viết thủ tục cho phép get lương tháng của 1 user bất kì hiển thị thông tin sau: 
+fullname (first_name + last_name), department, role, salary*/
+DROP PROCEDURE IF EXISTS p_get_user_salary_v2;
+DELIMITER $$
+CREATE PROCEDURE p_get_user_salary_v2 (IN in_full_name VARCHAR(100), IN in_year VARCHAR(4), IN in_month VARCHAR(2))
+BEGIN
+	SELECT CONCAT(u.first_name, ' ',u.last_name) AS full_name, s.total_salary, d.`name` AS department, r.`name` AS role
+	FROM users u
+	JOIN user_department ud
+	ON u.id = ud.user_id
+	JOIN user_role ur
+	ON ur.user_department_id = ud.id
+	JOIN salary s
+	ON s.user_role_id = ur.id
+    JOIN roles r
+    ON ur.role_id = r.id
+    JOIN departments d
+    ON d.id = ud.department_id
+	WHERE s.`year` = in_year
+	AND s.`month` = in_month
+	AND CONCAT(u.first_name, ' ',u.last_name) = in_full_name;
+END $$
+DELIMITER ;
+
+CALL p_get_user_salary_v2 ('Sidonia Peter', '2020', '5');
