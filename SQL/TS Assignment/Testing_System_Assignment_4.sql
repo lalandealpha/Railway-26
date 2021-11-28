@@ -138,16 +138,6 @@ FROM
 			ON Question.QuestionID = Answer.QuestionID
 			GROUP BY Question.Content) AS query2) AS query3
 WHERE query1.Answer_Count = query3.Highest_Count;
--- Cách 2: Sử dụng View
-DROP VIEW IF EXISTS ques_count_view;
-CREATE VIEW ques_count_view AS
-SELECT
-	Question.Content AS Question_Content,
-    COUNT(Answer.AnswerID)
-FROM Question
-JOIN Answer
-ON Question.QuestionID = Answer.QuestionID
-GROUP BY Question.Content;
 
 -- Question 9: Thống kê số lượng học viên trong mỗi lớp
 SELECT
