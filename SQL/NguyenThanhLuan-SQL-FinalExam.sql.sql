@@ -62,7 +62,7 @@ HAVING COUNT(ss.Mark) >= 2;
 
 /* Question 3: Tạo View có tên là StudentInfo lấy các thông tin của học sinh bao gồm:
 StudentID, SubjectID, Student Name, Student Age, Student Gender, Subject Name, Mark, Date
-(Với cột Gender show 'Male' để thay thế cho 0, 'Female' thay thế cho 1 và 'Unknow' thay thế cho null)*/
+(Với cột Gender show 'Male' để thay thế cho 0, 'Female' thay thế cho 1 và 'Unknown' thay thế cho null)*/
 CREATE OR REPLACE VIEW StudentInfo AS
 SELECT
 	st.ID AS StudentID,
