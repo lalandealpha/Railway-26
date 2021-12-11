@@ -1,21 +1,56 @@
 package Assignment2_optional;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.Locale;
+
 import Assignment1.Department;
 import Assignment1.Gender;
 import Assignment1.Teacher;
 
-public class Program2Optional {
-	public static void main(String[] args) {
-		Program2Optional pro = new Program2Optional();
-		pro.Ex2Ques6();
-}
+public class SystemPrintF {
 
-	public void Ex2Ques1() { // Question 1: Declare an integer equal to 5 and use the printf command to print that integer.
-		System.out.printf( "%d", 5 );
-	}
-	
-	public void Ex2Ques6() { // Question 6: all teacher information in tabular format.
+	public static void main(String[] args) {
+
+		// Question 1: Declare an integer equal to 5 and use the printf command to print
+		// that integer.
+		System.out.println("-------Question 1-------");
+		System.out.printf("%d %n", 5);
+
+		// Question 2: Declare 1 integer = 100 000 000 and use the command System out
+		// printf to print
+		// output that integer to the following format: 100,000,000
+		System.out.println('\n' + "-------Question 2-------");
+		int i = 100000000;
+		System.out.printf(Locale.US, "%,d %n", i);
+
+		// Question 3: Declare a real number = 5.567098 and use the System out printf
+		// command to print the number
+		// that only consists of 4 numbers after the comma
+		System.out.println('\n' + "-------Question 3-------");
+		float x = 5.567098f;
+		System.out.printf(Locale.ITALY, " %.4f", x);
+		System.out.println("\n");
+
+		// Question 4: Declare the full name of a student, and print that student's name
+		// in the following format
+		System.out.println("-------Question 4-------");
+		String name = "Steve Rogers";
+		System.out.printf("I am '%s' and i am single ^^!", name);
+		System.out.println("\n");
+
+		// Question 5: Print out the current time in the following format
+		// 04/24/2020 11h:16p:20s
+		System.out.println("-------Question 5-------");
+		String pattern = "dd/MM/yyy HH'h':mm'p':ss's'";
+		SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+		Date dateNow = new Date();
+		String getDateNow = dateFormat.format(dateNow);
+		System.out.println(getDateNow);
+		System.out.println("\n");
+
+		// Question 6: Show the information of teachers
 		// create departments
 		Department department1 = new Department();
 		department1.id = 1;
@@ -28,7 +63,7 @@ public class Program2Optional {
 		Department department3 = new Department();
 		department3.id = 3;
 		department3.name = "Japanese";
-		
+
 		// create teacher accounts
 		Teacher teacher1 = new Teacher();
 		teacher1.id = 1;
@@ -74,11 +109,13 @@ public class Program2Optional {
 		teacher5.gender = Gender.UNKNOWN;
 		teacher5.createDate = LocalDate.of(2021, 11, 01);
 
+		System.out.println("-------Question 6-------");
 		Teacher[] teacher = { teacher1, teacher2, teacher3, teacher4, teacher5 };
-		System.out.println("ID       Fullname");
+		System.out.printf("|%10s|%30s|%n", "ID", "Fullname");
 		for (Teacher t : teacher) {
-			System.out.printf("%d         %s \n", t.id, t.fullName);
+			System.out.printf("|%10s|%30s|%n", t.id, t.fullName);
 		}
-		
+		System.out.println("\n");
 	}
+
 }
