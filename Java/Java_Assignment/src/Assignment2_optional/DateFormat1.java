@@ -223,7 +223,7 @@ public class DateFormat1 {
 		
 		Date input = Date.from(exam1.createDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		Locale locale = new Locale ("jp",  "JP");
-		DateFormat dF = DateFormat.getDateInstance(DateFormat1.DEFAULT, locale);
+		DateFormat dF = DateFormat.getDateInstance(DateFormat.DEFAULT, locale);
 		String examdate = dF.format(input);
 		System.out.println("Created at: " + examdate + "\n");
 		

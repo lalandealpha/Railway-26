@@ -19,7 +19,7 @@ public class InputFromConsole {
 		
 //		InputFromConsole ips = new InputFromConsole();
 //		ips.Question1();
-		
+//		
 		InputFromConsole.Question8();
 		
 	}

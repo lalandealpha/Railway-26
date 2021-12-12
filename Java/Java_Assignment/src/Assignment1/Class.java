@@ -9,3 +9,4 @@ public class Class {
 	public Department department;
 	public LocalDate createDate;
 }
+
