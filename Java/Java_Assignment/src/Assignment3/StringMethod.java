@@ -13,7 +13,7 @@ import Assignment1.Teacher;
 public class StringMethod {
 
 	public static void main(String[] args) {
-		Question9();
+		Question6();
 
 	}
 	
@@ -84,8 +84,12 @@ public class StringMethod {
 		String fullName = scanner.nextLine();
 		String[] words = fullName.split("\\s");
 		System.out.println("Your first name is: " + words[0]);
-		System.out.println("Your middle name is: " + words[1]);
-		System.out.println("Your last name is: " + words[2]);
+		System.out.print("Your middle name is: ");
+		for (int i = 1; i < (words.length - 1); i++) {
+			System.out.print(words[i] + " ");
+		}
+		System.out.println("");
+		System.out.println("Your last name is: " + words[words.length - 1]);
 		scanner.close();
 		}
 
