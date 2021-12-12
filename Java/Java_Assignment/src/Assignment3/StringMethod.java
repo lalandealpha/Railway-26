@@ -329,6 +329,7 @@ public class StringMethod {
 		class5.participants = studentOfClass5;
 		class5.createDate = LocalDate.of(2021, 9, 18);
 		
+		System.out.println("-------Question 8-------");
 		Class[] classObject = { class1, class2, class3, class4, class5 };
 		for (int i = 0; i < classObject.length; i++) {
 			if(classObject[i].name.contains("Chal")) {
@@ -562,6 +563,7 @@ public class StringMethod {
 		class5.participants = studentOfClass5;
 		class5.createDate = LocalDate.of(2021, 9, 18);
 		
+		System.out.println("-------Question 9-------");
 		Class[] classObject = { class1, class2, class3, class4, class5 };
 		String comparedName = "Challenger";
 		for (int i = 0; i < classObject.length; i++) {
