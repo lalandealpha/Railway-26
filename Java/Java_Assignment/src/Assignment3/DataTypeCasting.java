@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class DataTypeCasting {
 
 	public static void main(String[] args) {
-		DataTypeCasting.Question4();
+		Question4();
 	}
 	
 	public static void Question123() {

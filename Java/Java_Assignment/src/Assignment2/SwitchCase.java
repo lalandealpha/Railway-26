@@ -14,10 +14,9 @@ import Assignment1.Teacher;
 public class SwitchCase {
 
 	public static void main(String[] args) {
-		SwitchCase pro = new SwitchCase();
-		pro.Question5();
+		Question5();
 	}
-	public void Question5() {  // Question 5: Get the number of students in department 1, print the corresponding output.
+	public static void Question5() {  // Question 5: Get the number of students in department 1, print the corresponding output.
 		// create departments
 		Department department1 = new Department();
 		department1.id = 1;
@@ -264,7 +263,7 @@ public class SwitchCase {
 
 	}
 	
-	public void Question6() {  // Question 6: Use switch case to do Question 2.
+	public static void Question6() {  // Question 6: Use switch case to do Question 2.
 		// create departments
 		Department department1 = new Department();
 		department1.id = 1;
@@ -494,7 +493,7 @@ public class SwitchCase {
 
 	}
 	
-	public void Question7() {  // Question 7: Use switch case to do Question 4.
+	public static void Question7() {  // Question 7: Use switch case to do Question 4.
 		// create departments
 		Department department1 = new Department();
 		department1.id = 1;

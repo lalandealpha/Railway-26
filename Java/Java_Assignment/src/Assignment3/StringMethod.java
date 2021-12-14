@@ -13,7 +13,7 @@ import Assignment1.Teacher;
 public class StringMethod {
 
 	public static void main(String[] args) {
-		Question6();
+		Question11();
 
 	}
 	
@@ -579,7 +579,48 @@ public class StringMethod {
 				}
 		}
 	}
+
+	public static void Question10() {
+		System.out.println("-------Question 10-------");
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Please enter the first string:");
+		String s1 = scanner.nextLine();
+		System.out.println("Please enter the second string:");
+		String s2 = scanner.nextLine();
+		StringBuilder sb = new StringBuilder(s1);
+		String  rev = sb.reverse().toString();
+		if (s2.equals(rev)) {
+			System.out.println("These two strings are the reverses of each other.");
+		} else {
+			System.out.println("These two strings are not the reverses of each other.");
+		}
+		scanner.close();
+	}
+
+	public static void Question11() {
+		System.out.println("-------Question 11-------");
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Please enter any string:");
+		String s = scanner.nextLine();
+		int count = 0;
+		for (int i = 0; i < s.length(); i++) {
+			if(s.substring(i, i+1).equals("a")) {
+				count += 1;
+			}
+		}
+		System.out.println("\n" + "In the string: " + s);
+		System.out.println("The 'a' charater has come " + count + " time(s) at position: ");
+		for (int i = 0; i < s.length(); i++) {
+			if (s.substring(i, i+1).equals("a")) {
+				System.out.println(i +1 + " ");
+			}
+		}
+		scanner.close();
+	}
 }
+
+
+
 	
 	
 	

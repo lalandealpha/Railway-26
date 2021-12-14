@@ -14,10 +14,9 @@ import Assignment1.Teacher;
 public class ForEach {
 
 	public static void main(String[] args) {
-		ForEach pro = new ForEach();
-		pro.Question8();
+		Question8();
 	}
-	public void Question8() {  //Question 8: Show all teacher account information including: Email, FullName and their department name.
+	public static void Question8() {  //Question 8: Show all teacher account information including: Email, FullName and their department name.
 		// create departments
 		Department department1 = new Department();
 		department1.id = 1;
@@ -245,7 +244,7 @@ public class ForEach {
 		}
 }
 	
-	public void Question9()  {  // Question 9: For each department, show department's id and name.
+	public static void Question9()  {  // Question 9: For each department, show department's id and name.
 		// create departments
 		Department department1 = new Department();
 		department1.id = 1;

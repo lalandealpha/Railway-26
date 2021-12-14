@@ -14,10 +14,9 @@ import Assignment1.Teacher;
 public class If {
 
 	public static void main(String[] args) {
-		If pro = new If();
-		pro.Question1();
+		Question1();
 	}
-	public void Question1() {  // Question 1: Check if teacher1 is assigned to any department or not, and print the corresponding output.
+	public static void Question1() {  // Question 1: Check if teacher1 is assigned to any department or not, and print the corresponding output.
 		// create departments
 		Department department1 = new Department();
 		department1.id = 1;
@@ -87,7 +86,7 @@ public class If {
 
 	}
 	
-	public void Question2() {  // Question 2: Check how many students there are in class5 and print the corresponding output.
+	public static void Question2() {  // Question 2: Check how many students there are in class5 and print the corresponding output.
 		// create departments
 		Department department1 = new Department();
 		department1.id = 1;
@@ -313,7 +312,7 @@ public class If {
 
 	}
 
-	public void Question3() {  // Use the ternary operator to do Question 1.
+	public static void Question3() {  // Use the ternary operator to do Question 1.
 		// create departments
 		Department department1 = new Department();
 		department1.id = 1;
@@ -534,7 +533,7 @@ public class If {
 		System.out.println(i);
 	}
 	
-	public void Question4() {  // Question 4: Use the ternary operator.
+	public static void Question4() {  // Question 4: Use the ternary operator.
 		// create departments
 		Department department1 = new Department();
 		department1.id = 1;

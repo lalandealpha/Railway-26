@@ -5,5 +5,21 @@ public class Department {
 	public String name;
 	public Student[] students;
 	public Teacher[] teachers;
-	public Class[] classes;
+	
+	@Override
+	public String toString() {
+		return 	"ID: " + id + "\n" +
+					"Name: " + name;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Department deparmentX = (Department) obj;
+		if(id == deparmentX.id && name.equals(deparmentX.name)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }

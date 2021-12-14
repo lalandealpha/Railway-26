@@ -13,11 +13,10 @@ import Assignment1.Teacher;
 
 public class WhileAndDoWhile {
 	public static void main(String[] args) {
-		WhileAndDoWhile pro = new WhileAndDoWhile();	
-		pro.Question16();
+		Question16();
 }
 	
-	public void Question16() { // Question 16: Use WHILE, BREAK, CONTINUE to do Question above.
+	public static void Question16() { // Question 16: Use WHILE, BREAK, CONTINUE to do Question above.
 		// create departments
 		Department department1 = new Department();
 		department1.id = 1;
@@ -366,7 +365,7 @@ public class WhileAndDoWhile {
 		
 	}	
 
-	public void Question17() { // Question  17: Use DO WHILE, BREAK, CONTINUE to do Question above.
+	public static void Question17() { // Question  17: Use DO WHILE, BREAK, CONTINUE to do Question above.
 		// create departments
 		Department department1 = new Department();
 		department1.id = 1;

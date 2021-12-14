@@ -6,7 +6,6 @@ public class BoxingAndUnboxing {
 		// Question 1:
 		System.out.println("-------Question 1-------");
 		Integer salary = 5000;
-		float salaryFloat =  salary.floatValue();
 		System.out.printf("Result: %.2f %n", salary.floatValue());
 		System.out.println("");
 		

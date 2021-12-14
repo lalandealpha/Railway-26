@@ -14,10 +14,9 @@ import Assignment1.Teacher;
 public class ForIndex {
 
 	public static void main(String[] args) {
-		ForIndex pro = new ForIndex ();
-		pro.Question10();
+		Question10();
 	}
-	public void Question10() { // Question 10: For each student,  show the information including email, full name, department name.
+	public static void Question10() { // Question 10: For each student,  show the information including email, full name, department name.
 		// create departments
 		Department department1 = new Department();
 		department1.id = 1;
@@ -267,7 +266,7 @@ public class ForIndex {
 		
 	}
 
-	public void Question11() { // Question 11: For each department, show the information including id and name.
+	public static void Question11() { // Question 11: For each department, show the information including id and name.
 		// create departments
 		Department department1 = new Department();
 		department1.id = 1;
@@ -297,7 +296,7 @@ public class ForIndex {
 		
 	}
 
-	public void Question12() { // Question 12: Show only the information of the first 2 departments in the format of Question 10.
+	public static void Question12() { // Question 12: Show only the information of the first 2 departments in the format of Question 10.
 		// create departments
 		Department department1 = new Department();
 		department1.id = 1;
@@ -326,7 +325,7 @@ public class ForIndex {
 		}		
 	}
 
-	public void Question13() {  // Question 13: Show all students information except student number 2.
+	public static void Question13() {  // Question 13: Show all students information except student number 2.
 		// create departments
 				Department department1 = new Department();
 				department1.id = 1;
@@ -558,7 +557,7 @@ public class ForIndex {
 				}
 	}
 	
-	public void Question14() { // Question 14: Show the information of students whose ID < 4.
+	public static void Question14() { // Question 14: Show the information of students whose ID < 4.
 		// create departments
 		Department department1 = new Department();
 		department1.id = 1;
@@ -791,7 +790,7 @@ public class ForIndex {
 		
 	}
 
-	public void Question15() { // Question 15: Show numbers less than or equal to 20 and divisible by 2.
+	public static void Question15() { // Question 15: Show numbers less than or equal to 20 and divisible by 2.
 		System.out.println("Here are even numbers less than or equal to 20:");
 		for (int i = 0; i < 21; i++) {
 			if (i % 2 == 0) {

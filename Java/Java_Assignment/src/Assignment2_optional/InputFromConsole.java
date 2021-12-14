@@ -16,15 +16,11 @@ import Assignment1.Student;
 public class InputFromConsole {
 
 	public static void main(String[] args) {
-		
-//		InputFromConsole ips = new InputFromConsole();
-//		ips.Question1();
-//		
-		InputFromConsole.Question8();
+		Question8();
 		
 	}
 	
-	public void Question1() { // Question 1: Allow users input 3 integers
+	public static void Question1() { // Question 1: Allow users input 3 integers
 	Scanner scanner = new Scanner(System.in);
 	
 	System.out.println("Please enter the 1st integer: ");
@@ -70,7 +66,7 @@ public class InputFromConsole {
 	
 }
 
-	public void Question2() { // Question 2: Allow user input 2 float number
+	public static void Question2() { // Question 2: Allow user input 2 float number
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.println("Please enter the 1st float number: ");
@@ -101,7 +97,7 @@ public class InputFromConsole {
 		scanner.close();		
 	}
 
-	public void Question3() { // Question 3: Allow user to enter his/her first and last name and print the user's first and last name 
+	public static void Question3() { // Question 3: Allow user to enter his/her first and last name and print the user's first and last name 
 		System.out.println("Please enter your first name: ");
 		Scanner scanner = new Scanner(System.in);
 		String firstName = scanner.next();
@@ -111,7 +107,7 @@ public class InputFromConsole {
 		scanner.close();
 	}
 
-	public void Question4() throws ParseException { 	// Question 4: Allow user to input his/her birthday
+	public static void Question4() throws ParseException { 	// Question 4: Allow user to input his/her birthday
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Please enter your birthday in the following format: dd-mm-yyyy ");
 		String dateInput = scanner.next();
