@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Random;
 
 import Assignment1.Department;
-import Assignment1.Enum_Position;
+import Assignment1.Pos;
 import Assignment1.Gender;
 import Assignment1.Position;
 import Assignment1.Student;
@@ -42,15 +42,15 @@ public class RandomNumber {
 		// create position
 		Position position1 = new Position();
 		position1.id = 1;
-		position1.name = Enum_Position.ADMIN;
+		position1.name = Pos.ADMIN;
 
 		Position position2 = new Position();
 		position2.id = 2;
-		position2.name = Enum_Position.MENTOR;
+		position2.name = Pos.MENTOR;
 
 		Position position3 = new Position();
 		position3.id = 3;
-		position3.name = Enum_Position.STUDENT;
+		position3.name = Pos.STUDENT;
 
 		// create student accounts
 		Student student1 = new Student();

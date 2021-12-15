@@ -30,7 +30,7 @@ public class SystemPrintF {
 		// that only consists of 4 numbers after the comma
 		System.out.println('\n' + "-------Question 3-------");
 		float x = 5.567098f;
-		System.out.printf(Locale.ITALY, " %.4f", x);
+		System.out.printf(Locale.ITALY, "%.4f", x);
 		System.out.println("\n");
 
 		// Question 4: Declare the full name of a student, and print that student's name
@@ -111,9 +111,9 @@ public class SystemPrintF {
 
 		System.out.println("-------Question 6-------");
 		Teacher[] teacher = { teacher1, teacher2, teacher3, teacher4, teacher5 };
-		System.out.printf("|%10s|%30s|%n", "ID", "Fullname");
+		System.out.printf("|%5s|%20s|%n", "ID", "Fullname");
 		for (Teacher t : teacher) {
-			System.out.printf("|%10s|%30s|%n", t.id, t.fullName);
+			System.out.printf("|%5s|%20s|%n", t.id, t.fullName);
 		}
 		System.out.println("\n");
 	}

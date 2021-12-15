@@ -5,7 +5,7 @@ import java.time.Month;
 
 import Assignment1.Class;
 import Assignment1.Department;
-import Assignment1.Enum_Position;
+import Assignment1.Pos;
 import Assignment1.Gender;
 import Assignment1.Position;
 import Assignment1.Student;
@@ -103,15 +103,15 @@ public class If {
 		// create position
 		Position position1 = new Position();
 		position1.id = 1;
-		position1.name = Enum_Position.ADMIN;
+		position1.name = Pos.ADMIN;
 
 		Position position2 = new Position();
 		position2.id = 2;
-		position2.name = Enum_Position.MENTOR;
+		position2.name = Pos.MENTOR;
 
 		Position position3 = new Position();
 		position3.id = 3;
-		position3.name = Enum_Position.STUDENT;
+		position3.name = Pos.STUDENT;
 
 		// create student accounts
 		Student student1 = new Student();
@@ -329,15 +329,15 @@ public class If {
 		// create position
 		Position position1 = new Position();
 		position1.id = 1;
-		position1.name = Enum_Position.ADMIN;
+		position1.name = Pos.ADMIN;
 
 		Position position2 = new Position();
 		position2.id = 2;
-		position2.name = Enum_Position.MENTOR;
+		position2.name = Pos.MENTOR;
 
 		Position position3 = new Position();
 		position3.id = 3;
-		position3.name = Enum_Position.STUDENT;
+		position3.name = Pos.STUDENT;
 
 		// create student accounts
 		Student student1 = new Student();
@@ -550,15 +550,15 @@ public class If {
 		// create position
 		Position position1 = new Position();
 		position1.id = 1;
-		position1.name = Enum_Position.ADMIN;
+		position1.name = Pos.ADMIN;
 
 		Position position2 = new Position();
 		position2.id = 2;
-		position2.name = Enum_Position.MENTOR;
+		position2.name = Pos.MENTOR;
 
 		Position position3 = new Position();
 		position3.id = 3;
-		position3.name = Enum_Position.STUDENT;
+		position3.name = Pos.STUDENT;
 
 		// create student accounts
 		Student student1 = new Student();
@@ -752,7 +752,7 @@ public class If {
 		// if not, print "This is not an  Administrator"
 		System.out.println("\n" + "Question 4: ");
 		String checkPosition;
-		checkPosition = (student1.position.name == Enum_Position.ADMIN) ? student1.fullName + " is an admin." : student1.fullName + " is not an admin.";
+		checkPosition = (student1.position.name == Pos.ADMIN) ? student1.fullName + " is an admin." : student1.fullName + " is not an admin.";
 		System.out.println(checkPosition);
 
 	}

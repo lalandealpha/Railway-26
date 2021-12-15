@@ -1,6 +1,6 @@
 package Assignment1;
 
-public enum Enum_Position {
+public enum Pos {
 	ADMIN,
 	MENTOR,
 	STUDENT

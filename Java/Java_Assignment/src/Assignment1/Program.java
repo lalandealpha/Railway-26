@@ -235,19 +235,19 @@ public class Program {
 		// create position
 		Position position1 = new Position();
 		position1.id = 1;
-		position1.name = Enum_Position.ADMIN;
+		position1.name = Pos.ADMIN;
 		Student[] studentPosition1 = { student1, student5 };
 		position1.students = studentPosition1;
 
 		Position position2 = new Position();
 		position2.id = 2;
-		position2.name = Enum_Position.MENTOR;
+		position2.name = Pos.MENTOR;
 		Student[] studentPosition2 = { student4, student7 };
 		position2.students = studentPosition2;
 
 		Position position3 = new Position();
 		position3.id = 3;
-		position3.name = Enum_Position.STUDENT;
+		position3.name = Pos.STUDENT;
 		Student[] studentPosition3 = { student2, student3, student6, student8, student9, student10, student11 };
 		position3.students = studentPosition3;
 
