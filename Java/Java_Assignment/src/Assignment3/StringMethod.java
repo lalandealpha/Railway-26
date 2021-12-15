@@ -13,7 +13,7 @@ import Assignment1.Teacher;
 public class StringMethod {
 
 	public static void main(String[] args) {
-		Question11();
+		Question16();
 
 	}
 	
@@ -92,7 +92,6 @@ public class StringMethod {
 		System.out.println("Your last name is: " + words[words.length - 1]);
 		scanner.close();
 		}
-
 
 	public static void Question7() {
 		System.out.println("-------Question 7-------");
@@ -617,7 +616,104 @@ public class StringMethod {
 		}
 		scanner.close();
 	}
+
+	public static void Question12() {
+		System.out.println("-------Question 12-------");
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Please enter any string:");
+		String s = scanner.nextLine();
+		StringBuilder sb = new StringBuilder(s);
+		String result = "";
+		for (int i = 0; i < sb.length(); i++) {	
+			result += sb.charAt(sb.length() - (i + 1));
+		}
+		System.out.println(result);
+		scanner.close();
+	}
+	
+	public static void Question13() {
+		System.out.println("-------Question 13-------");
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Please enter any string:");
+		String s = scanner.nextLine();
+		if(s.matches(".*\\d.*")) {
+			System.out.println("The string you just entered contains (a) number(s)");
+		} else {
+			System.out.println("The string you just entered does not contain a number.");
+		}
+		scanner.close();
+	}
+
+	public static void Question14() {
+		System.out.println("-------Question 14-------");
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Please enter any string:");
+		String s = scanner.nextLine();
+		String result = "";
+		System.out.println("Please enter the character you want to replace with '*': " );
+		String replacing = scanner.next();
+		for (int i = 0; i < s.length(); i++) {
+			if(s.subSequence(i, i + 1).equals(replacing)) {
+				result += "*";
+			} else {
+				result += s.charAt(i);
+			}
+		}
+		System.out.println("\nThe result after replacing character '" + replacing + "' with '*' is:\n"  + result);
+		scanner.close();
+	}
+
+	public static void Question15() {
+		System.out.println("-------Question 15-------");
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Please enter any string:");
+		String s = scanner.nextLine();
+		String result = "";
+		String trimmedS = s.trim();
+		String[] words = trimmedS.split("\\s");
+		for (int i = 0; i < words.length; i++) {
+			result += words[words.length - (i +1)] + " ";
+		}
+		System.out.println("\nThe result after reversing the string you just entered is:\n" + result);
+		scanner.close();
+	}
+
+	public static void Question16() {
+		System.out.println("-------Question 16-------");
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Please enter any string:");
+		String s1 = scanner.nextLine();
+		System.out.println("Please enter the number of charaters in a part you want to split (integer; > 0): ");
+		boolean isCorrect = false;
+		while (!isCorrect) {
+			boolean scanHasNext = scanner.hasNextInt();
+			String s2 = scanner.nextLine();
+			if(scanHasNext) {
+				int n = Integer.parseInt(s2);
+				if (n > 0) {
+					if (s1.length() % n == 0) {
+						int x =  s1.length() / n;
+						System.out.println("The string you just entered has been split into " + x + " equal parts as follows:");
+						for (int j = 0; j < x; j++) {
+							System.out.println(s1.substring(n * j, n * (j+1)));		
+						}
+						isCorrect = true;
+					} else {
+					System.out.println("The string you just entered cannot be split into equal parts with " + n + " characters in each part!" );
+					isCorrect = true;
+					}	
+				} else {
+					System.out.println("Please try again!");
+				}	
+			} else {
+				System.out.println("Please try again!");
+			}
+		}
+		scanner.close();
+
+	}
 }
+
 
 
 

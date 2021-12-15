@@ -19,5 +19,12 @@ public class Student {
 	void goToSchool () {
 		System.out.println("I am going to school...");
 	}
+
+	@Override
+	public String toString() {
+		return "Student [userName=" + userName + ", fullName=" + fullName + "]";
+	}
+	
+	
 	
 }

@@ -21,8 +21,8 @@ public class DataTypeCasting {
 	
 		System.out.println("Rounded Salary 1: " + salary1Casting);
 		System.out.println("Rounded Salary 2: " + salary2Casting);
-		 String toString = salary1Casting + "";
-		 System.out.println("");
+		String toString = salary1Casting + "";
+		System.out.println("");
 		
 		// Question 2:
 		 System.out.println("-------Question 2-------");
