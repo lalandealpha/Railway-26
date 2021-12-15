@@ -693,9 +693,9 @@ public class StringMethod {
 				if (n > 0) {
 					if (s1.length() % n == 0) {
 						int x =  s1.length() / n;
-						System.out.println("The string you just entered has been split into " + x + " equal parts as follows:");
+						System.out.println("The string you just entered has been split into " + x + " equal parts with " + n + " characters in each part as follows:");
 						for (int j = 0; j < x; j++) {
-							System.out.println(s1.substring(n * j, n * (j+1)));		
+							System.out.println("'" + s1.substring(n * j, n * (j+1)) + "'");		
 						}
 						isCorrect = true;
 					} else {
