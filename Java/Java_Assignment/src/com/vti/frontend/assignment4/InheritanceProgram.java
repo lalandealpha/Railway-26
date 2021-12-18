@@ -8,6 +8,7 @@ public class InheritanceProgram {
 		Inheritance pro = new Inheritance();
 		pro.Question1();
 		pro.Question2();
+		pro.Question3();
 
 	}
 

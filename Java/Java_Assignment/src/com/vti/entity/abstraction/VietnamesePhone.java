@@ -4,10 +4,13 @@ import java.util.List;
 
 public class VietnamesePhone extends Phone {
 	
-	private List<Contact>  contacts;
-	
 	public List<Contact> getContacts() {
 		return contacts;
+	}
+	
+	@Override
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
 	}
 
 	@Override
@@ -19,9 +22,9 @@ public class VietnamesePhone extends Phone {
 
 	@Override
 	public void removeContact(String name) {
-		for (int i = 0; i < contacts.size(); i++) {
-			if(contacts.get(i).getName().equals(name)) {
-				contacts.remove(i);
+		for (Contact c : contacts) {
+			if(c.getName().equals(name)) {
+				contacts.remove(c);
 			}
 		}
 	}
@@ -38,9 +41,9 @@ public class VietnamesePhone extends Phone {
 
 	@Override
 	public void searchContact(String name) {
-		for (int i = 0; i < contacts.size(); i++) {
-			if(contacts.get(i).getName().equals(name)) {
-				contacts.get(i).toString();
+		for (Contact c : contacts) {
+			if(c.getName().equals(name)) {
+				System.out.println(c.toString());
 			}
 		}
 		

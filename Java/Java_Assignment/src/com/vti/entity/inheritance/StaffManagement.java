@@ -112,10 +112,10 @@ public class StaffManagement {
 								while(isCorrect5) {
 									// tien hanh vong while buoc nguoi dung nhap dung input level
 									boolean shn2 = scanner.hasNextInt();
-									String level = scanner.nextLine();
+									String levelInput = scanner.nextLine();
 									if(shn2) {
-										if(Integer.parseInt(level) > 0 && Integer.parseInt(level) < 11) {
-											Worker worker = new Worker(fullNameInput3, Integer.parseInt(ageInput3), null, addressInput3, Integer.parseInt(level));
+										if(Integer.parseInt(levelInput) > 0 && Integer.parseInt(levelInput) < 11) {
+											Worker worker = new Worker(fullNameInput3, Integer.parseInt(ageInput3), null, addressInput3, Integer.parseInt(levelInput));
 											
 											if(genderInput3.equals("MALE")) {
 												worker.setGender(Gender.MALE);
@@ -152,19 +152,19 @@ public class StaffManagement {
 	}
 
 	public void searchStaff() {
-		Engineer engineer1 = new Engineer("Lyda Fearby", 30, Gender.MALE, "54950 Springview Drive", "Programing");
-		Engineer engineer2 = new Engineer("Phillie Malcolm", 26, Gender.FEMALE, "67 Porter Point", "Web Designing");
-		Engineer engineer3 = new Engineer("Marwin Abrahamsohn", 22, Gender.MALE, "74928 Lien Parkway", "IT");
+		Staff[] staff = new Staff[9];
+		staff[1] = new Engineer("Lyda Fearby", 30, Gender.MALE, "54950 Springview Drive", "Programing");
+		staff[2] = new Engineer("Phillie Malcolm", 26, Gender.FEMALE, "67 Porter Point", "Web Designing");
+		staff[3] = new Engineer("Marwin Abrahamsohn", 22, Gender.MALE, "74928 Lien Parkway", "IT");
 		
-		Employee employee1 = new Employee("Ginni Pamphilon", 26, Gender.FEMALE, "76674 Ilene Place", "Editor");
-		Employee employee2 = new Employee("Ivan Kenion", 40, Gender.MALE, "0432 Fisk Parkway", "Assistant Manager");
-		Employee employee3 = new Employee("Phelia Dearnaly", 33, Gender.FEMALE, "43 Dayton Center", "Sales Representative");
+		staff[4] = new Employee("Ginni Pamphilon", 26, Gender.FEMALE, "76674 Ilene Place", "Editor");
+		staff[5] = new Employee("Ivan Kenion", 40, Gender.MALE, "0432 Fisk Parkway", "Assistant Manager");
+		staff[6] = new Employee("Phelia Dearnaly", 33, Gender.FEMALE, "43 Dayton Center", "Sales Representative");
 		
-		Worker worker1 = new Worker("Vin Collett", 18, Gender.UNKNOWN, "69 Sundown Center", 1);
-		Worker worker2 = new Worker("Rayna Ottley", 20, Gender.MALE, "411 Longview Avenue", 3);
-		Worker worker3 = new Worker("Barret Walne", 29, Gender.FEMALE, "5 Starling Trail", 6);
+		staff[7] = new Worker("Vin Collett", 18, Gender.UNKNOWN, "69 Sundown Center", 1);
+		staff[8] = new Worker("Rayna Ottley", 20, Gender.MALE, "411 Longview Avenue", 3);
+		staff[9] = new Worker("Barret Walne", 29, Gender.FEMALE, "5 Starling Trail", 6);
 		
-		Staff[] staff = { engineer1, engineer2, engineer3, employee1, employee2, employee3, worker1, worker2, worker3 };
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Please enter the staff's full name:");
 		String fullNameInput = scanner.nextLine();
@@ -178,19 +178,19 @@ public class StaffManagement {
 	}
 
 	public void getAllStaff() {
-		Engineer engineer1 = new Engineer("Lyda Fearby", 30, Gender.MALE, "54950 Springview Drive", "Programing");
-		Engineer engineer2 = new Engineer("Phillie Malcolm", 26, Gender.FEMALE, "67 Porter Point", "Web Designing");
-		Engineer engineer3 = new Engineer("Marwin Abrahamsohn", 22, Gender.MALE, "74928 Lien Parkway", "IT");
+		Staff[] staff = new Staff[9];
+		staff[1] = new Engineer("Lyda Fearby", 30, Gender.MALE, "54950 Springview Drive", "Programing");
+		staff[2] = new Engineer("Phillie Malcolm", 26, Gender.FEMALE, "67 Porter Point", "Web Designing");
+		staff[3] = new Engineer("Marwin Abrahamsohn", 22, Gender.MALE, "74928 Lien Parkway", "IT");
 		
-		Employee employee1 = new Employee("Ginni Pamphilon", 26, Gender.FEMALE, "76674 Ilene Place", "Editor");
-		Employee employee2 = new Employee("Ivan Kenion", 40, Gender.MALE, "0432 Fisk Parkway", "Assistant Manager");
-		Employee employee3 = new Employee("Phelia Dearnaly", 33, Gender.FEMALE, "43 Dayton Center", "Sales Representative");
+		staff[4] = new Employee("Ginni Pamphilon", 26, Gender.FEMALE, "76674 Ilene Place", "Editor");
+		staff[5] = new Employee("Ivan Kenion", 40, Gender.MALE, "0432 Fisk Parkway", "Assistant Manager");
+		staff[6] = new Employee("Phelia Dearnaly", 33, Gender.FEMALE, "43 Dayton Center", "Sales Representative");
 		
-		Worker worker1 = new Worker("Vin Collett", 18, Gender.UNKNOWN, "69 Sundown Center", 1);
-		Worker worker2 = new Worker("Rayna Ottley", 20, Gender.MALE, "411 Longview Avenue", 3);
-		Worker worker3 = new Worker("Barret Walne", 29, Gender.FEMALE, "5 Starling Trail", 6);
+		staff[7] = new Worker("Vin Collett", 18, Gender.UNKNOWN, "69 Sundown Center", 1);
+		staff[8] = new Worker("Rayna Ottley", 20, Gender.MALE, "411 Longview Avenue", 3);
+		staff[9] = new Worker("Barret Walne", 29, Gender.FEMALE, "5 Starling Trail", 6);
 		
-		Staff[] staff = { engineer1, engineer2, engineer3, employee1, employee2, employee3, worker1, worker2, worker3 };
 		System.out.println("Information of all staffs:");
 		for (Staff staff2 : staff) {
 			System.out.println("\n" + staff2.toString());
@@ -198,19 +198,19 @@ public class StaffManagement {
 	}
 
 	public void deleteStaff() {
-		Engineer engineer1 = new Engineer("Lyda Fearby", 30, Gender.MALE, "54950 Springview Drive", "Programing");
-		Engineer engineer2 = new Engineer("Phillie Malcolm", 26, Gender.FEMALE, "67 Porter Point", "Web Designing");
-		Engineer engineer3 = new Engineer("Marwin Abrahamsohn", 22, Gender.MALE, "74928 Lien Parkway", "IT");
+		Staff[] staff = new Staff[9];
+		staff[1] = new Engineer("Lyda Fearby", 30, Gender.MALE, "54950 Springview Drive", "Programing");
+		staff[2] = new Engineer("Phillie Malcolm", 26, Gender.FEMALE, "67 Porter Point", "Web Designing");
+		staff[3] = new Engineer("Marwin Abrahamsohn", 22, Gender.MALE, "74928 Lien Parkway", "IT");
 		
-		Employee employee1 = new Employee("Ginni Pamphilon", 26, Gender.FEMALE, "76674 Ilene Place", "Editor");
-		Employee employee2 = new Employee("Ivan Kenion", 40, Gender.MALE, "0432 Fisk Parkway", "Assistant Manager");
-		Employee employee3 = new Employee("Phelia Dearnaly", 33, Gender.FEMALE, "43 Dayton Center", "Sales Representative");
+		staff[4] = new Employee("Ginni Pamphilon", 26, Gender.FEMALE, "76674 Ilene Place", "Editor");
+		staff[5] = new Employee("Ivan Kenion", 40, Gender.MALE, "0432 Fisk Parkway", "Assistant Manager");
+		staff[6] = new Employee("Phelia Dearnaly", 33, Gender.FEMALE, "43 Dayton Center", "Sales Representative");
 		
-		Worker worker1 = new Worker("Vin Collett", 18, Gender.UNKNOWN, "69 Sundown Center", 1);
-		Worker worker2 = new Worker("Rayna Ottley", 20, Gender.MALE, "411 Longview Avenue", 3);
-		Worker worker3 = new Worker("Barret Walne", 29, Gender.FEMALE, "5 Starling Trail", 6);
+		staff[7] = new Worker("Vin Collett", 18, Gender.UNKNOWN, "69 Sundown Center", 1);
+		staff[8] = new Worker("Rayna Ottley", 20, Gender.MALE, "411 Longview Avenue", 3);
+		staff[9] = new Worker("Barret Walne", 29, Gender.FEMALE, "5 Starling Trail", 6);
 		
-		Staff[] staff = { engineer1, engineer2, engineer3, employee1, employee2, employee3, worker1, worker2, worker3 };
 		System.out.println("Select the staff you want to delete:\n");
 		for (Staff staff2 : staff) {
 			System.out.println(staff2.getFullName());

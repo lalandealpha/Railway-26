@@ -2,6 +2,7 @@ package com.vti.backend.assignment4;
 
 import java.util.Scanner;
 
+import com.vti.entity.inheritance.HighSchoolStudent;
 import com.vti.entity.inheritance.StaffManagement;
 
 public class Inheritance {
@@ -48,5 +49,11 @@ public class Inheritance {
 				System.out.println("Please try again!");
 			}
 		}
+	}
+
+	public void Question3() {
+		System.out.println("-------Question 1-------");
+		HighSchoolStudent hsstudent = new HighSchoolStudent("Hoàng Nam", 1, "Chuyên Văn", "Đại học Công Nghệ");
+		System.out.println(hsstudent.toString());
 	}
 }

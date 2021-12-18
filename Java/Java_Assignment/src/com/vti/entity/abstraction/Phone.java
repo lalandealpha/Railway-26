@@ -3,6 +3,9 @@ package com.vti.entity.abstraction;
 import java.util.List;
 
 public abstract class Phone {
+	protected List<Contact>  contacts;
+	
+	public abstract void setContacts(List<Contact> contacts);
 	
 	public abstract void insertContact(String name, String number);
 	
