@@ -18,7 +18,6 @@ import com.vti.entity.QuestionCategory;
 import com.vti.entity.QuestionType;
 import com.vti.entity.Teacher;
 
-
 public class DateFormat1 {
 
 	public void Question12345() {
@@ -28,7 +27,6 @@ public class DateFormat1 {
 		Department department2 = new Department(2, "English");
 
 		Department department3 = new Department(3, "Japanese");
-
 
 		// create teacher accounts
 		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1, LocalDate.of(2020, 11, 12));

@@ -59,18 +59,3 @@ public class Constructor {
 		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

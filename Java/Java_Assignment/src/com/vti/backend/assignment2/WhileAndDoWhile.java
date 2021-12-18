@@ -11,8 +11,6 @@ import com.vti.entity.Position;
 import com.vti.entity.Student;
 import com.vti.entity.Teacher;
 
-
-
 public class WhileAndDoWhile {
 
 	public void Question16() { // Question 16: Use WHILE, BREAK, CONTINUE to do Question above.
