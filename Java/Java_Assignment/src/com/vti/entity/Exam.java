@@ -1,6 +1,5 @@
 package com.vti.entity;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Exam {
 	public short id;

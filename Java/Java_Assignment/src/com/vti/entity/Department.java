@@ -1,23 +1,93 @@
 package com.vti.entity;
 
 public class Department {
-	public byte id;
-	public String name;
-	public Student[] students;
-	public Teacher[] teachers;
+	private int id;
+	private String name;
+	private Student[] students;
+	private Teacher[] teachers;
 	
 	public Department() {
 		
 	}
 	
 	public Department(int id, String name) {
-		this.id = 0;
+		this.id = id;
 		this.name = name;
+	}
+	
+	public int getID() {
+		return id;
+	}
+	
+	public void setID(int id) {
+		this.id = id;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getStudents() {
+		String result = "";
+		if(students == null) {
+			result += "There are no students in this department.";
+		} else {
+			for (Student s : students) {
+				result += "\n" + s.getFullName();
+			}
+		}
+		return result;
+	}
+	
+	
+	public void setStudents(Student[] students) {
+		this.students = students;
+	}
+	
+	public Student[] getStudentsArray() {
+		Student[] result = students;
+		return result;
+	}
+	
+	public String getTeachers() {
+		String result = "";
+		if(teachers == null) {
+			result += "There are no teachers in this department.";
+		} else {
+			for (Teacher t : teachers) {
+				result += "\n" + t.getFullName();
+			}
+		}
+		return result;
+	}
+	
+	public void setTeachers(Teacher[] teachers) {
+		this.teachers = teachers;
 	}
 	
 	@Override
 	public String toString() {
-		String result = "DepartmentID: " + id + "\nDepartmentName: " + name;
+		String result = "ID: " + id + "\nName: " + name + "\nStudent: ";
+		if(students == null) {
+			result += "There are no students in this department.";
+		} else {
+			for (Student s : students) {
+				result += "\n" + s.getFullName();
+			}
+		}
+		result += "\nTeacher: ";
+		if(teachers == null) {
+			result += "There are no teachers in this department.";
+		} else {
+			for (Teacher t : teachers) {
+				result += "\n" + t.getFullName();
+			}
+		}
+
 		return result;
 	}
 	
@@ -30,5 +100,6 @@ public class Department {
 			return false;
 		}
 	}
+
 	
 }
