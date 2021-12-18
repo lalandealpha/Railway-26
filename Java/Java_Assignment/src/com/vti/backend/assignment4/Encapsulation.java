@@ -15,8 +15,10 @@ public class Encapsulation {
 		student3.setMark(3.9f);
 		student4.setMark(7.5f);
 		
-		student1.addMark(2.2f);		
+		student1.addMark(2.2f);
+		student2.addMark(0.8f);
 		
+		System.out.println("-------Question 1-------");
 		Student[] students = { student1, student2, student3, student4 };
 		for (Student s : students) {
 			System.out.println(s.toString() + "\n");
@@ -24,7 +26,8 @@ public class Encapsulation {
 	}
 	
 	public void Question2() {
-		
+		System.out.println("-------Question 2-------");
+		System.out.println("Create 3 classes in com.vti.entity.encapsulation.question2");
 	}
 }
 
