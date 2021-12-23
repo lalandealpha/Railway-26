@@ -94,7 +94,15 @@ public class Student {
 	
 	public Student() {
 		System.out.println("Please enter the student's id: ");
-		this.id = ScannerUtils.inputInt();
+		while(true) {
+			int i = ScannerUtils.inputInt("ID must be a integer. Please try again!");
+			if(i > 0) {
+				this.id = i;
+				break;
+			} else {
+				System.err.println("ID must be greater than 0. Please try again!");
+			}
+		}
 		System.out.println("Please enter the student's email: ");
 		this.email = ScannerUtils.inputString();
 		System.out.println("Please enter the student's username: ");

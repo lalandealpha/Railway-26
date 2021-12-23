@@ -14,7 +14,15 @@ public class Clazz {
 	
 	public Clazz() {
 		System.out.println("Please enter the class's id: ");
-		this.id = ScannerUtils.inputInt();
+		while(true) {
+			int i = ScannerUtils.inputInt("ID must be a integer. Please try again!");
+			if(i > 0) {
+				this.id = i;
+				break;
+			} else {
+				System.err.println("ID must be greater than 0. Please try again!");
+			}
+		}
 		System.out.println("Please enter the class's name: ");
 		this.name = ScannerUtils.inputString();
 		List<Student> students = new ArrayList<>();
@@ -44,8 +52,12 @@ public class Clazz {
 	@Override
 	public String toString() {
 		String result = "Class'ID: " + id + "\nClass's name: " + name + "\nStudents: ";
-		for (int i = 0; i < participants.size(); i++) {
-			result += "\nStudent: " + i + ":\n" + participants.get(i).toString();
+		if(participants == null || participants.size() == 0) {
+			result += "There are no students in this class.";
+		} else {
+			for (Student s : participants) {
+				result += "\n" + s.getFullName();
+			}
 		}
 		return result;
 	}
