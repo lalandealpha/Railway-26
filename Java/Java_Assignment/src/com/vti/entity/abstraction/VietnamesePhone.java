@@ -1,8 +1,13 @@
 package com.vti.entity.abstraction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VietnamesePhone extends Phone {
+	
+	public VietnamesePhone() {
+		this.contacts = new ArrayList<Contact>();
+	}
 	
 	public List<Contact> getContacts() {
 		return contacts;

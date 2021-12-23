@@ -3,7 +3,7 @@ package com.vti.backend.assignment3;
 
 import java.util.Scanner;
 
-import com.vti.entity.Student;
+import com.vti.entity.objectInitialization.Student;
 
 
 public class test {

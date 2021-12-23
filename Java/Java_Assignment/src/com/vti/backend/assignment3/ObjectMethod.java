@@ -4,10 +4,10 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
 
-import com.vti.entity.Department;
-import com.vti.entity.Gender;
-import com.vti.entity.Student;
-import com.vti.entity.Teacher;
+import com.vti.entity.objectInitialization.Department;
+import com.vti.entity.objectInitialization.Gender;
+import com.vti.entity.objectInitialization.Student;
+import com.vti.entity.objectInitialization.Teacher;
 
 public class ObjectMethod {
 

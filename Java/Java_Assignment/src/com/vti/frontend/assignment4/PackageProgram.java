@@ -8,7 +8,5 @@ public class PackageProgram {
 		Package pro = new Package();
 		pro.Question1();
 		pro.Question2();
-
 	}
-
 }

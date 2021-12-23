@@ -2,7 +2,7 @@ package com.vti.backend.assignment3;
 
 import java.time.LocalDate;
 
-import com.vti.entity.Teacher;
+import com.vti.entity.objectInitialization.Teacher;
 
 public class DefaultValue {
 	

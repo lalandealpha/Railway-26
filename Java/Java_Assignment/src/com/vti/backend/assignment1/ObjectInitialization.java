@@ -3,19 +3,19 @@ import java.time.LocalDate;
 
 import java.time.Month;
 
-import com.vti.entity.Answer;
-import com.vti.entity.Clazz;
-import com.vti.entity.Department;
-import com.vti.entity.Duration;
-import com.vti.entity.Exam;
-import com.vti.entity.Gender;
-import com.vti.entity.Pos;
-import com.vti.entity.Position;
-import com.vti.entity.Question;
-import com.vti.entity.QuestionCategory;
-import com.vti.entity.QuestionType;
-import com.vti.entity.Student;
-import com.vti.entity.Teacher;
+import com.vti.entity.objectInitialization.Answer;
+import com.vti.entity.objectInitialization.Clazz;
+import com.vti.entity.objectInitialization.Department;
+import com.vti.entity.objectInitialization.Duration;
+import com.vti.entity.objectInitialization.Exam;
+import com.vti.entity.objectInitialization.Gender;
+import com.vti.entity.objectInitialization.Pos;
+import com.vti.entity.objectInitialization.Position;
+import com.vti.entity.objectInitialization.Question;
+import com.vti.entity.objectInitialization.QuestionCategory;
+import com.vti.entity.objectInitialization.QuestionType;
+import com.vti.entity.objectInitialization.Student;
+import com.vti.entity.objectInitialization.Teacher;
 
 public class ObjectInitialization {
 

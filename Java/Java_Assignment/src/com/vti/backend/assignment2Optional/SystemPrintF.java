@@ -5,9 +5,9 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
 
-import com.vti.entity.Department;
-import com.vti.entity.Gender;
-import com.vti.entity.Teacher;
+import com.vti.entity.objectInitialization.Department;
+import com.vti.entity.objectInitialization.Gender;
+import com.vti.entity.objectInitialization.Teacher;
 
 public class SystemPrintF {
 

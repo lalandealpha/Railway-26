@@ -8,15 +8,15 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.Locale;
 
-import com.vti.entity.Answer;
-import com.vti.entity.Department;
-import com.vti.entity.Duration;
-import com.vti.entity.Exam;
-import com.vti.entity.Gender;
-import com.vti.entity.Question;
-import com.vti.entity.QuestionCategory;
-import com.vti.entity.QuestionType;
-import com.vti.entity.Teacher;
+import com.vti.entity.objectInitialization.Answer;
+import com.vti.entity.objectInitialization.Department;
+import com.vti.entity.objectInitialization.Duration;
+import com.vti.entity.objectInitialization.Exam;
+import com.vti.entity.objectInitialization.Gender;
+import com.vti.entity.objectInitialization.Question;
+import com.vti.entity.objectInitialization.QuestionCategory;
+import com.vti.entity.objectInitialization.QuestionType;
+import com.vti.entity.objectInitialization.Teacher;
 
 public class DateFormat1 {
 

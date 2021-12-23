@@ -1,6 +1,7 @@
 package com.vti.entity.abstraction;
 
 public class News implements INews {
+	private static int count;
 	private int id;
 	private String title;
 	private String publishDate;
@@ -63,15 +64,17 @@ public class News implements INews {
 		float averageRate = (rate1 + rate2 + rate3) / (float) 3;
 		return averageRate;
 	}
+	
+	
 
 	
-//	public News(int id, String title, String publishDate, String author, String content) {
-//		this.id = id;
-//		this.title = title;
-//		this.publishDate = publishDate;
-//		this.author = author;
-//		this.content = content;
-//
-//	}
+	public News(String title, String publishDate, String author, String content) {
+		this.id = ++count;
+		this.title = title;
+		this.publishDate = publishDate;
+		this.author = author;
+		this.content = content;
+
+	}
 	
 }

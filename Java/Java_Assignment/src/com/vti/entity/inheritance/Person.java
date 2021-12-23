@@ -7,9 +7,13 @@ public abstract class Person {
 		this.name = name;
 	}
 
-	public abstract String getName();
+	public String getName() {
+		return name;
+	}
 	
-	public abstract void setName(String name);
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 	@Override
 	public String toString() {

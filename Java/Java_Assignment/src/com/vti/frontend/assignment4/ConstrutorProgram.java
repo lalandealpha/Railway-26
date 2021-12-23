@@ -7,9 +7,6 @@ public class ConstrutorProgram {
 	public static void main(String[] args) {
 		Constructor pro = new Constructor();
 		pro.Question1();
-		pro.Question2();
-		
-
+		pro.Question2();	
 	}
-
 }

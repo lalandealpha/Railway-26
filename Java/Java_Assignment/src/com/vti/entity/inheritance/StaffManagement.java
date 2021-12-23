@@ -1,16 +1,31 @@
 package com.vti.entity.inheritance;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class StaffManagement {
-	
+	List<Staff> staffs = new ArrayList<>();
+	Scanner scanner = new Scanner(System.in);
+	public StaffManagement() {
+		
+		this.staffs.add(new Engineer("Lyda Fearby", 30, Gender.MALE, "54950 Springview Drive", "Programing"));
+		this.staffs.add(new Engineer("Phillie Malcolm", 26, Gender.FEMALE, "67 Porter Point", "Web Designing"));
+		this.staffs.add(new Engineer("Marwin Abrahamsohn", 22, Gender.MALE, "74928 Lien Parkway", "IT"));
+		this.staffs.add(new Employee("Ginni Pamphilon", 26, Gender.FEMALE, "76674 Ilene Place", "Editor"));
+		this.staffs.add(new Employee("Ivan Kenion", 40, Gender.MALE, "0432 Fisk Parkway", "Assistant Manager"));
+		this.staffs.add(new Employee("Phelia Dearnaly", 33, Gender.FEMALE, "43 Dayton Center", "Sales Representative"));
+		this.staffs.add(new Worker("Vin Collett", 18, Gender.UNKNOWN, "69 Sundown Center", 1));
+		this.staffs.add(new Worker("Rayna Ottley", 20, Gender.MALE, "411 Longview Avenue", 3));
+		this.staffs.add(new Worker("Barret Walne", 29, Gender.FEMALE, "5 Starling Trail", 6));
+
+	}
+
 	public void addStaff() {
 		System.out.println("Select the Staff you want to add.");
 		System.out.println("(1) Engineer");
 		System.out.println("(2) Employee");
 		System.out.println("(3) Worker");
-		
-		Scanner scanner = new Scanner(System.in);
 		boolean isCorrect1 = true;
 		while(isCorrect1) {
 			String s = scanner.nextLine();
@@ -41,6 +56,7 @@ public class StaffManagement {
 								} else {
 									engineer.setGender(Gender.UNKNOWN);
 								}
+								this.staffs.add(engineer);
 								System.out.println("Engineer's account has been created successfully: ");
 								System.out.println(engineer.toString());
 								isCorrect2 = false;
@@ -79,6 +95,7 @@ public class StaffManagement {
 								} else {
 									employee.setGender(Gender.UNKNOWN);
 								}
+								this.staffs.add(employee);
 								System.out.println("Employee's account has been created successfully: ");
 								System.out.println(employee.toString());
 								isCorrect3 = false;
@@ -124,6 +141,7 @@ public class StaffManagement {
 											} else {
 												worker.setGender(Gender.UNKNOWN);
 											}
+											this.staffs.add(worker);
 											System.out.println("Worker's account has been created successfully: ");
 											System.out.println(worker.toString());
 											isCorrect4 = false;
@@ -152,76 +170,54 @@ public class StaffManagement {
 	}
 
 	public void searchStaff() {
-		Staff[] staff = new Staff[9];
-		staff[1] = new Engineer("Lyda Fearby", 30, Gender.MALE, "54950 Springview Drive", "Programing");
-		staff[2] = new Engineer("Phillie Malcolm", 26, Gender.FEMALE, "67 Porter Point", "Web Designing");
-		staff[3] = new Engineer("Marwin Abrahamsohn", 22, Gender.MALE, "74928 Lien Parkway", "IT");
-		
-		staff[4] = new Employee("Ginni Pamphilon", 26, Gender.FEMALE, "76674 Ilene Place", "Editor");
-		staff[5] = new Employee("Ivan Kenion", 40, Gender.MALE, "0432 Fisk Parkway", "Assistant Manager");
-		staff[6] = new Employee("Phelia Dearnaly", 33, Gender.FEMALE, "43 Dayton Center", "Sales Representative");
-		
-		staff[7] = new Worker("Vin Collett", 18, Gender.UNKNOWN, "69 Sundown Center", 1);
-		staff[8] = new Worker("Rayna Ottley", 20, Gender.MALE, "411 Longview Avenue", 3);
-		staff[9] = new Worker("Barret Walne", 29, Gender.FEMALE, "5 Starling Trail", 6);
-		
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("Please enter the staff's full name:");
 		String fullNameInput = scanner.nextLine();
-		for (Staff s : staff) {
-			if(s.getFullName().equals(fullNameInput)) {
-				System.out.println("The information of the staff you just entered is:");
-				System.out.println(s.toString());
-			}
+		if(search(fullNameInput) != null) {
+			System.out.println(search(fullNameInput).toString()); 
+		} else {
+			System.out.println("There are no staffs with the same name as you entered.");
 		}
 		
 	}
+	
+	private Staff search(String name) {
+
+		for (Staff s : staffs) {
+			if(s.getFullName().equals(name)) {
+				return s;
+			}
+		}
+		return null;
+	}
 
 	public void getAllStaff() {
-		Staff[] staff = new Staff[9];
-		staff[1] = new Engineer("Lyda Fearby", 30, Gender.MALE, "54950 Springview Drive", "Programing");
-		staff[2] = new Engineer("Phillie Malcolm", 26, Gender.FEMALE, "67 Porter Point", "Web Designing");
-		staff[3] = new Engineer("Marwin Abrahamsohn", 22, Gender.MALE, "74928 Lien Parkway", "IT");
-		
-		staff[4] = new Employee("Ginni Pamphilon", 26, Gender.FEMALE, "76674 Ilene Place", "Editor");
-		staff[5] = new Employee("Ivan Kenion", 40, Gender.MALE, "0432 Fisk Parkway", "Assistant Manager");
-		staff[6] = new Employee("Phelia Dearnaly", 33, Gender.FEMALE, "43 Dayton Center", "Sales Representative");
-		
-		staff[7] = new Worker("Vin Collett", 18, Gender.UNKNOWN, "69 Sundown Center", 1);
-		staff[8] = new Worker("Rayna Ottley", 20, Gender.MALE, "411 Longview Avenue", 3);
-		staff[9] = new Worker("Barret Walne", 29, Gender.FEMALE, "5 Starling Trail", 6);
 		
 		System.out.println("Information of all staffs:");
-		for (Staff staff2 : staff) {
-			System.out.println("\n" + staff2.toString());
+		for (Staff s : staffs) {
+			System.out.println("\n" + s.toString());
 		}
 	}
 
 	public void deleteStaff() {
-		Staff[] staff = new Staff[9];
-		staff[1] = new Engineer("Lyda Fearby", 30, Gender.MALE, "54950 Springview Drive", "Programing");
-		staff[2] = new Engineer("Phillie Malcolm", 26, Gender.FEMALE, "67 Porter Point", "Web Designing");
-		staff[3] = new Engineer("Marwin Abrahamsohn", 22, Gender.MALE, "74928 Lien Parkway", "IT");
-		
-		staff[4] = new Employee("Ginni Pamphilon", 26, Gender.FEMALE, "76674 Ilene Place", "Editor");
-		staff[5] = new Employee("Ivan Kenion", 40, Gender.MALE, "0432 Fisk Parkway", "Assistant Manager");
-		staff[6] = new Employee("Phelia Dearnaly", 33, Gender.FEMALE, "43 Dayton Center", "Sales Representative");
-		
-		staff[7] = new Worker("Vin Collett", 18, Gender.UNKNOWN, "69 Sundown Center", 1);
-		staff[8] = new Worker("Rayna Ottley", 20, Gender.MALE, "411 Longview Avenue", 3);
-		staff[9] = new Worker("Barret Walne", 29, Gender.FEMALE, "5 Starling Trail", 6);
 		
 		System.out.println("Select the staff you want to delete:\n");
-		for (Staff staff2 : staff) {
+		for (Staff staff2 : staffs) {
 			System.out.println(staff2.getFullName());
 		}
-		Scanner scanner = new Scanner(System.in);
 		String fullNameInput = scanner.nextLine();
-		for (Staff s : staff) {
+		
+		Staff selected = null;
+		
+		for (Staff s : staffs) {
 			if(s.getFullName().equals(fullNameInput)) {
-				s = null;
+				selected = s;
 			}
 		}
+		
+		staffs.remove(selected);
+		System.out.println("Deleted!");
+		getAllStaff();
+		
 	}
 }
 

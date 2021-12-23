@@ -9,7 +9,7 @@ public class InheritanceProgram {
 		pro.Question1();
 		pro.Question2();
 		pro.Question3();
-
+		pro.Question4();
+		pro.Question5();
 	}
-
 }

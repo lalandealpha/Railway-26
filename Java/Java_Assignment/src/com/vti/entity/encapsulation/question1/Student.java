@@ -7,11 +7,9 @@ public class Student {
 	private String hometown;
 	private float mark;
 	
-	private boolean isFilled;
-	
 	public Student(String fullName, String hometown) {
-		isFilled = false;
-		this.id = ++count;
+		count++;		
+		this.id = count;
 		this.fullName = fullName;
 		this.hometown = hometown;
 		this.mark = 0;

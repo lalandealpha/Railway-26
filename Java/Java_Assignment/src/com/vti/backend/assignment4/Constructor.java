@@ -4,10 +4,10 @@ import java.time.LocalDate;
 
 import java.time.Month;
 
-import com.vti.entity.Department;
-import com.vti.entity.Pos;
-import com.vti.entity.Position;
-import com.vti.entity.Student;
+import com.vti.entity.objectInitialization.Department;
+import com.vti.entity.objectInitialization.Pos;
+import com.vti.entity.objectInitialization.Position;
+import com.vti.entity.objectInitialization.Student;
 
 public class Constructor {
 

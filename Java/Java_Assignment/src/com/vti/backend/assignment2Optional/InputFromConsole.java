@@ -8,12 +8,12 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.vti.entity.Department;
-import com.vti.entity.Pos;
-import com.vti.entity.Gender;
-import com.vti.entity.Position;
-import com.vti.entity.Student;
-import com.vti.entity.Teacher;
+import com.vti.entity.objectInitialization.Department;
+import com.vti.entity.objectInitialization.Gender;
+import com.vti.entity.objectInitialization.Pos;
+import com.vti.entity.objectInitialization.Position;
+import com.vti.entity.objectInitialization.Student;
+import com.vti.entity.objectInitialization.Teacher;
 
 public class InputFromConsole {
 	
