@@ -46,7 +46,7 @@ public class FileUtils {
 	
 	public static void deleteFile(String filePath) throws Exception {
 		if(!isFileExist(filePath)) {
-			throw new Exception("Error! File not exist.");
+			throw new Exception("Error! File not found.");
 		} else {
 			File file = new File(filePath);
 			file.delete();
@@ -91,7 +91,7 @@ public class FileUtils {
 		File file1 = new File(fileToCopy);
 		File file2 = new File(folderPath + "/" + newName);
 		if(!file1.exists()) {
-			throw new Exception("Error! Source file does not exist!");
+			throw new Exception("Error! Source file not found!");
 		} else {
 			if(!file2.exists()) {
 				Files.copy(file1.toPath(), file2.toPath());
@@ -106,7 +106,7 @@ public class FileUtils {
 		File file1 = new File(fileToMove);
 		File file2 = new File(newFilePath);
 		if(!file1.exists()) {
-			throw new Exception("Error! Source file does not exist!");
+			throw new Exception("Error! Source file not found!");
 		} else {
 			if(!file2.exists()) {
 				Files.move(file1.toPath(), file2.toPath());
@@ -121,7 +121,7 @@ public class FileUtils {
 		File file1 = new File(fileToRename);
 		File file2 = new File(newNamePath);
 		if(!file1.exists()) {
-			throw new Exception("Error! File does not exist!");
+			throw new Exception("Error! File not found!");
 		} else {
 			if(!file2.exists()) {
 				file1.renameTo(file2);
@@ -136,7 +136,7 @@ public class FileUtils {
 		File file = new File(newFolderPath);
 		if(!file.exists()) {
 			file.mkdirs();
-			System.out.println("File created successfully!");
+			System.out.println("Folder created successfully!");
 		} else {
 			throw new Exception("Error! Folder exists.");
 		}
