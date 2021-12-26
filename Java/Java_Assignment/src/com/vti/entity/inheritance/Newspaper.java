@@ -7,11 +7,11 @@ public class Newspaper extends Document {
 		super(id, publisher, numberOfCopy);
 		this.publishDate = publishDate;
 	}
-	
+
 	public int getPublishDate() {
 		return publishDate;
 	}
-	
+
 	public void setPublishDate(int publishDate) {
 		this.publishDate = publishDate;
 	}

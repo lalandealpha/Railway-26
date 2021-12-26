@@ -16,18 +16,18 @@ public class test {
 		int level = scanner.nextInt();
 		System.out.println("Please enter the worker's age:");
 		int ageInput3 = scanner.nextInt();
-		
+
 		Worker worker = new Worker(fullNameInput3, ageInput3, null, addressInput3, level);
-		
-		if(genderInput3.equals("MALE")) {
+
+		if (genderInput3.equals("MALE")) {
 			worker.setGender(Gender.MALE);
 		} else if (genderInput3.equals("FEMALE")) {
 			worker.setGender(Gender.FEMALE);
 		} else {
 			worker.setGender(Gender.UNKNOWN);
 		}
-		
-		System.out.println(worker.toString() +"\nLevel: " + worker.getLevel());
+
+		System.out.println(worker.toString() + "\nLevel: " + worker.getLevel());
 	}
 
 }

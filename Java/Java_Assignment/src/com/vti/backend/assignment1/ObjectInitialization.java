@@ -1,4 +1,5 @@
 package com.vti.backend.assignment1;
+
 import java.time.LocalDate;
 
 import java.time.Month;
@@ -41,16 +42,16 @@ public class ObjectInitialization {
 		student2.setId(2);
 		student2.setEmail("kbranno6@independent.co.uk");
 		student2.setUserName("kbranno6");
-		student2.setFullName("Kathy Branno"); 
+		student2.setFullName("Kathy Branno");
 		student2.setGender(Gender.MALE);
 		student2.setDepartment(department1);
 		student2.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-		
+
 		Student student3 = new Student();
 		student3.setId(3);
 		student3.setEmail("cwanjek7@tamu.edu");
 		student3.setUserName("cwanjek7");
-		student3.setFullName("Claribel Wanjek"); 
+		student3.setFullName("Claribel Wanjek");
 		student3.setGender(Gender.FEMALE);
 		student3.setDepartment(department1);
 		student3.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
@@ -72,7 +73,7 @@ public class ObjectInitialization {
 		student5.setGender(Gender.MALE);
 		student5.setDepartment(department2);
 		student5.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-	
+
 		Student student6 = new Student();
 		student6.setId(6);
 		student6.setEmail("alewisham5@phpbb.com");
@@ -127,34 +128,38 @@ public class ObjectInitialization {
 		student11.setDepartment(department3);
 		student11.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
 
-
 		// create teacher accounts
-		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1, LocalDate.of(2020, 11, 12));
+		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1,
+				LocalDate.of(2020, 11, 12));
 
-		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE, department1, LocalDate.of(2021, 3, 22));
-		
-		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE, department1, LocalDate.of(2019, 5, 19));
+		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE,
+				department1, LocalDate.of(2021, 3, 22));
 
-		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE, department2, LocalDate.of(2018, 7, 25));
+		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE,
+				department1, LocalDate.of(2019, 5, 19));
 
-		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN, department2, LocalDate.of(2021, 11, 01));
-		
+		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE,
+				department2, LocalDate.of(2018, 7, 25));
+
+		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN,
+				department2, LocalDate.of(2021, 11, 01));
+
 		// set department.teachers
 		Teacher[] teacherOfDept1 = { teacher1, teacher2, teacher3 };
 		department1.setTeachers(teacherOfDept1);
 		Teacher[] teacherOfDept2 = { teacher4 };
 		department2.setTeachers(teacherOfDept2);
-				
+
 		// set department.students
 		Student[] studentOfDept1 = { student1, student2, student3, student4, student5 };
 		department1.setStudents(studentOfDept1);
-				
+
 		Student[] studentOfDept2 = { student6, student7 };
 		department2.setStudents(studentOfDept2);
-				
+
 		Student[] studentOfDept3 = { student8, student9, student10, student11 };
 		department3.setStudents(studentOfDept3);
-				
+
 		// create classes
 		Clazz clazz1 = new Clazz();
 		clazz1.id = 1;
@@ -190,7 +195,7 @@ public class ObjectInitialization {
 
 		Clazz clazz5 = new Clazz();
 		clazz5.id = 5;
-		clazz5.name ="Discovery";
+		clazz5.name = "Discovery";
 		clazz5.creator = teacher5;
 		Student[] studentOfclazz5 = { student8, student9, student10, student11 };
 		clazz5.participants = studentOfclazz5;
@@ -219,7 +224,7 @@ public class ObjectInitialization {
 		Answer answer1 = new Answer();
 		answer1.id = 1;
 		answer1.content = "Bypass Left Internal Iliac Artery to Left Femoral Artery with Nonautologous Tissue Substitute, Open Approach";
-		answer1.isCorrect =  true;
+		answer1.isCorrect = true;
 
 		Answer answer2 = new Answer();
 		answer2.id = 2;
@@ -271,7 +276,6 @@ public class ObjectInitialization {
 		answer11.content = "Revision of Infusion Device in Lumbosacral Disc, Percutaneous Approach";
 		answer11.isCorrect = false;
 
-
 		// create question
 		Question question1 = new Question();
 		question1.id = 1;
@@ -309,57 +313,57 @@ public class ObjectInitialization {
 		question5.answers = answerOfQuestion5;
 
 		// create question type
-		QuestionType type1 = new QuestionType ();
+		QuestionType type1 = new QuestionType();
 		type1.id = 1;
 		type1.name = "Essay";
 		Question[] questionOfType1 = { question1, question2, question3 };
 		type1.questions = questionOfType1;
 
-		QuestionType type2 = new QuestionType ();
+		QuestionType type2 = new QuestionType();
 		type2.id = 2;
 		type2.name = "Essay";
 		Question[] questionOfType2 = { question4, question5 };
 		type2.questions = questionOfType2;
 
 		// create question category
-		QuestionCategory category1 = new  QuestionCategory ();
+		QuestionCategory category1 = new QuestionCategory();
 		category1.id = 1;
 		category1.name = "General knowledge";
 		Question[] questionOfCategory1 = { question1, question2 };
 		category1.questions = questionOfCategory1;
 
-		QuestionCategory category2 = new  QuestionCategory ();
+		QuestionCategory category2 = new QuestionCategory();
 		category2.id = 2;
 		category2.name = "Expertise'";
 		Question[] questionOfCategory2 = { question3 };
 		category2.questions = questionOfCategory2;
 
-		QuestionCategory category3 = new  QuestionCategory ();
+		QuestionCategory category3 = new QuestionCategory();
 		category3.id = 1;
 		category3.name = "Skill";
 		Question[] questionOfCategory3 = { question4, question5 };
 		category3.questions = questionOfCategory3;
 
-		Exam exam1 = new Exam ();
+		Exam exam1 = new Exam();
 		exam1.id = 1;
 		exam1.code = "BA143";
 		exam1.title = "First Exam";
 		exam1.creator = teacher1;
 		exam1.createDate = LocalDate.of(2015, 1, 20);
-		exam1.duration =  Duration.MINUTE15;
+		exam1.duration = Duration.MINUTE15;
 		Question[] questionOfExam1 = { question1, question2, question3 };
 		exam1.questions = questionOfExam1;
 
-		Exam exam2 = new Exam ();
+		Exam exam2 = new Exam();
 		exam2.id = 2;
 		exam2.code = "CF443";
 		exam2.title = "Mid-term Exam";
 		exam2.creator = teacher1;
 		exam2.createDate = LocalDate.of(2015, 1, 20);
-		exam2.duration =  Duration.MINUTE45;
+		exam2.duration = Duration.MINUTE45;
 		Question[] questionOfExam2 = { question3, question4 };
 		exam2.questions = questionOfExam2;
-		
+
 		Exam exam3 = new Exam();
 		exam3.id = 3;
 		exam3.code = "HK007";
@@ -375,10 +379,10 @@ public class ObjectInitialization {
 		System.out.println("answer1's information: ");
 		System.out.println("ID: " + answer1.id);
 		System.out.println("Content: " + answer1.content);
-		System.out.println("true or false: " + answer1.isCorrect); 
+		System.out.println("true or false: " + answer1.isCorrect);
 		System.out.println("Question:  " + answer1.question); // can not get question's content
 		System.out.println("\n");
-		
+
 		// clazz1
 		System.out.println("clazz1's information: ");
 		System.out.println("ID: " + clazz1.id);
@@ -387,53 +391,53 @@ public class ObjectInitialization {
 		System.out.println("Department: " + clazz1.department); // can not get department's name
 		System.out.println("Created at : " + clazz1.createDate);
 		System.out.println("\n");
-	
+
 		// department 1
 		System.out.println("department1's information");
 		System.out.println("ID: " + department1.getID());
 		System.out.println("Name: " + department1.getName());
 		System.out.println("\n");
-		
-		//exam 1
+
+		// exam 1
 		System.out.println("exam1's information: ");
 		System.out.println("ID: " + exam1.id);
 		System.out.println("Code: " + exam1.code);
 		System.out.println("Title: " + exam1.title);
-		System.out.println("Duration: " + exam1.duration.getValue() + "minutes"); 
+		System.out.println("Duration: " + exam1.duration.getValue() + "minutes");
 		System.out.println("Created by: " + exam1.creator.getFullName());
 		System.out.println("\n");
-		
+
 		// position 1
 		System.out.println("position1's information: ");
 		System.out.println("ID: " + position1.id);
 		System.out.println("Name: " + position1.name);
-		System.out.println("Student: "); 
-		for (Student s: studentPosition1 ) {
+		System.out.println("Student: ");
+		for (Student s : studentPosition1) {
 			System.out.println(s.getFullName());
 		}
 		System.out.println("\n");
-		
+
 		// question 1
 		System.out.println("question1's information: ");
 		System.out.println("ID: " + question1.id);
 		System.out.println("Content: " + question1.content);
-		System.out.println("Type: " +  question1.type); // can not get type's name
+		System.out.println("Type: " + question1.type); // can not get type's name
 		System.out.println("Created by: " + question1.creator); // can not get creator's fullname
 		System.out.println("Created at: " + question1.createDate);
 		System.out.println("\n");
-		
+
 		// question category 1
 		System.out.println("questioncategory1's information: ");
 		System.out.println("ID: " + category1.id);
 		System.out.println("Name: " + category1.name);
 		System.out.println("\n");
-		
+
 		// question type 1
 		System.out.println("questiontype1's information: ");
 		System.out.println("ID: " + type1.id);
 		System.out.println("Name: " + type1.name);
 		System.out.println("\n");
-		
+
 		// student 1
 		System.out.println("student1's information: ");
 		System.out.println("ID: " + student1.getId());
@@ -441,11 +445,11 @@ public class ObjectInitialization {
 		System.out.println("Fullname: " + student1.getFullName());
 		System.out.println("Email: " + student1.getEmail());
 		System.out.println("Gender: " + student1.getGender());
-		System.out.println("Position: " + student1.getPosition()); 
-		System.out.println("Department: " + student1.getDepartment()); 
+		System.out.println("Position: " + student1.getPosition());
+		System.out.println("Department: " + student1.getDepartment());
 		System.out.println("Created at:" + student1.getCreateDate());
 		System.out.println("\n");
-		
+
 		// teacher 1
 		System.out.println("teacher1's information: ");
 		System.out.println("ID: " + teacher1.getId());

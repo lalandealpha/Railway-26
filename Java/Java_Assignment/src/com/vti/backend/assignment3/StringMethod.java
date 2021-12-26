@@ -11,21 +11,21 @@ import com.vti.entity.objectInitialization.Student;
 import com.vti.entity.objectInitialization.Teacher;
 
 public class StringMethod {
-	
+
 	public void Question1And2() {
 		// Question 1:
 		System.out.println("-------Question 1-------");
 		String s1 = "java and python";
 		System.out.println("String length is: " + s1.length());
 		System.out.println("");
-		
+
 		// Question 2:
 		System.out.println("-------Question 2-------");
 		String s2 = " are two of the popular programming languages.";
 		String s3 = s1.concat(s2); // or s1 + s2
 		System.out.println(s3);
 	}
-	
+
 	public void Question3() {
 		System.out.println("-------Question 3-------");
 		System.out.println("Please enter your first name:");
@@ -34,7 +34,7 @@ public class StringMethod {
 		String firstChar = s.substring(0, 1);
 		String sToLowerCase = s.toLowerCase();
 		String firstCharOfLC = sToLowerCase.substring(0, 1);
-		if(firstChar.equals(firstCharOfLC)) {
+		if (firstChar.equals(firstCharOfLC)) {
 			String s1 = firstCharOfLC.toUpperCase() + s.substring(1);
 			System.out.println("Your name is: " + s1);
 		} else {
@@ -50,10 +50,10 @@ public class StringMethod {
 		String s = scanner.nextLine();
 		for (int i = 0; i < s.length(); i++) {
 			String space = " ";
-			String a = s.substring(i, i+1);
+			String a = s.substring(i, i + 1);
 			String b = a.toUpperCase();
 			if (!a.equals(space)) {
-			System.out.println("The " + i + " character is: " + b);
+				System.out.println("The " + i + " character is: " + b);
 			} else {
 				System.out.println("");
 			}
@@ -71,7 +71,7 @@ public class StringMethod {
 		System.out.println("Your name is: " + firstName + " " + lastName);
 		scanner.close();
 	}
-	
+
 	public void Question6() {
 		System.out.println("-------Question 6-------");
 		Scanner scanner = new Scanner(System.in);
@@ -86,7 +86,7 @@ public class StringMethod {
 		System.out.println("");
 		System.out.println("Your last name is: " + words[words.length - 1]);
 		scanner.close();
-		}
+	}
 
 	public void Question7() {
 		System.out.println("-------Question 7-------");
@@ -102,7 +102,7 @@ public class StringMethod {
 			String result = firstChar.toUpperCase() + restChar.toLowerCase();
 			System.out.print(result + " ");
 		}
-	scanner.close();
+		scanner.close();
 	}
 
 	public void Question8() {
@@ -127,16 +127,16 @@ public class StringMethod {
 		student2.setId(2);
 		student2.setEmail("kbranno6@independent.co.uk");
 		student2.setUserName("kbranno6");
-		student2.setFullName("Kathy Branno"); 
+		student2.setFullName("Kathy Branno");
 		student2.setGender(Gender.MALE);
 		student2.setDepartment(department1);
 		student2.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-		
+
 		Student student3 = new Student();
 		student3.setId(3);
 		student3.setEmail("cwanjek7@tamu.edu");
 		student3.setUserName("cwanjek7");
-		student3.setFullName("Claribel Wanjek"); 
+		student3.setFullName("Claribel Wanjek");
 		student3.setGender(Gender.FEMALE);
 		student3.setDepartment(department1);
 		student3.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
@@ -158,7 +158,7 @@ public class StringMethod {
 		student5.setGender(Gender.MALE);
 		student5.setDepartment(department2);
 		student5.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-	
+
 		Student student6 = new Student();
 		student6.setId(6);
 		student6.setEmail("alewisham5@phpbb.com");
@@ -213,34 +213,38 @@ public class StringMethod {
 		student11.setDepartment(department3);
 		student11.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
 
-
 		// create teacher accounts
-		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1, LocalDate.of(2020, 11, 12));
+		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1,
+				LocalDate.of(2020, 11, 12));
 
-		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE, department1, LocalDate.of(2021, 3, 22));
-		
-		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE, department1, LocalDate.of(2019, 5, 19));
+		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE,
+				department1, LocalDate.of(2021, 3, 22));
 
-		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE, department2, LocalDate.of(2018, 7, 25));
+		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE,
+				department1, LocalDate.of(2019, 5, 19));
 
-		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN, department2, LocalDate.of(2021, 11, 01));
-		
+		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE,
+				department2, LocalDate.of(2018, 7, 25));
+
+		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN,
+				department2, LocalDate.of(2021, 11, 01));
+
 		// set department.teachers
 		Teacher[] teacherOfDept1 = { teacher1, teacher2, teacher3 };
 		department1.setTeachers(teacherOfDept1);
 		Teacher[] teacherOfDept2 = { teacher4 };
 		department2.setTeachers(teacherOfDept2);
-				
+
 		// set department.students
 		Student[] studentOfDept1 = { student1, student2, student3, student4, student5 };
 		department1.setStudents(studentOfDept1);
-				
+
 		Student[] studentOfDept2 = { student6, student7 };
 		department2.setStudents(studentOfDept2);
-				
+
 		Student[] studentOfDept3 = { student8, student9, student10, student11 };
 		department3.setStudents(studentOfDept3);
-				
+
 		// create classes
 		Clazz clazz1 = new Clazz();
 		clazz1.id = 1;
@@ -276,16 +280,16 @@ public class StringMethod {
 
 		Clazz clazz5 = new Clazz();
 		clazz5.id = 5;
-		clazz5.name ="Discovery";
+		clazz5.name = "Discovery";
 		clazz5.creator = teacher5;
 		Student[] studentOfclazz5 = { student8, student9, student10, student11 };
 		clazz5.participants = studentOfclazz5;
 		clazz5.createDate = LocalDate.of(2021, 9, 18);
-		
+
 		System.out.println("-------Question 8-------");
 		Clazz[] clazzObject = { clazz1, clazz2, clazz3, clazz4, clazz5 };
 		for (int i = 0; i < clazzObject.length; i++) {
-			if(clazzObject[i].name.contains("Chal")) {
+			if (clazzObject[i].name.contains("Chal")) {
 				System.out.println("clazzID: " + clazzObject[i].id);
 				System.out.println("Name: " + clazzObject[i].name);
 				System.out.println("Number of students: " + clazzObject[i].participants.length);
@@ -298,7 +302,7 @@ public class StringMethod {
 		}
 	}
 
-	public void Question9 () {
+	public void Question9() {
 		// create departments
 		Department department1 = new Department(1, "IT");
 
@@ -320,16 +324,16 @@ public class StringMethod {
 		student2.setId(2);
 		student2.setEmail("kbranno6@independent.co.uk");
 		student2.setUserName("kbranno6");
-		student2.setFullName("Kathy Branno"); 
+		student2.setFullName("Kathy Branno");
 		student2.setGender(Gender.MALE);
 		student2.setDepartment(department1);
 		student2.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-		
+
 		Student student3 = new Student();
 		student3.setId(3);
 		student3.setEmail("cwanjek7@tamu.edu");
 		student3.setUserName("cwanjek7");
-		student3.setFullName("Claribel Wanjek"); 
+		student3.setFullName("Claribel Wanjek");
 		student3.setGender(Gender.FEMALE);
 		student3.setDepartment(department1);
 		student3.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
@@ -351,7 +355,7 @@ public class StringMethod {
 		student5.setGender(Gender.MALE);
 		student5.setDepartment(department2);
 		student5.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-	
+
 		Student student6 = new Student();
 		student6.setId(6);
 		student6.setEmail("alewisham5@phpbb.com");
@@ -406,34 +410,38 @@ public class StringMethod {
 		student11.setDepartment(department3);
 		student11.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
 
-
 		// create teacher accounts
-		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1, LocalDate.of(2020, 11, 12));
+		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1,
+				LocalDate.of(2020, 11, 12));
 
-		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE, department1, LocalDate.of(2021, 3, 22));
-		
-		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE, department1, LocalDate.of(2019, 5, 19));
+		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE,
+				department1, LocalDate.of(2021, 3, 22));
 
-		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE, department2, LocalDate.of(2018, 7, 25));
+		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE,
+				department1, LocalDate.of(2019, 5, 19));
 
-		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN, department2, LocalDate.of(2021, 11, 01));
-		
+		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE,
+				department2, LocalDate.of(2018, 7, 25));
+
+		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN,
+				department2, LocalDate.of(2021, 11, 01));
+
 		// set department.teachers
 		Teacher[] teacherOfDept1 = { teacher1, teacher2, teacher3 };
 		department1.setTeachers(teacherOfDept1);
 		Teacher[] teacherOfDept2 = { teacher4 };
 		department2.setTeachers(teacherOfDept2);
-				
+
 		// set department.students
 		Student[] studentOfDept1 = { student1, student2, student3, student4, student5 };
 		department1.setStudents(studentOfDept1);
-				
+
 		Student[] studentOfDept2 = { student6, student7 };
 		department2.setStudents(studentOfDept2);
-				
+
 		Student[] studentOfDept3 = { student8, student9, student10, student11 };
 		department3.setStudents(studentOfDept3);
-				
+
 		// create classes
 		Clazz clazz1 = new Clazz();
 		clazz1.id = 1;
@@ -469,17 +477,17 @@ public class StringMethod {
 
 		Clazz clazz5 = new Clazz();
 		clazz5.id = 5;
-		clazz5.name ="Discovery";
+		clazz5.name = "Discovery";
 		clazz5.creator = teacher5;
 		Student[] studentOfclazz5 = { student8, student9, student10, student11 };
 		clazz5.participants = studentOfclazz5;
 		clazz5.createDate = LocalDate.of(2021, 9, 18);
-		
+
 		System.out.println("-------Question 9-------");
 		Clazz[] clazzObject = { clazz1, clazz2, clazz3, clazz4, clazz5 };
 		String comparedName = "Challenger";
 		for (int i = 0; i < clazzObject.length; i++) {
-			if(clazzObject[i].name.equals(comparedName)) {
+			if (clazzObject[i].name.equals(comparedName)) {
 				System.out.println("clazzID: " + clazzObject[i].id);
 				System.out.println("Name: " + clazzObject[i].name);
 				System.out.println("Number of students: " + clazzObject[i].participants.length);
@@ -488,7 +496,7 @@ public class StringMethod {
 				System.out.println("");
 			} else {
 				System.out.println("There is no clazz named Challenger");
-				}
+			}
 		}
 	}
 
@@ -500,7 +508,7 @@ public class StringMethod {
 		System.out.println("Please enter the second string:");
 		String s2 = scanner.nextLine();
 		StringBuilder sb = new StringBuilder(s1);
-		String  rev = sb.reverse().toString();
+		String rev = sb.reverse().toString();
 		if (s2.equals(rev)) {
 			System.out.println("These two strings are the reverses of each other.");
 		} else {
@@ -516,15 +524,15 @@ public class StringMethod {
 		String s = scanner.nextLine();
 		int count = 0;
 		for (int i = 0; i < s.length(); i++) {
-			if(s.substring(i, i+1).equals("a")) {
+			if (s.substring(i, i + 1).equals("a")) {
 				count += 1;
 			}
 		}
 		System.out.println("\n" + "In the string: " + s);
 		System.out.println("The 'a' charater has come " + count + " time(s) at position: ");
 		for (int i = 0; i < s.length(); i++) {
-			if (s.substring(i, i+1).equals("a")) {
-				System.out.println(i +1 + " ");
+			if (s.substring(i, i + 1).equals("a")) {
+				System.out.println(i + 1 + " ");
 			}
 		}
 		scanner.close();
@@ -537,19 +545,19 @@ public class StringMethod {
 		String s = scanner.nextLine();
 		StringBuilder sb = new StringBuilder(s);
 		String result = "";
-		for (int i = 0; i < sb.length(); i++) {	
+		for (int i = 0; i < sb.length(); i++) {
 			result += sb.charAt(sb.length() - (i + 1));
 		}
 		System.out.println(result);
 		scanner.close();
 	}
-	
+
 	public void Question13() {
 		System.out.println("-------Question 13-------");
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Please enter any string:");
 		String s = scanner.nextLine();
-		if(s.matches(".*\\d.*")) {
+		if (s.matches(".*\\d.*")) {
 			System.out.println("The string you just entered contains (a) number(s)");
 		} else {
 			System.out.println("The string you just entered does not contain a number.");
@@ -563,16 +571,16 @@ public class StringMethod {
 		System.out.println("Please enter any string:");
 		String s = scanner.nextLine();
 		String result = "";
-		System.out.println("Please enter the character you want to replace with '*': " );
+		System.out.println("Please enter the character you want to replace with '*': ");
 		String replacing = scanner.next();
 		for (int i = 0; i < s.length(); i++) {
-			if(s.subSequence(i, i + 1).equals(replacing)) {
+			if (s.subSequence(i, i + 1).equals(replacing)) {
 				result += "*";
 			} else {
 				result += s.charAt(i);
 			}
 		}
-		System.out.println("\nThe result after replacing character '" + replacing + "' with '*' is:\n"  + result);
+		System.out.println("\nThe result after replacing character '" + replacing + "' with '*' is:\n" + result);
 		scanner.close();
 	}
 
@@ -585,7 +593,7 @@ public class StringMethod {
 		String trimmedS = s.trim();
 		String[] words = trimmedS.split("\\s");
 		for (int i = 0; i < words.length; i++) {
-			result += words[words.length - (i +1)] + " ";
+			result += words[words.length - (i + 1)] + " ";
 		}
 		System.out.println("\nThe result after reversing the string you just entered is:\n" + result);
 		scanner.close();
@@ -601,23 +609,25 @@ public class StringMethod {
 		while (!isCorrect) {
 			boolean scanHasNext = scanner.hasNextInt();
 			String s2 = scanner.nextLine();
-			if(scanHasNext) {
+			if (scanHasNext) {
 				int n = Integer.parseInt(s2);
 				if (n > 0) {
 					if (s1.length() % n == 0) {
-						int x =  s1.length() / n;
-						System.out.println("The string you just entered has been split into " + x + " equal parts with " + n + " characters in each part as follows:");
+						int x = s1.length() / n;
+						System.out.println("The string you just entered has been split into " + x + " equal parts with "
+								+ n + " characters in each part as follows:");
 						for (int j = 0; j < x; j++) {
-							System.out.println("'" + s1.substring(n * j, n * (j+1)) + "'");		
+							System.out.println("'" + s1.substring(n * j, n * (j + 1)) + "'");
 						}
 						isCorrect = true;
 					} else {
-					System.out.println("The string you just entered cannot be split into equal parts with " + n + " characters in each part!" );
-					isCorrect = true;
-					}	
+						System.out.println("The string you just entered cannot be split into equal parts with " + n
+								+ " characters in each part!");
+						isCorrect = true;
+					}
 				} else {
 					System.out.println("Please try again!");
-				}	
+				}
 			} else {
 				System.out.println("Please try again!");
 			}

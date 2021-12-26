@@ -1,13 +1,13 @@
 package com.vti.entity.staticTest;
 
-public class Circle extends Shape implements ICircle{
+public class Circle extends Shape implements ICircle {
 	public static final float pi = 3.14f;
 	public static int countCir = 0;
 	private float radius;
-	
-	public Circle(float radius) throws Exception  {
-		if(Rectangle.countRec + Circle.countCir < Shape.maximumNumber) {
-			this.radius = radius; 
+
+	public Circle(float radius) throws Exception {
+		if (Rectangle.countRec + Circle.countCir < Shape.maximumNumber) {
+			this.radius = radius;
 			countCir++;
 		}
 	}

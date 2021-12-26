@@ -36,12 +36,13 @@ public class Constructor {
 		Position position3 = new Position();
 		position3.id = 3;
 		position3.name = Pos.STUDENT;
-		
+
 		System.out.println("-------Question 2a-------");
 		System.out.println("Create 4 Constructors in com.vti.entity.Student\n");
 		System.out.println("-------Question 2b-------");
 		Student student1 = new Student();
-		student1.setId(1);;
+		student1.setId(1);
+		;
 		student1.setEmail("alewisham5@phpbb.com");
 		student1.setUserName("alewisham5");
 		student1.setFullName("Ardelis Lewisham");
@@ -50,12 +51,13 @@ public class Constructor {
 		Student student2 = new Student(2, "kbranno6@independent.co.uk", "kbranno6", "Ardelis", "Lewisham");
 		student2.setPosition(position3);
 		Student student3 = new Student(3, "cwanjek7@tamu.edu", "cwanjek7", "Claribel", "Wanjek", position3);
-		Student student4 = new Student(4, "fbayldon8@wordpress.org", "fbayldon8", "Fonsie", "Bayldon", position1, LocalDate.of(2020, Month.SEPTEMBER, 05));
+		Student student4 = new Student(4, "fbayldon8@wordpress.org", "fbayldon8", "Fonsie", "Bayldon", position1,
+				LocalDate.of(2020, Month.SEPTEMBER, 05));
 		System.out.println("4 student accounts have been created successfully:");
 		Student[] student = { student1, student2, student3, student4 };
 		for (Student s : student) {
 			System.out.println(s.toString() + "\n");
 		}
-		
+
 	}
 }

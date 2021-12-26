@@ -13,7 +13,8 @@ import com.vti.entity.objectInitialization.Teacher;
 
 public class SwitchCase {
 
-	public void Question5() {  // Question 5: Get the number of students in department 1, print the corresponding output.
+	public void Question5() { // Question 5: Get the number of students in department 1, print the
+								// corresponding output.
 		// create departments
 		Department department1 = new Department(1, "IT");
 
@@ -35,16 +36,16 @@ public class SwitchCase {
 		student2.setId(2);
 		student2.setEmail("kbranno6@independent.co.uk");
 		student2.setUserName("kbranno6");
-		student2.setFullName("Kathy Branno"); 
+		student2.setFullName("Kathy Branno");
 		student2.setGender(Gender.MALE);
 		student2.setDepartment(department1);
 		student2.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-		
+
 		Student student3 = new Student();
 		student3.setId(3);
 		student3.setEmail("cwanjek7@tamu.edu");
 		student3.setUserName("cwanjek7");
-		student3.setFullName("Claribel Wanjek"); 
+		student3.setFullName("Claribel Wanjek");
 		student3.setGender(Gender.FEMALE);
 		student3.setDepartment(department1);
 		student3.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
@@ -66,7 +67,7 @@ public class SwitchCase {
 		student5.setGender(Gender.MALE);
 		student5.setDepartment(department2);
 		student5.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-	
+
 		Student student6 = new Student();
 		student6.setId(6);
 		student6.setEmail("alewisham5@phpbb.com");
@@ -121,34 +122,38 @@ public class SwitchCase {
 		student11.setDepartment(department3);
 		student11.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
 
-
 		// create teacher accounts
-		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1, LocalDate.of(2020, 11, 12));
+		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1,
+				LocalDate.of(2020, 11, 12));
 
-		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE, department1, LocalDate.of(2021, 3, 22));
-		
-		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE, department1, LocalDate.of(2019, 5, 19));
+		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE,
+				department1, LocalDate.of(2021, 3, 22));
 
-		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE, department2, LocalDate.of(2018, 7, 25));
+		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE,
+				department1, LocalDate.of(2019, 5, 19));
 
-		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN, department2, LocalDate.of(2021, 11, 01));
-		
+		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE,
+				department2, LocalDate.of(2018, 7, 25));
+
+		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN,
+				department2, LocalDate.of(2021, 11, 01));
+
 		// set department.teachers
 		Teacher[] teacherOfDept1 = { teacher1, teacher2, teacher3 };
 		department1.setTeachers(teacherOfDept1);
 		Teacher[] teacherOfDept2 = { teacher4 };
 		department2.setTeachers(teacherOfDept2);
-				
+
 		// set department.students
 		Student[] studentOfDept1 = { student1, student2, student3, student4, student5 };
 		department1.setStudents(studentOfDept1);
-				
+
 		Student[] studentOfDept2 = { student6, student7 };
 		department2.setStudents(studentOfDept2);
-				
+
 		Student[] studentOfDept3 = { student8, student9, student10, student11 };
 		department3.setStudents(studentOfDept3);
-				
+
 		// create classes
 		Clazz clazz1 = new Clazz();
 		clazz1.id = 1;
@@ -184,7 +189,7 @@ public class SwitchCase {
 
 		Clazz clazz5 = new Clazz();
 		clazz5.id = 5;
-		clazz5.name ="Discovery";
+		clazz5.name = "Discovery";
 		clazz5.creator = teacher5;
 		Student[] studentOfclazz5 = { student8, student9, student10, student11 };
 		clazz5.participants = studentOfclazz5;
@@ -209,23 +214,24 @@ public class SwitchCase {
 		Student[] studentPosition3 = { student2, student3, student6, student8, student9, student10, student11 };
 		position3.students = studentPosition3;
 
-		// Question 5: Get the number of students in department 1, print the corresponding output
+		// Question 5: Get the number of students in department 1, print the
+		// corresponding output
 		System.out.println("-------Question 5-------");
-		switch(department1.getStudentsArray().length) {
+		switch (department1.getStudentsArray().length) {
 		case 0:
 			System.out.println(department1.getName() + " department has no students.");
 			break;
 		case 1:
 			System.out.println(department1.getName() + " department has only 1 student.");
 			break;
-		default :
+		default:
 			System.out.println(department1.getName() + " department has many students.");
 			break;
 		}
 
 	}
-	
-	public void Question6() {  // Question 6: Use switch case to do Question 2.
+
+	public void Question6() { // Question 6: Use switch case to do Question 2.
 		// create departments
 		Department department1 = new Department(1, "IT");
 
@@ -247,16 +253,16 @@ public class SwitchCase {
 		student2.setId(2);
 		student2.setEmail("kbranno6@independent.co.uk");
 		student2.setUserName("kbranno6");
-		student2.setFullName("Kathy Branno"); 
+		student2.setFullName("Kathy Branno");
 		student2.setGender(Gender.MALE);
 		student2.setDepartment(department1);
 		student2.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-		
+
 		Student student3 = new Student();
 		student3.setId(3);
 		student3.setEmail("cwanjek7@tamu.edu");
 		student3.setUserName("cwanjek7");
-		student3.setFullName("Claribel Wanjek"); 
+		student3.setFullName("Claribel Wanjek");
 		student3.setGender(Gender.FEMALE);
 		student3.setDepartment(department1);
 		student3.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
@@ -278,7 +284,7 @@ public class SwitchCase {
 		student5.setGender(Gender.MALE);
 		student5.setDepartment(department2);
 		student5.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-	
+
 		Student student6 = new Student();
 		student6.setId(6);
 		student6.setEmail("alewisham5@phpbb.com");
@@ -333,34 +339,38 @@ public class SwitchCase {
 		student11.setDepartment(department3);
 		student11.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
 
-
 		// create teacher accounts
-		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1, LocalDate.of(2020, 11, 12));
+		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1,
+				LocalDate.of(2020, 11, 12));
 
-		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE, department1, LocalDate.of(2021, 3, 22));
-		
-		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE, department1, LocalDate.of(2019, 5, 19));
+		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE,
+				department1, LocalDate.of(2021, 3, 22));
 
-		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE, department2, LocalDate.of(2018, 7, 25));
+		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE,
+				department1, LocalDate.of(2019, 5, 19));
 
-		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN, department2, LocalDate.of(2021, 11, 01));
-		
+		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE,
+				department2, LocalDate.of(2018, 7, 25));
+
+		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN,
+				department2, LocalDate.of(2021, 11, 01));
+
 		// set department.teachers
 		Teacher[] teacherOfDept1 = { teacher1, teacher2, teacher3 };
 		department1.setTeachers(teacherOfDept1);
 		Teacher[] teacherOfDept2 = { teacher4 };
 		department2.setTeachers(teacherOfDept2);
-				
+
 		// set department.students
 		Student[] studentOfDept1 = { student1, student2, student3, student4, student5 };
 		department1.setStudents(studentOfDept1);
-				
+
 		Student[] studentOfDept2 = { student6, student7 };
 		department2.setStudents(studentOfDept2);
-				
+
 		Student[] studentOfDept3 = { student8, student9, student10, student11 };
 		department3.setStudents(studentOfDept3);
-				
+
 		// create classes
 		Clazz clazz1 = new Clazz();
 		clazz1.id = 1;
@@ -396,7 +406,7 @@ public class SwitchCase {
 
 		Clazz clazz5 = new Clazz();
 		clazz5.id = 5;
-		clazz5.name ="Discovery";
+		clazz5.name = "Discovery";
 		clazz5.creator = teacher5;
 		Student[] studentOfclazz5 = { student8, student9, student10, student11 };
 		clazz5.participants = studentOfclazz5;
@@ -423,21 +433,21 @@ public class SwitchCase {
 
 		// Question 6: Use switch case to do Question 2
 		System.out.println("-------Question 6-------");
-		switch(clazz5.participants.length) {
-		case 0: 
+		switch (clazz5.participants.length) {
+		case 0:
 			System.out.println("Class " + clazz5.name + " has no students.");
 			break;
 		case 1:
-			System.out.println("Class " + clazz5.name +  " has 1 student.");
+			System.out.println("Class " + clazz5.name + " has 1 student.");
 			break;
-		default: 
+		default:
 			System.out.println("Class " + clazz5.name + " has many students.");
 			break;
 		}
 
 	}
-	
-	public void Question7() {  // Question 7: Use switch case to do Question 4.
+
+	public void Question7() { // Question 7: Use switch case to do Question 4.
 		// create departments
 		Department department1 = new Department(1, "IT");
 
@@ -459,16 +469,16 @@ public class SwitchCase {
 		student2.setId(2);
 		student2.setEmail("kbranno6@independent.co.uk");
 		student2.setUserName("kbranno6");
-		student2.setFullName("Kathy Branno"); 
+		student2.setFullName("Kathy Branno");
 		student2.setGender(Gender.MALE);
 		student2.setDepartment(department1);
 		student2.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-		
+
 		Student student3 = new Student();
 		student3.setId(3);
 		student3.setEmail("cwanjek7@tamu.edu");
 		student3.setUserName("cwanjek7");
-		student3.setFullName("Claribel Wanjek"); 
+		student3.setFullName("Claribel Wanjek");
 		student3.setGender(Gender.FEMALE);
 		student3.setDepartment(department1);
 		student3.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
@@ -490,7 +500,7 @@ public class SwitchCase {
 		student5.setGender(Gender.MALE);
 		student5.setDepartment(department2);
 		student5.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-	
+
 		Student student6 = new Student();
 		student6.setId(6);
 		student6.setEmail("alewisham5@phpbb.com");
@@ -545,34 +555,38 @@ public class SwitchCase {
 		student11.setDepartment(department3);
 		student11.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
 
-
 		// create teacher accounts
-		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1, LocalDate.of(2020, 11, 12));
+		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1,
+				LocalDate.of(2020, 11, 12));
 
-		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE, department1, LocalDate.of(2021, 3, 22));
-		
-		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE, department1, LocalDate.of(2019, 5, 19));
+		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE,
+				department1, LocalDate.of(2021, 3, 22));
 
-		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE, department2, LocalDate.of(2018, 7, 25));
+		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE,
+				department1, LocalDate.of(2019, 5, 19));
 
-		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN, department2, LocalDate.of(2021, 11, 01));
-		
+		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE,
+				department2, LocalDate.of(2018, 7, 25));
+
+		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN,
+				department2, LocalDate.of(2021, 11, 01));
+
 		// set department.teachers
 		Teacher[] teacherOfDept1 = { teacher1, teacher2, teacher3 };
 		department1.setTeachers(teacherOfDept1);
 		Teacher[] teacherOfDept2 = { teacher4 };
 		department2.setTeachers(teacherOfDept2);
-				
+
 		// set department.students
 		Student[] studentOfDept1 = { student1, student2, student3, student4, student5 };
 		department1.setStudents(studentOfDept1);
-				
+
 		Student[] studentOfDept2 = { student6, student7 };
 		department2.setStudents(studentOfDept2);
-				
+
 		Student[] studentOfDept3 = { student8, student9, student10, student11 };
 		department3.setStudents(studentOfDept3);
-				
+
 		// create classes
 		Clazz clazz1 = new Clazz();
 		clazz1.id = 1;
@@ -608,7 +622,7 @@ public class SwitchCase {
 
 		Clazz clazz5 = new Clazz();
 		clazz5.id = 5;
-		clazz5.name ="Discovery";
+		clazz5.name = "Discovery";
 		clazz5.creator = teacher5;
 		Student[] studentOfclazz5 = { student8, student9, student10, student11 };
 		clazz5.participants = studentOfclazz5;
@@ -636,8 +650,8 @@ public class SwitchCase {
 		// Question 7: Use switch case to do Question 4:
 		System.out.println("-------Question 7-------");
 		System.out.println(student1.getPosition());
-		switch(student1.getPosition()) {
-		case  ADMIN:
+		switch (student1.getPosition()) {
+		case ADMIN:
 			System.out.println(student1.getFullName() + " is an admin.");
 			break;
 		default:

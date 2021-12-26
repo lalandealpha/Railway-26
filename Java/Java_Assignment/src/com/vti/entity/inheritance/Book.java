@@ -9,23 +9,23 @@ public class Book extends Document {
 		this.author = author;
 		this.numberOfPage = numberOfPage;
 	}
-	
+
 	public String getAuthor() {
 		return author;
 	}
-	
+
 	public int getNumberOfPage() {
 		return numberOfPage;
 	}
-	
+
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	
+
 	public void setNumberOfPage(int numberOfPage) {
 		this.numberOfPage = numberOfPage;
 	}
-	
+
 	@Override
 	public String toString() {
 		return super.toString() + "\nAuthor: " + author + "\nNumber of Pages: " + numberOfPage;

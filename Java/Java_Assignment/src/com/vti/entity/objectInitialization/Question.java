@@ -1,4 +1,5 @@
 package com.vti.entity.objectInitialization;
+
 import java.time.LocalDate;
 
 public class Question {
@@ -10,18 +11,18 @@ public class Question {
 	public LocalDate createDate;
 	public Exam[] usedInExams;
 	public Answer[] answers;
-	
+
 	@Override
 	public String toString() {
-		
+
 		StringBuffer output = new StringBuffer();
 		output.append("Question: ");
 		output.append(id);
-		for (Answer a: answers) {
+		for (Answer a : answers) {
 			output.append(" Answer: ");
 			output.append(a.content);
 		}
-		return  output.toString();
+		return output.toString();
 	}
-	
+
 }

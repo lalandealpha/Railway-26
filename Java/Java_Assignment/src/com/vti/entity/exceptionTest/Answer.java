@@ -5,7 +5,7 @@ public class Answer {
 	public String content;
 	public Question question;
 	public boolean isCorrect;
-	
+
 	@Override
 	public String toString() {
 		return "Answer [id: " + id + ", content: " + content + ", true or false: " + isCorrect + "]";

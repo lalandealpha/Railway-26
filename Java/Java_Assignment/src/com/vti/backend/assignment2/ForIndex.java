@@ -13,14 +13,15 @@ import com.vti.entity.objectInitialization.Teacher;
 
 public class ForIndex {
 
-	public void Question10() { // Question 10: For each student,  show the information including email, full name, department name.
+	public void Question10() { // Question 10: For each student, show the information including email, full
+								// name, department name.
 		// create departments
 		Department department1 = new Department(1, "IT");
 
 		Department department2 = new Department(2, "English");
 
 		Department department3 = new Department(3, "Japanese");
-		
+
 		// create position
 		Position position1 = new Position();
 		position1.id = 1;
@@ -48,16 +49,16 @@ public class ForIndex {
 		student2.setId(2);
 		student2.setEmail("kbranno6@independent.co.uk");
 		student2.setUserName("kbranno6");
-		student2.setFullName("Kathy Branno"); 
+		student2.setFullName("Kathy Branno");
 		student2.setGender(Gender.MALE);
 		student2.setDepartment(department1);
 		student2.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-		
+
 		Student student3 = new Student();
 		student3.setId(3);
 		student3.setEmail("cwanjek7@tamu.edu");
 		student3.setUserName("cwanjek7");
-		student3.setFullName("Claribel Wanjek"); 
+		student3.setFullName("Claribel Wanjek");
 		student3.setGender(Gender.FEMALE);
 		student3.setDepartment(department1);
 		student3.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
@@ -79,7 +80,7 @@ public class ForIndex {
 		student5.setGender(Gender.MALE);
 		student5.setDepartment(department2);
 		student5.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-	
+
 		Student student6 = new Student();
 		student6.setId(6);
 		student6.setEmail("alewisham5@phpbb.com");
@@ -134,32 +135,36 @@ public class ForIndex {
 		student11.setDepartment(department3);
 		student11.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
 
-
 		// create teacher accounts
 		// create teacher accounts
-		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1, LocalDate.of(2020, 11, 12));
+		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1,
+				LocalDate.of(2020, 11, 12));
 
-		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE, department1, LocalDate.of(2021, 3, 22));
-		
-		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE, department1, LocalDate.of(2019, 5, 19));
+		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE,
+				department1, LocalDate.of(2021, 3, 22));
 
-		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE, department2, LocalDate.of(2018, 7, 25));
+		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE,
+				department1, LocalDate.of(2019, 5, 19));
 
-		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN, department2, LocalDate.of(2021, 11, 01));
-		
+		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE,
+				department2, LocalDate.of(2018, 7, 25));
+
+		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN,
+				department2, LocalDate.of(2021, 11, 01));
+
 		// set department.teachers
 		Teacher[] teacherOfDept1 = { teacher1, teacher2, teacher3 };
 		department1.setTeachers(teacherOfDept1);
 		Teacher[] teacherOfDept2 = { teacher4 };
 		department2.setTeachers(teacherOfDept2);
-				
+
 		// set department.students
 		Student[] studentOfDept1 = { student1, student2, student3, student4, student5 };
 		department1.setStudents(studentOfDept1);
-				
+
 		Student[] studentOfDept2 = { student6, student7 };
 		department2.setStudents(studentOfDept2);
-				
+
 		Student[] studentOfDept3 = { student8, student9, student10, student11 };
 		department3.setStudents(studentOfDept3);
 
@@ -198,47 +203,44 @@ public class ForIndex {
 
 		Clazz clazz5 = new Clazz();
 		clazz5.id = 5;
-		clazz5.name ="Discovery";
+		clazz5.name = "Discovery";
 		clazz5.creator = teacher5;
 		Student[] studentOfclazz5 = { student8, student9, student10, student11 };
 		clazz5.participants = studentOfclazz5;
 		clazz5.createDate = LocalDate.of(2021, 9, 18);
 
-		// Question 10: For each student,For each student, print out the information including email, full name, department name
+		// Question 10: For each student,For each student, print out the information
+		// including email, full name, department name
 		// Way 1: Use [for each] in [for]
 		System.out.println("-------Question 10-------");
 		System.out.println("Way1: ");
 		for (int i = 1; i < 100; i++) {
-			Student[] student = { student1, student2, student3, student4, student5, student6,
-					student7, student8, student9, student10, student11 };
+			Student[] student = { student1, student2, student3, student4, student5, student6, student7, student8,
+					student9, student10, student11 };
 			for (Student s : student) {
 				if (s.getId() == i) {
-					System.out.println(
-							"Account student " + i + "'s infomations: " + "\n" +
-							"Email: " +s.getEmail() + "\n" +
-							"Full name: " + s.getFullName() + "\n" +
-							"Department: " + s.getDepartment() + "\n"
-							);
-				}else {}	
+					System.out.println("Account student " + i + "'s infomations: " + "\n" + "Email: " + s.getEmail()
+							+ "\n" + "Full name: " + s.getFullName() + "\n" + "Department: " + s.getDepartment()
+							+ "\n");
+				} else {
+				}
 			}
 		}
-		
-		// Way2: Use [for]  with array's length
+
+		// Way2: Use [for] with array's length
 		System.out.println("Way2: ");
-		Student[] student = { student1, student2, student3, student4, student5, student6,
-				student7, student8, student9, student10, student11 };
-		
-		for(int x = 0; x < student.length; x++) {
+		Student[] student = { student1, student2, student3, student4, student5, student6, student7, student8, student9,
+				student10, student11 };
+
+		for (int x = 0; x < student.length; x++) {
 			if (student[x].getId() == (x + 1)) {
-				System.out.println(
-						"Account student " + (x + 1) + "'s infomations: " + "\n" +
-						"Email: " +student[x].getEmail() + "\n" +
-						"Full name: " + student[x].getFullName() + "\n" +
-						"Department: " + student[x].getDepartment() + "\n"
-						);
-			}else {}
+				System.out.println("Account student " + (x + 1) + "'s infomations: " + "\n" + "Email: "
+						+ student[x].getEmail() + "\n" + "Full name: " + student[x].getFullName() + "\n"
+						+ "Department: " + student[x].getDepartment() + "\n");
+			} else {
+			}
 		}
-		
+
 	}
 
 	public void Question11() { // Question 11: For each department, show the information including id and name.
@@ -248,56 +250,53 @@ public class ForIndex {
 		Department department2 = new Department(2, "English");
 
 		Department department3 = new Department(3, "Japanese");
-		
+
 		// Question 11: For each department, show the information including id and name.
 		System.out.println("-------Question 11-------");
-		for(int i = 1; i < 10; i++) {
+		for (int i = 1; i < 10; i++) {
 			Department[] deparment = { department1, department2, department3 };
 			for (Department d : deparment) {
 				if (d.getID() == i) {
-					System.out.println(
-							"Department " + i + "'s information: " +"\n" +
-							"ID: " + d.getID() + "\n" +
-							"Name: " + d.getName() +"\n"
-							);
-				}else {}
+					System.out.println("Department " + i + "'s information: " + "\n" + "ID: " + d.getID() + "\n"
+							+ "Name: " + d.getName() + "\n");
+				} else {
+				}
 			}
 		}
-		
+
 	}
 
-	public void Question12() { // Question 12: Show only the information of the first 2 departments in the format of Question 10.
+	public void Question12() { // Question 12: Show only the information of the first 2 departments in the
+								// format of Question 10.
 		// create departments
 		Department department1 = new Department(1, "IT");
 
 		Department department2 = new Department(2, "English");
 
 		Department department3 = new Department(3, "Japanese");
-		
+
 		// Question 12: For each department, show the information including id and name.
 		System.out.println("-------Question 12-------");
-		for(int i = 1; i < 3; i++) {
+		for (int i = 1; i < 3; i++) {
 			Department[] deparment = { department1, department2, department3 };
 			for (Department d : deparment) {
 				if (d.getID() == i) {
-					System.out.println(
-							"Department " + i + "'s information: " +"\n" +
-							"ID: " + d.getID() + "\n" +
-							"Name: " + d.getName() +"\n"
-							);
-				}else {}
+					System.out.println("Department " + i + "'s information: " + "\n" + "ID: " + d.getID() + "\n"
+							+ "Name: " + d.getName() + "\n");
+				} else {
+				}
 			}
-		}		
+		}
 	}
 
-	public void Question13() {  // Question 13: Show all students information except student number 2.
+	public void Question13() { // Question 13: Show all students information except student number 2.
 		// create departments
 		Department department1 = new Department(1, "IT");
 
 		Department department2 = new Department(2, "English");
 
 		Department department3 = new Department(3, "Japanese");
-		
+
 		// create position
 		Position position1 = new Position();
 		position1.id = 1;
@@ -325,16 +324,16 @@ public class ForIndex {
 		student2.setId(2);
 		student2.setEmail("kbranno6@independent.co.uk");
 		student2.setUserName("kbranno6");
-		student2.setFullName("Kathy Branno"); 
+		student2.setFullName("Kathy Branno");
 		student2.setGender(Gender.MALE);
 		student2.setDepartment(department1);
 		student2.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-		
+
 		Student student3 = new Student();
 		student3.setId(3);
 		student3.setEmail("cwanjek7@tamu.edu");
 		student3.setUserName("cwanjek7");
-		student3.setFullName("Claribel Wanjek"); 
+		student3.setFullName("Claribel Wanjek");
 		student3.setGender(Gender.FEMALE);
 		student3.setDepartment(department1);
 		student3.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
@@ -356,7 +355,7 @@ public class ForIndex {
 		student5.setGender(Gender.MALE);
 		student5.setDepartment(department2);
 		student5.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-	
+
 		Student student6 = new Student();
 		student6.setId(6);
 		student6.setEmail("alewisham5@phpbb.com");
@@ -411,32 +410,36 @@ public class ForIndex {
 		student11.setDepartment(department3);
 		student11.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
 
-
 		// create teacher accounts
 		// create teacher accounts
-		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1, LocalDate.of(2020, 11, 12));
+		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1,
+				LocalDate.of(2020, 11, 12));
 
-		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE, department1, LocalDate.of(2021, 3, 22));
-		
-		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE, department1, LocalDate.of(2019, 5, 19));
+		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE,
+				department1, LocalDate.of(2021, 3, 22));
 
-		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE, department2, LocalDate.of(2018, 7, 25));
+		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE,
+				department1, LocalDate.of(2019, 5, 19));
 
-		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN, department2, LocalDate.of(2021, 11, 01));
-		
+		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE,
+				department2, LocalDate.of(2018, 7, 25));
+
+		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN,
+				department2, LocalDate.of(2021, 11, 01));
+
 		// set department.teachers
 		Teacher[] teacherOfDept1 = { teacher1, teacher2, teacher3 };
 		department1.setTeachers(teacherOfDept1);
 		Teacher[] teacherOfDept2 = { teacher4 };
 		department2.setTeachers(teacherOfDept2);
-				
+
 		// set department.students
 		Student[] studentOfDept1 = { student1, student2, student3, student4, student5 };
 		department1.setStudents(studentOfDept1);
-				
+
 		Student[] studentOfDept2 = { student6, student7 };
 		department2.setStudents(studentOfDept2);
-				
+
 		Student[] studentOfDept3 = { student8, student9, student10, student11 };
 		department3.setStudents(studentOfDept3);
 
@@ -475,7 +478,7 @@ public class ForIndex {
 
 		Clazz clazz5 = new Clazz();
 		clazz5.id = 5;
-		clazz5.name ="Discovery";
+		clazz5.name = "Discovery";
 		clazz5.creator = teacher5;
 		Student[] studentOfclazz5 = { student8, student9, student10, student11 };
 		clazz5.participants = studentOfclazz5;
@@ -484,21 +487,19 @@ public class ForIndex {
 		// Question 13: Show all students information except student number 2.
 		System.out.println("-------Question 13-------");
 		for (int i = 1; i < 100; i++) {
-			Student[] student = { student1, student2, student3, student4, student5, student6,
-					student7, student8, student9, student10, student11 };
+			Student[] student = { student1, student2, student3, student4, student5, student6, student7, student8,
+					student9, student10, student11 };
 			for (Student s : student) {
 				if (s.getId() == i && s.getId() != 2) {
-					System.out.println(
-							"Account student " + i + "'s infomations: " + "\n" +
-							"Email: " +s.getEmail() + "\n" +
-							"Full name: " + s.getFullName() + "\n" +
-							"Department: " + s.getDepartment() + "\n"
-							);
-				}else {}	
+					System.out.println("Account student " + i + "'s infomations: " + "\n" + "Email: " + s.getEmail()
+							+ "\n" + "Full name: " + s.getFullName() + "\n" + "Department: " + s.getDepartment()
+							+ "\n");
+				} else {
+				}
 			}
 		}
 	}
-	
+
 	public void Question14() { // Question 14: Show the information of students whose ID < 4.
 		// create departments
 		Department department1 = new Department(1, "IT");
@@ -506,7 +507,7 @@ public class ForIndex {
 		Department department2 = new Department(2, "English");
 
 		Department department3 = new Department(3, "Japanese");
-		
+
 		// create position
 		Position position1 = new Position();
 		position1.id = 1;
@@ -534,16 +535,16 @@ public class ForIndex {
 		student2.setId(2);
 		student2.setEmail("kbranno6@independent.co.uk");
 		student2.setUserName("kbranno6");
-		student2.setFullName("Kathy Branno"); 
+		student2.setFullName("Kathy Branno");
 		student2.setGender(Gender.MALE);
 		student2.setDepartment(department1);
 		student2.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-		
+
 		Student student3 = new Student();
 		student3.setId(3);
 		student3.setEmail("cwanjek7@tamu.edu");
 		student3.setUserName("cwanjek7");
-		student3.setFullName("Claribel Wanjek"); 
+		student3.setFullName("Claribel Wanjek");
 		student3.setGender(Gender.FEMALE);
 		student3.setDepartment(department1);
 		student3.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
@@ -565,7 +566,7 @@ public class ForIndex {
 		student5.setGender(Gender.MALE);
 		student5.setDepartment(department2);
 		student5.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
-	
+
 		Student student6 = new Student();
 		student6.setId(6);
 		student6.setEmail("alewisham5@phpbb.com");
@@ -620,32 +621,36 @@ public class ForIndex {
 		student11.setDepartment(department3);
 		student11.setCreateDate(LocalDate.of(2020, Month.SEPTEMBER, 05));
 
-
 		// create teacher accounts
 		// create teacher accounts
-		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1, LocalDate.of(2020, 11, 12));
+		Teacher teacher1 = new Teacher(1, "nrate0@goo.ne.jp", "nrate0", "Nedi Rate", Gender.FEMALE, department1,
+				LocalDate.of(2020, 11, 12));
 
-		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE, department1, LocalDate.of(2021, 3, 22));
-		
-		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE, department1, LocalDate.of(2019, 5, 19));
+		Teacher teacher2 = new Teacher(2, "ldawbury1@telegraph.co.uk", "ldawbury1", "Lorilee Dawbury", Gender.MALE,
+				department1, LocalDate.of(2021, 3, 22));
 
-		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE, department2, LocalDate.of(2018, 7, 25));
+		Teacher teacher3 = new Teacher(3, "lesilmon2@indiegogo.com", "lesilmon2", "Lila Esilmon", Gender.MALE,
+				department1, LocalDate.of(2019, 5, 19));
 
-		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN, department2, LocalDate.of(2021, 11, 01));
-		
+		Teacher teacher4 = new Teacher(4, "nagresswell3@godaddy.com", "agresswell3", "Axe Gresswell", Gender.MALE,
+				department2, LocalDate.of(2018, 7, 25));
+
+		Teacher teacher5 = new Teacher(5, "bscotson4@plala.or.jp", "bscotson4", "Brig Scotson", Gender.UNKNOWN,
+				department2, LocalDate.of(2021, 11, 01));
+
 		// set department.teachers
 		Teacher[] teacherOfDept1 = { teacher1, teacher2, teacher3 };
 		department1.setTeachers(teacherOfDept1);
 		Teacher[] teacherOfDept2 = { teacher4 };
 		department2.setTeachers(teacherOfDept2);
-				
+
 		// set department.students
 		Student[] studentOfDept1 = { student1, student2, student3, student4, student5 };
 		department1.setStudents(studentOfDept1);
-				
+
 		Student[] studentOfDept2 = { student6, student7 };
 		department2.setStudents(studentOfDept2);
-				
+
 		Student[] studentOfDept3 = { student8, student9, student10, student11 };
 		department3.setStudents(studentOfDept3);
 
@@ -684,31 +689,28 @@ public class ForIndex {
 
 		Clazz clazz5 = new Clazz();
 		clazz5.id = 5;
-		clazz5.name ="Discovery";
+		clazz5.name = "Discovery";
 		clazz5.creator = teacher5;
 		Student[] studentOfclazz5 = { student8, student9, student10, student11 };
 		clazz5.participants = studentOfclazz5;
 		clazz5.createDate = LocalDate.of(2021, 9, 18);
 
-
 		// Question 14: Show the information of students whose ID < 4.
 		System.out.println("-------Question 14-------");
 		// Way 1:
 		for (int i = 1; i < 4; i++) {
-			Student[] student = { student1, student2, student3, student4, student5, student6,
-					student7, student8, student9, student10, student11 };
+			Student[] student = { student1, student2, student3, student4, student5, student6, student7, student8,
+					student9, student10, student11 };
 			for (Student s : student) {
 				if (s.getId() == i) {
-					System.out.println(
-							"Account student " + i + "'s infomations: " + "\n" +
-							"Email: " +s.getEmail() + "\n" +
-							"Full name: " + s.getFullName() + "\n" +
-							"Department: " + s.getDepartment() + "\n"
-							);
-				}else {}	
+					System.out.println("Account student " + i + "'s infomations: " + "\n" + "Email: " + s.getEmail()
+							+ "\n" + "Full name: " + s.getFullName() + "\n" + "Department: " + s.getDepartment()
+							+ "\n");
+				} else {
+				}
 			}
 		}
-		
+
 	}
 
 	public void Question15() { // Question 15: Show numbers less than or equal to 20 and divisible by 2.
@@ -717,7 +719,8 @@ public class ForIndex {
 		for (int i = 0; i < 21; i++) {
 			if (i % 2 == 0) {
 				System.out.println(i);
-			}else {}
+			} else {
+			}
 		}
 	}
 }

@@ -4,27 +4,27 @@ public class Rectangle extends Shape implements IRectangle {
 	private float length;
 	private float width;
 	public static int countRec = 0;
-	
+
 	public Rectangle(float length, float width) throws Exception {
-		if(Rectangle.countRec + Circle.countCir < Shape.maximumNumber) {
+		if (Rectangle.countRec + Circle.countCir < Shape.maximumNumber) {
 			this.length = length;
 			this.width = width;
 			countRec++;
 		}
 	}
-	
+
 	public float getLength() {
 		return length;
 	}
-	
+
 	public void setLength(float length) {
 		this.length = length;
 	}
-	
+
 	public float getwidth() {
 		return width;
 	}
-	
+
 	public void setwidth(float width) {
 		this.width = width;
 	}
@@ -43,5 +43,5 @@ public class Rectangle extends Shape implements IRectangle {
 	public float calculateArea() {
 		return this.length * this.width;
 	}
-	
+
 }

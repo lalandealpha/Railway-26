@@ -1,4 +1,5 @@
 package com.vti.entity.objectInitialization;
+
 import java.time.LocalDate;
 
 public class Exam {
@@ -9,5 +10,5 @@ public class Exam {
 	public Teacher creator;
 	public Question[] questions;
 	public LocalDate createDate;
-	
+
 }

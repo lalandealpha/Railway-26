@@ -5,18 +5,18 @@ import java.time.LocalDate;
 import com.vti.entity.objectInitialization.Teacher;
 
 public class DefaultValue {
-	
+
 	public void Question1() {
 		Teacher[] teachers = new Teacher[5];
 		for (int i = 0; i < teachers.length; i++) {
 			teachers[i] = new Teacher();
-			teachers[i].setId(i +1);
-			teachers[i].setEmail("Email " + (i +1));
-			teachers[i].setUserName("Username " + (i +1));
-			teachers[i].setFullName("Full name " + (i +1));
+			teachers[i].setId(i + 1);
+			teachers[i].setEmail("Email " + (i + 1));
+			teachers[i].setUserName("Username " + (i + 1));
+			teachers[i].setFullName("Full name " + (i + 1));
 			teachers[i].setCreateDate(LocalDate.now());
 		}
-		
+
 		for (Teacher ts : teachers) {
 			System.out.println("ID: " + ts.getId());
 			System.out.println("Email: " + ts.getEmail());

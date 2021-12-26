@@ -1,4 +1,5 @@
 package com.vti.entity.objectInitialization;
+
 import java.time.LocalDate;
 
 public class Clazz {
@@ -9,4 +10,3 @@ public class Clazz {
 	public Department department;
 	public LocalDate createDate;
 }
-
