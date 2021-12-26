@@ -2,7 +2,7 @@ package com.vti.entity.exceptionTest;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.vti.backend.assignment6.ScannerUtils;
+import com.vti.backend.utils.ScannerUtils;
 
 public class Student {
 	private int id;

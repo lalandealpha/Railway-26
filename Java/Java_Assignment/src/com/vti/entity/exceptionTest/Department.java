@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.vti.backend.assignment6.ScannerUtils;
+import com.vti.backend.utils.ScannerUtils;
 
 public class Department {
 	private int id;

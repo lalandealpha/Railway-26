@@ -1,4 +1,4 @@
-package com.vti.backend.assignment6;
+package com.vti.backend.utils;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -20,7 +20,19 @@ public class ScannerUtils {
 
 	}
 	
-	public static float inputFloat(String errorMessage) {
+	public static int inputID(String errorMessage1) {
+		while (true) {
+			int result = inputInt("ID must be an integer and greater than 0. Please try again!");
+			if(result > 0) {
+				return result;
+			} else {
+				System.out.println(errorMessage1);
+			}
+			
+		}
+	}
+	
+ 	public static float inputFloat(String errorMessage) {
 		while(true) {
 			try {
 				float f = scanner.nextFloat();

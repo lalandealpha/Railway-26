@@ -2,19 +2,24 @@ package com.vti.entity.staticTest;
 
 import java.util.List;
 
-import com.vti.backend.assignment6.ScannerUtils;
+import com.vti.backend.utils.ScannerUtils;
 
 public class Student {
 	public static int count = 0;
-	private static String college;
-	private int id;
-	private String name;
-	private static float moneyGroup;
+	protected static String college;
+	protected int id;
+	protected String name;
+	protected static float moneyGroup;
 
 	public Student() {
-		this.id = ++count;
-		System.out.println("Please enter the student's name:");
-		this.name = ScannerUtils.inputString();
+		if(count < 7 && PrimaryStudent.countps + SecondaryStudent.countss < 7) {
+			count++;
+			this.id = count;
+			System.out.println("Please enter the student's name:");
+			this.name = ScannerUtils.inputString();
+		} else {
+			System.err.println("Exceeded the number of student accounts allowed to create!");
+		}
 	}
 	
 	public static String getCollege() {

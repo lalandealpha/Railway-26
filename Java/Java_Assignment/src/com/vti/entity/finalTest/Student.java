@@ -1,6 +1,6 @@
 package com.vti.entity.finalTest;
 
-import com.vti.backend.assignment6.ScannerUtils;
+import com.vti.backend.utils.ScannerUtils;
 
 public class Student {
 	private final int id;
