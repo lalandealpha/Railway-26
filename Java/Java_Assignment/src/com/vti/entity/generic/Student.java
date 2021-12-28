@@ -1,5 +1,7 @@
 package com.vti.entity.generic;
 
+import java.util.List;
+
 public class Student<T extends Number> {
 	private T id;
 	private String name;
@@ -30,4 +32,11 @@ public class Student<T extends Number> {
 		System.out.println(a);
 		System.out.println(b);
 	}
+	
+	public void print(List a) {
+		for (int i = 0; i < a.size(); i++) {
+			System.out.println(a.get(i));
+		}
+	}
+
 }

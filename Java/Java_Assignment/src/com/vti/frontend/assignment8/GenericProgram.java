@@ -7,5 +7,10 @@ public class GenericProgram {
 		Generic pro = new Generic();
 		pro.Question1();
 		pro.Question2();
+		pro.Question4();
+		pro.Question5();
+		pro.Question6();
+		pro.Question7();
+		pro.Question8();
 	}
 }
