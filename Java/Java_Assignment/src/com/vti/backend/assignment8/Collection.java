@@ -90,18 +90,19 @@ public class Collection {
 
 	public void Question1i() {
 		System.out.println("-------Question 1i-------");
+		Set<Student> studentTemp = new HashSet<>();
 		for (int i = 0; i < students.size(); i++) {
 			for (int j = i + 1; j < students.size(); j++) {
 				if (students.get(i).getName().equals(students.get(j).getName())) {
-					Set<Student> studentTemp = new HashSet<>();
 					studentTemp.add(students.get(i));
 					studentTemp.add(students.get(j));
-					for (Student s : studentTemp) {
-						System.out.println(s.toString());
-					}
 				}
 			}
 		}
+		for (Student s : studentTemp) {
+			System.out.println(s.toString());
+		}
+		
 	}
 
 	public void Question1j() {
@@ -141,9 +142,8 @@ public class Collection {
 		studentStack.push(new Student("Trinh Van Hoang"));
 		studentStack.push(new Student("Tran Huynh"));
 		try {
-			while (studentStack != null) {
-				System.out.println(studentStack.peek().toString());
-				studentStack.pop();
+			while (!studentStack.isEmpty()) {
+				System.out.println(studentStack.pop().toString());
 			}
 		} catch (Exception e) {
 		}
@@ -190,9 +190,46 @@ public class Collection {
 		}
 
 		System.out.println("-------Question 7c-------");
-		TreeMap<Integer, String> studentsSortMap = new TreeMap<>();
-		studentsSortMap.putAll(studentsMap);
-		System.out.println(studentsSortMap);
+		List<String> studentByName = new ArrayList<>(studentsMap.values());
+		Collections.sort(studentByName);
+		System.out.println(studentByName);
+		
+		System.out.println("-------Question 7d-------");
+		Set<Student> studentsSet = new HashSet<>();
+		for (int i = 0; i < studentsMap.size(); i++) {
+			studentsSet.add(new Student(studentsMap.get(i + 1)));
+		}
+		System.out.println(studentsSet);
 
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

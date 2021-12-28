@@ -27,4 +27,8 @@ public class Student {
 		this.id = ++count;
 		this.name = name;
 	}
+	
+	public int compareTo(Student student) {
+		return this.getName().compareTo(student.getName());
+	}
 }

@@ -3,7 +3,7 @@ package com.vti.backend.assignment7;
 import com.vti.backend.utils.IOManager;
 import com.vti.entity.IOStreamTest.Student;
 
-public class IOStream {
+public class ioStream {
 
 	public void Question1() throws Exception {
 		System.out.println("-------Question 1-------");
