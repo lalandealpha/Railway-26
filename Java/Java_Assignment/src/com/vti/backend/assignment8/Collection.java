@@ -102,7 +102,6 @@ public class Collection {
 		for (Student s : studentTemp) {
 			System.out.println(s.toString());
 		}
-		
 	}
 
 	public void Question1j() {
@@ -193,7 +192,7 @@ public class Collection {
 		List<String> studentByName = new ArrayList<>(studentsMap.values());
 		Collections.sort(studentByName);
 		System.out.println(studentByName);
-		
+
 		System.out.println("-------Question 7d-------");
 		Set<Student> studentsSet = new HashSet<>();
 		for (int i = 0; i < studentsMap.size(); i++) {
@@ -203,33 +202,3 @@ public class Collection {
 
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

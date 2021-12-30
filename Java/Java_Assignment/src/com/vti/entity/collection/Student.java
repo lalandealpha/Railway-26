@@ -1,6 +1,6 @@
 package com.vti.entity.collection;
 
-public class Student {
+public class Student implements Comparable<Student> {
 	private static int count = 0;
 	private int id;
 	private String name;

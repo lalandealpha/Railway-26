@@ -25,7 +25,7 @@ public class ScannerUtils {
 			if (result > 0) {
 				return result;
 			} else {
-				System.out.println(errorMessage1);
+				System.err.println(errorMessage1);
 			}
 
 		}

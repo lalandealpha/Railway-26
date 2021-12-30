@@ -21,12 +21,14 @@ public class Comparing {
 	}
 
 	public void Question1() {
+		// class must implement Comparable
 		System.out.println("-------Question 1-------");
 		Collections.sort(students);
 		System.out.println(students);
 	}
 
 	public void Question2() {
+		// class must implement Comparable
 		System.out.println("-------Question 2-------");
 		Collections.sort(students, new Comparator<Student> () {
 			@Override
