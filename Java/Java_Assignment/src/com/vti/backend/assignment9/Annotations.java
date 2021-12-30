@@ -15,6 +15,7 @@ public class Annotations {
 	
 	@SuppressWarnings("deprecation")
 	public void Question2() {
+		System.out.println("-------Question 2-------");
 		Student student = new Student("Nguyen Thanh Luan");
 		System.out.println(student.getId());
 		

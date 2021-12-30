@@ -96,7 +96,7 @@ public class StaticTest {
 		System.out.println(SecondaryStudent.countss + " Secondary student(s) account created.");
 	}
 
-	public void Question7() {
+	public void Question7() { 
 		students = new ArrayList<>();
 		students.add(new PrimaryStudent());
 		students.add(new SecondaryStudent());

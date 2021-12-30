@@ -33,6 +33,58 @@ public class DepartmentDao {
 			while (resultSet.next()) {
 				department = new Department(resultSet.getInt(1), resultSet.getString(2));
 			}
-		return department;
+		return department; 
+	}
+	
+	public boolean isDeptNameExist(Connection connection, String name) throws SQLException {
+		PreparedStatement preparedStatement = connection.prepareStatement("SELECT DepartmentName FROM Department WHERE DepartmentName = ?");
+		preparedStatement.setString(1, name);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		return resultSet.next();
+	}
+	
+	public boolean isDeptIdExist(Connection connection, int id) throws SQLException {
+		PreparedStatement preparedStatement = connection.prepareStatement("SELECT DepartmentID FROM Department WHERE DepartmentID = ?");
+		preparedStatement.setInt(1, id);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		return resultSet.next();
+	}
+	
+	public void createDepartment(Connection connection, String name) throws SQLException {
+		if(isDeptNameExist(connection, name)) {
+			System.out.println("Department exists!");
+		} else {
+			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Department (DepartmentName) VALUES (?)");
+			preparedStatement.setString(1, name);
+			int effectedRecordAmount = preparedStatement.executeUpdate();
+			System.out.println("Effected record(s) amount:" + effectedRecordAmount);
+		}
+	}
+
+	public void updateDeptName(Connection connection, int id, String name) throws SQLException {
+		if(!isDeptIdExist(connection, id)) {
+			System.err.println("Department not found!");
+		} else {
+			if(isDeptNameExist(connection, name)) {
+				System.err.println("The department name you want to change is the same as the current department name.");
+			} else {
+				PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Department SET DepartmentName = ? WHERE DepartmentID =?");
+				preparedStatement.setString(1, name);
+				preparedStatement.setInt(2, id);
+				int effectedRecordAmount = preparedStatement.executeUpdate();
+				System.out.println("Effected record(s) amount:" + effectedRecordAmount);
+			}
+		}
+	}
+	
+	public void deleteDepartment(Connection connection, int id) throws SQLException {
+		if(!isDeptIdExist(connection, id)) {
+			System.err.println("Department not found!");
+		} else {
+			PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Department WHERE DepartmentID =?");
+			preparedStatement.setInt(1, id);
+			int effectedRecordAmount = preparedStatement.executeUpdate();
+			System.out.println("Effected record(s) amount:" + effectedRecordAmount);
+		}
 	}
 }

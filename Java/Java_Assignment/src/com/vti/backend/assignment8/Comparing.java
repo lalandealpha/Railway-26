@@ -41,7 +41,7 @@ public class Comparing {
 					if(!(day1 == day2)) {
 						return day1 < day2 ? 1 : -1;
 					} else {
-						return s1.getMark() > s2.getMark() ? 1 : -1;
+						return s1.getMark() > s2.getMark() ? 1 : s1.getMark() < s2.getMark() ? -1 : 0;
 					}	
 				}
 			}		

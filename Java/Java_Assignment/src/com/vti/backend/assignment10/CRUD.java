@@ -11,12 +11,15 @@ import java.util.Properties;
 
 import com.vti.backend.utils.DepartmentDao;
 import com.vti.backend.utils.ScannerUtils;
+import com.vti.backend.utils.StudentAccountSao;
 import com.vti.entity.jdbc.Department;
+import com.vti.entity.jdbc.StudentAccount;
 
 public class CRUD {
 	
 	private Connection connection;
 	DepartmentDao departmentDao = new DepartmentDao();
+	StudentAccountSao studentAccountSao = new StudentAccountSao();
 	
 	public CRUD() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
 		Properties properties = new Properties();
@@ -65,6 +68,51 @@ public class CRUD {
 			System.out.println(departmentDao.getDeptById(connection, id).toString());
 		} else {
 			System.err.println("Department not found!");
+		}
+	}
+	
+	public void Question4() throws SQLException {
+		System.out.println("-------Question 4-------");
+		System.out.println("Please enter the department's name:");
+		String name = ScannerUtils.inputString();
+		if(departmentDao.isDeptNameExist(connection, name)) {
+			System.out.println("Department exists!");
+		} else {
+			System.out.println("Department not exists!");
+		}
+	}
+	
+	public void Question5() throws SQLException {
+		System.out.println("-------Question 5-------");
+		System.out.println("Please enter the name of the department you want to create:");
+		String name = ScannerUtils.inputString();
+		departmentDao.createDepartment(connection, name);
+	}
+
+	public void Question6() throws SQLException {
+		System.out.println("-------Question 6-------");
+		System.out.println("Please enter the id of the department id you want to change:");
+		int id = ScannerUtils.inputID("ID must be an integer and greater than 0");
+		System.out.println("Please enter the new name:");
+		String name = ScannerUtils.inputString();
+		departmentDao.updateDeptName(connection, id, name);
+	}
+
+	public void Question7() throws SQLException {
+		System.out.println("-------Question 7-------");
+		System.out.println("Please enter the id of the department you want to delete:");
+		int id = ScannerUtils.inputID("ID must be an integer and greater than 0.");
+		departmentDao.deleteDepartment(connection, id);
+	}
+
+	public void Question81() {
+		System.out.println("-------Question 8.1-------");
+		System.out.println("Show all the student account.");
+		List<StudentAccount> studentAccounts = studentAccountSao.getStudentAcc(connection);
+		System.out.println("Information of all students:");
+		System.out.printf("%-5s|%-10s|\n", "ID", "Email", "Username", "Fullname", "Deparment", "Created at"));
+		for (Department d : departments) {
+			System.out.printf("%-5d|%-10s|\n", d.getId(), d.getName());
 		}
 	}
 }
