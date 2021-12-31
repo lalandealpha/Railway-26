@@ -23,48 +23,34 @@ public class StudentAccount {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	@Override
+	public String toString() {
+		return "ID: " + id + "\nEmail: " + email + "\nUsername: " + username + "\nFullname: " + fullname
+				+ "\nDepartmentName: " + departmentName + "\nCreateDate: " + createDate + "\n";
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getUsername() {
 		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 	public String getFullname() {
 		return fullname;
 	}
 
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
-	}
-
-	public String getDepartmentId() {
+	public String getDepartmentName() {
 		return departmentName;
-	}
-
-	public void setDepartmentId(String departmentName) {
-		this.departmentName = departmentName;
 	}
 
 	public Date getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
 
 }

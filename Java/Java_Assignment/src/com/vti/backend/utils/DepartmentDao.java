@@ -66,7 +66,7 @@ public class DepartmentDao {
 			System.err.println("Department not found!");
 		} else {
 			if(isDeptNameExist(connection, name)) {
-				System.err.println("The department name you want to change is the same as the current department name.");
+				System.err.println("The new name is the same as the current department name.");
 			} else {
 				PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Department SET DepartmentName = ? WHERE DepartmentID =?");
 				preparedStatement.setString(1, name);

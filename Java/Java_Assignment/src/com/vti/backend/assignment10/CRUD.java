@@ -105,14 +105,74 @@ public class CRUD {
 		departmentDao.deleteDepartment(connection, id);
 	}
 
-	public void Question81() {
+	public void Question81() throws SQLException {
 		System.out.println("-------Question 8.1-------");
 		System.out.println("Show all the student account.");
 		List<StudentAccount> studentAccounts = studentAccountSao.getStudentAcc(connection);
 		System.out.println("Information of all students:");
-		System.out.printf("%-5s|%-10s|\n", "ID", "Email", "Username", "Fullname", "Deparment", "Created at"));
-		for (Department d : departments) {
-			System.out.printf("%-5d|%-10s|\n", d.getId(), d.getName());
+		System.out.println("+---+---------------+----------+---------------+----------+---------------+");
+		System.out.printf("|%-3s|%-15s|%-10s|%-15s|%-10s|%-15s|\n", "ID", "Email", "Username", "Fullname", "Deparment", "Created at");
+		System.out.println("+---+---------------+----------+---------------+----------+---------------+");
+		for (StudentAccount s : studentAccounts) {
+			System.out.printf("|%-3s|%-15s|%-10s|%-15s|%-10s|%d/%d/%-10d|\n", s.getId(), s.getEmail(), s.getUsername(), s.getFullname(), s.getDepartmentName(), s.getCreateDate().getDate(), s.getCreateDate().getMonth(), s.getCreateDate().getYear());
+			System.out.println("+---+---------------+----------+---------------+----------+---------------+");
+//			System.out.println(s.toString());
 		}
+	}
+	
+	public void Question82() throws SQLException {
+		System.out.println("-------Quesion 8.2-------");
+		System.out.println("Search Student by ID.");
+		System.out.println("Please enter the ID of the student you want to seach:");
+		int id = ScannerUtils.inputID("ID must be an integer and greater than 0. Please try again!");
+		StudentAccount studentAccount = studentAccountSao.getStuAccById(connection, id);
+		if(studentAccount != null) {
+			System.out.println(studentAccount.toString());
+ 		} else {
+ 			System.err.println("Student not found!");
+ 		}
+	}
+	
+	public void Question83() throws SQLException {
+		System.out.println("-------Question 8.3-------");
+		System.out.println("Check if student name exists or not.");
+		System.out.println("Please enter the name you want to check:");
+		String name = ScannerUtils.inputString();
+		if(studentAccountSao.isStuNameExist(connection, name)) {
+			System.out.println("Student name exists!");
+		} else {
+			System.out.println("Student name not exists.");
+		}
+	}
+	
+	public void Question84() throws SQLException {
+		System.out.println("-------Question 8.4-------");
+		System.out.println("Create a new student account.");
+		System.out.println("Please enter the Fullname of the student:");
+		String fullname = ScannerUtils.inputString();
+		System.out.println("Please choose an username for the student:");
+		String username = ScannerUtils.inputString();
+		System.out.println("Please enter the email of the student:");
+		String email = ScannerUtils.inputString();
+		System.out.println("Please enter the departmentID of the student:");
+		int departmentId = ScannerUtils.inputID("ID must be an integer and greater than 0");
+		studentAccountSao.createStudentAcc(connection, email, username, fullname, departmentId);
+	}
+
+	public void Question85() throws SQLException {
+		System.out.println("-------Question 8.5-------");
+		System.out.println("Change the student's name.");
+		System.out.println("Please enter the id of the student:");
+		int id = ScannerUtils.inputID("ID must be an integer and greater than 0");
+		System.out.println("Please enter the new name:");
+		String name = ScannerUtils.inputString();
+		studentAccountSao.updateStudentName(connection, id, name);
+	}
+
+	public void Quetstion86() throws SQLException {
+		System.out.println("-------Question 8.6-------");
+		System.out.println("Please enter the id of the student you want to delete:");
+		int id = ScannerUtils.inputID("ID must be an integer and greater than 0.");
+		studentAccountSao.deleteStudent(connection, id);
 	}
 }
