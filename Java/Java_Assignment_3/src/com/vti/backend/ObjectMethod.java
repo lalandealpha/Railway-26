@@ -2,8 +2,11 @@ package com.vti.backend;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import com.vti.backend.utils.StringMethodsUtils;
 import com.vti.entity.Department;
 import com.vti.entity.Gender;
 import com.vti.entity.Student;
@@ -179,9 +182,7 @@ public class ObjectMethod {
 	public void Question4() {
 		// create departments
 		Department department1 = new Department(1, "IT");
-
 		Department department2 = new Department(2, "English");
-
 		Department department3 = new Department(3, "Japanese");
 
 		System.out.println("-------Question 4-------");
@@ -195,9 +196,7 @@ public class ObjectMethod {
 	public void Question5() {
 		// create departments
 		Department department1 = new Department(1, "IT");
-
 		Department department2 = new Department(2, "English");
-
 		Department department3 = new Department(3, "Japanese");
 
 		System.out.println("------Question 5-------");
@@ -211,13 +210,9 @@ public class ObjectMethod {
 	public void Question6() {
 		// create departments
 		Department department1 = new Department(1, "Marketing");
-
 		Department department2 = new Department(2, "Boss of director");
-
 		Department department3 = new Department(3, "Waiting room");
-
 		Department department4 = new Department(4, "Accounting");
-
 		Department department5 = new Department(5, "Sale");
 
 		System.out.println("------Question 6------");
@@ -230,5 +225,39 @@ public class ObjectMethod {
 			System.out.println(string);
 		}
 
+	}
+
+	public void Question7() {
+		List<Department> departments = new ArrayList<>();
+
+		departments.add(new Department(1, "Marketing"));
+		departments.add(new Department(2, "Boss of director"));
+		departments.add(new Department(3, "Waiting room"));
+		departments.add(new Department(4, "Accounting"));
+		departments.add(new Department(5, "Sale"));
+
+		System.out.println("------Question 7------");
+		for (int i = 0; i < departments.size(); i++) {
+			String reversedName1 = StringMethodsUtils.reverseWord(departments.get(i).getName());
+			for (int j = 0; j < departments.size() - 1; j++) {
+				String reversedName2 = StringMethodsUtils.reverseWord(departments.get(j).getName());
+				String lastChar1 = reversedName1.substring(reversedName1.length() - 1);
+				String lastChar2 = reversedName2.substring(reversedName2.length() - 1);
+				if(lastChar1.compareToIgnoreCase(lastChar2) < 0) {
+					Department temp = departments.get(i);
+					departments.set(i, departments.get(j));
+					departments.set(j, temp);
+				}
+			}
+		}
+		for (Department d : departments) {
+			System.out.println(d.getName());
+		}
+	}
+
+	public void Test() {
+		System.out.println(StringMethodsUtils.reverseWord("Boss of director"));
+		String lastChar2 = StringMethodsUtils.reverseWord("Boss of director").substring(StringMethodsUtils.reverseWord("Boss of director").length() - 1);
+		System.out.println(lastChar2);
 	}
 }

@@ -194,5 +194,4 @@ public class RandomNumber {
 		int x721 = 100 + random.nextInt(1000 - 100 + 1);
 		System.out.println(x721);
 	}
-
 }

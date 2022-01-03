@@ -18,6 +18,23 @@ public class ScannerUtils {
 			}
 		}
 	}
+	
+	public static int inputInt(String errorMessage, int lowerLimit, int upperLimit) {
+		while (true) {
+			try {
+				int i = scanner.nextInt();
+				if(i > lowerLimit && i < upperLimit) {
+					return i;
+				} else {
+					System.err.println(errorMessage);
+				}
+			} catch (InputMismatchException e) {
+				System.err.println(errorMessage);
+			} finally {
+				scanner.nextLine();
+			}
+		}
+	}
 
 	public static int inputID(String errorMessage1) {
 		while (true) {

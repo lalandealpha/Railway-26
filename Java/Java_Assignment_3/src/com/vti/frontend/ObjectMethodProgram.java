@@ -11,5 +11,7 @@ public class ObjectMethodProgram {
 		pro.Question4();
 		pro.Question5();
 		pro.Question6();
+		pro.Question7();
+		pro.Test();
 	}
 }

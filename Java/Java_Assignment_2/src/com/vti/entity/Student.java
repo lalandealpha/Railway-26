@@ -62,7 +62,11 @@ public class Student {
 	}
 
 	public Pos getPosition() {
-		return position.name;
+		if (position == null) {
+			return null;
+		} else {
+			return position.name;
+		}
 	}
 
 	public void setPosition(Position position) {

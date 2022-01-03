@@ -48,8 +48,11 @@ public class Department {
 	}
 
 	public Student[] getStudentsArray() {
-		Student[] result = students;
-		return result;
+		if(students == null) {
+			return null;
+		} else {
+		return students;
+		}
 	}
 
 	public String getTeachers() {

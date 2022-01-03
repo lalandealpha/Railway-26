@@ -9,7 +9,7 @@ CREATE TABLE Department (
 
 CREATE TABLE `Position` (
 	PositionID TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	PositionName ENUM ('Admin', 'Mentor', 'Student') NOT NULL UNIQUE KEY
+	PositionName ENUM ('Admin', 'Mentor', 'Student', 'Leader', 'Vice Monitor', 'Secretary') NOT NULL UNIQUE KEY
 );
  
 CREATE TABLE StudentAccount (
@@ -20,8 +20,8 @@ CREATE TABLE StudentAccount (
 	DepartmentID TINYINT UNSIGNED,
 	PositionID TINYINT UNSIGNED,
 	CreateDate DATE,
-FOREIGN KEY (PositionID) REFERENCES `Position` (PositionID),
-FOREIGN KEY (DepartmentID) REFERENCES Department (DepartmentID)
+FOREIGN KEY (PositionID) REFERENCES `Position` (PositionID) ON DELETE CASCADE,
+FOREIGN KEY (DepartmentID) REFERENCES Department (DepartmentID) ON DELETE CASCADE
 );
 
 CREATE TABLE TeacherAccount (
@@ -31,7 +31,7 @@ CREATE TABLE TeacherAccount (
 	Fullname VARCHAR (50),
 	DepartmentID TINYINT UNSIGNED,
 	CreateDate DATE,
-FOREIGN KEY (DepartmentID) REFERENCES Department (DepartmentID)
+FOREIGN KEY (DepartmentID) REFERENCES Department (DepartmentID) ON DELETE CASCADE
 );
 
 CREATE TABLE Class (
@@ -39,7 +39,7 @@ CREATE TABLE Class (
 	ClassName VARCHAR (50) NOT NULL UNIQUE KEY,
 	CreatorID SMALLINT UNSIGNED,
 	CreateDate DATE,
-FOREIGN KEY (CreatorID) REFERENCES TeacherAccount (TeacherID)
+FOREIGN KEY (CreatorID) REFERENCES TeacherAccount (TeacherID) ON DELETE CASCADE
 );
 
 CREATE TABLE ClassAccount (
@@ -47,7 +47,7 @@ CREATE TABLE ClassAccount (
 	StudentID SMALLINT UNSIGNED,
 	JoinDate DATE,
 FOREIGN KEY (ClassID) REFERENCES Class (ClassID),
-FOREIGN KEY (StudentID) REFERENCES StudentAccount (StudentID)
+FOREIGN KEY (StudentID) REFERENCES StudentAccount (StudentID) ON DELETE CASCADE
 );
 
 CREATE TABLE QuestionType (
@@ -67,9 +67,9 @@ CREATE TABLE Question (
 	TypeID TINYINT UNSIGNED,
 	CreatorID SMALLINT UNSIGNED,
 	CreateDate DATE,
-FOREIGN KEY (TypeID) REFERENCES QuestionType (TypeID),
-FOREIGN KEY (CategoryID) REFERENCES QuestionCategory (CategoryID),
-FOREIGN KEY (CreatorID) REFERENCES TeacherAccount (TeacherID)
+FOREIGN KEY (TypeID) REFERENCES QuestionType (TypeID) ON DELETE CASCADE,
+FOREIGN KEY (CategoryID) REFERENCES QuestionCategory (CategoryID) ON DELETE CASCADE,
+FOREIGN KEY (CreatorID) REFERENCES TeacherAccount (TeacherID) ON DELETE CASCADE
 );
 
 CREATE TABLE Answer (
@@ -77,7 +77,7 @@ CREATE TABLE Answer (
 	Content VARCHAR (200) NOT NULL,
 	QuestionID SMALLINT UNSIGNED,
 	isCorrect ENUM ('True','False'),
-FOREIGN KEY (QuestionID) REFERENCES Question (QuestionID)
+FOREIGN KEY (QuestionID) REFERENCES Question (QuestionID) ON DELETE CASCADE
 );
 
 CREATE TABLE Exam (
@@ -88,15 +88,15 @@ CREATE TABLE Exam (
 	CategoryID TINYINT UNSIGNED,
 	CreatorID SMALLINT UNSIGNED,
 	CreateDate DATE,
-FOREIGN KEY (CategoryID) REFERENCES QuestionCategory (CategoryID),
-FOREIGN KEY (CreatorID) REFERENCES TeacherAccount (TeacherID)
+FOREIGN KEY (CategoryID) REFERENCES QuestionCategory (CategoryID) ON DELETE CASCADE,
+FOREIGN KEY (CreatorID) REFERENCES TeacherAccount (TeacherID) ON DELETE CASCADE
 );
 
 CREATE TABLE ExamQuestion (
 	ExamID SMALLINT UNSIGNED,
 	QuestionID SMALLINT UNSIGNED,
 FOREIGN KEY (ExamID) REFERENCES Exam (ExamID),
-FOREIGN KEY (QuestionID) REFERENCES Question (QuestionID)
+FOREIGN KEY (QuestionID) REFERENCES Question (QuestionID) ON DELETE CASCADE
 );
 
 -- Question 1: Thêm record vào tất cả các table
@@ -266,7 +266,7 @@ ALTER TABLE ExamQuestion
 DROP CONSTRAINT `examquestion_ibfk_2`;
 ALTER TABLE ExamQuestion
 ADD CONSTRAINT `examquestion_ibfk_2` FOREIGN KEY (`QuestionID`) REFERENCES `Question` (`QuestionID`) ON DELETE SET NULL;
-
+/*
 -- Question 2: Lấy ra tất cả các phòng ban
 SELECT * FROM Department;
 
@@ -341,3 +341,4 @@ DepartmentID = (SELECT DepartmentID FROM Department WHERE DepartmentName = 'Mark
 WHERE StudentID = 3;
 
 SELECT * FROM StudentAccount;
+*/

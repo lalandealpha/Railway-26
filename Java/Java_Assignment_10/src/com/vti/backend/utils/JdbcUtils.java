@@ -10,7 +10,7 @@ import java.util.Properties;
 
 public class JdbcUtils {
 	
-	public static Connection ConnectToDb(String databaseFilePath, String urlInput, String usernameInput, String passwordInput) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
+	public static Connection ConnectToDb(String databaseFilePath) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 		Properties properties = new Properties();
 		properties.load(new FileInputStream(databaseFilePath));
 		String url = properties.getProperty("url");
