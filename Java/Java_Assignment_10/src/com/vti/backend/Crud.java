@@ -112,12 +112,12 @@ public class Crud {
 		System.out.println("Show all the student account.");
 		List<Student> students = studentAccountMethod.getStudentAcc(connection);
 		System.out.println("Information of all students:");
-		System.out.println("+---+---------------+----------+---------------+----------+---------------+");
-		System.out.printf("|%-3s|%-15s|%-10s|%-15s|%-10s|%-15s|\n", "ID", "Email", "Username", "Fullname", "Deparment", "Created at");
-		System.out.println("+---+---------------+----------+---------------+----------+---------------+");
+		System.out.println("+---+--------------------+----------+--------------------+----------+---------------+");
+		System.out.printf("|%-3s|%-20s|%-10s|%-20s|%-10s|%-15s|\n", "ID", "Email", "Username", "Fullname", "Deparment", "Created at");
+		System.out.println("+---+--------------------+----------+--------------------+----------+---------------+");
 		for (Student s : students) {
-			System.out.printf("|%-3s|%-15s|%-10s|%-15s|%-10s|%2d/%2d/%-9d|\n", s.getId(), s.getEmail(), s.getUsername(), s.getFullname(), s.getDepartmentName(), s.getCreateDate().getDate(), s.getCreateDate().getMonth() + 1, s.getCreateDate().getYear() + 1900);
-			System.out.println("+---+---------------+----------+---------------+----------+---------------+");
+			System.out.printf("|%-3s|%-20s|%-10s|%-20s|%-10s|%2d/%2d/%-9d|\n", s.getId(), s.getEmail(), s.getUsername(), s.getFullname(), s.getDepartmentName(), s.getCreateDate().getDate(), s.getCreateDate().getMonth() + 1, s.getCreateDate().getYear() + 1900);
+			System.out.println("+---+--------------------+----------+--------------------+----------+---------------+");
 //			System.out.println(s.toString());
 		}
 	}

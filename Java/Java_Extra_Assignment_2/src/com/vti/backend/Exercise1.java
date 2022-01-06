@@ -70,7 +70,7 @@ public class Exercise1 {
 		System.out.printf("|%-20s|%-11s|%-11s|\n", "Fullname", "ID", "Birthday");
 		System.out.println("+--------------------+-----------+-----------+");
 		for (Student s : students) {
-			System.out.printf("|%-20s|%-11s|%2s/%2s/%-5s|\n", s.getFullname(), s.getId(), s.getBirthday().getDayOfMonth(), s.getBirthday().getMonthValue(), s.getBirthday().getYear());
+			System.out.printf("|%-20s|%-11s|%02d/%02d/%-5d|\n", s.getFullname(), s.getId(), s.getBirthday().getDayOfMonth(), s.getBirthday().getMonthValue(), s.getBirthday().getYear());
 		}
 		System.out.println("+--------------------+-----------+-----------+");
 	}

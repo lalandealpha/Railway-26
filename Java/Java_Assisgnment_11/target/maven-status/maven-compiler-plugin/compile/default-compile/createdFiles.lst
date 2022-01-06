@@ -1,0 +1,5 @@
+com/vti/backend/utils/ScannerUtils.class
+com/vti/backend/utils/StringMethodsUtils.class
+com/vti/backend/utils/FileUtils.class
+com/vti/backend/utils/JdbcUtils.class
+com/vti/backend/utils/IOManager.class

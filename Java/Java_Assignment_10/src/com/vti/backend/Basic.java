@@ -18,8 +18,7 @@ public class Basic {
 
 	public Basic() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
 		Properties properties = new Properties();
-		properties.load(
-				new FileInputStream("/Users/user/Code/Java_Assignment_Maven/src/main/resource/database.properties"));
+		properties.load(new FileInputStream("/Users/user/Code/Java_Assignment_10_Maven/src/main/resource/database.properties"));
 
 		String url = properties.getProperty("url");
 		String username = properties.getProperty("username");
