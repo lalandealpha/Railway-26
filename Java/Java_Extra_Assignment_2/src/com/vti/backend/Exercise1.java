@@ -39,23 +39,28 @@ public class Exercise1 {
 		firstNames.add("Bao");
 		
 		Random random = new Random();
+		// random 10 IDs
+		Set<String> ids = new HashSet<>();
+		while(ids.size() < 10) {
+			ids.add("SV" + (1000000 + random.nextInt(8999999 + 1)));
+		}
+		int minDay = (int) LocalDate.of(1991, 2, 1).toEpochDay();
+		int maxDay = (int) LocalDate.of(1991, 12, 31).toEpochDay();
+		// random 10 birthdays
+		Set<Integer> birthdays = new HashSet<>();
+		while(birthdays.size() < 10) {
+			birthdays.add(minDay + random.nextInt(maxDay - minDay + 1));
+		}
+		// create 10 students
 		List<Student> students = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
 			String fullName = lastNames.get(random.nextInt(lastNames.size())) + " "
 							+ middleNames.get(random.nextInt(middleNames.size())) + " "
 							+ firstNames.get(random.nextInt(firstNames.size()));
 			Student student = new Student(fullName);
-			Set<String> ids = new HashSet<>();
-			for (int j = 0; j < 50; j++) {
-				ids.add("SV" + (random.nextInt(8999999 + 1) + 1000000));
-			}
+
 			student.setId(ids.toArray()[i].toString());
-			int minDay = (int) LocalDate.of(1991, 2, 1).toEpochDay();
-			int maxDay = (int) LocalDate.of(1991, 12, 31).toEpochDay();
-			Set<Integer> birthdays = new HashSet<>();
-			for (int j = 0; j < 50; j++) {
-				birthdays.add(minDay + random.nextInt(maxDay - minDay + 1));
-			}
+
 			int randomInt = (int) birthdays.toArray()[i];
 			LocalDate birthday = LocalDate.ofEpochDay(randomInt);
 			student.setBirthday(birthday);
@@ -65,7 +70,8 @@ public class Exercise1 {
 		System.out.printf("|%-20s|%-11s|%-11s|\n", "Fullname", "ID", "Birthday");
 		System.out.println("+--------------------+-----------+-----------+");
 		for (Student s : students) {
-			System.out.printf("|%-20s|%-11s|%-11s|\n", s.getFullname(), s.getId(), s.getBirthday());
+			System.out.printf("|%-20s|%-11s|%2s/%2s/%-5s|\n", s.getFullname(), s.getId(), s.getBirthday().getDayOfMonth(), s.getBirthday().getMonthValue(), s.getBirthday().getYear());
 		}
+		System.out.println("+--------------------+-----------+-----------+");
 	}
 }

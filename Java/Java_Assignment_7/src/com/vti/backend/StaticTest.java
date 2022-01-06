@@ -123,10 +123,8 @@ public class StaticTest {
 		Rectangle shape3 = new Rectangle(12f, 5f);
 		Circle shape4 = new Circle(22f);
 		Circle shape5 = new Circle(15f);
-		Rectangle shape6 = new Rectangle(25f, 7f);
+//		Rectangle shape6 = new Rectangle(25f, 7f);
 
-		System.out.println("Number of rectangles created successfully: " + Rectangle.countRec);
-		System.out.println("Number of circles created successfully: " + Circle.countCir);
 		System.out.println("Number of shapes created successfully: " + Shape.count);
 	}
 

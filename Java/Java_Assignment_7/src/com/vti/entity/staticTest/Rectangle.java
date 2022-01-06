@@ -3,14 +3,10 @@ package com.vti.entity.staticTest;
 public class Rectangle extends Shape implements IRectangle {
 	private float length;
 	private float width;
-	public static int countRec = 0;
 
 	public Rectangle(float length, float width) throws Exception {
-		if (Rectangle.countRec + Circle.countCir < Shape.maximumNumber) {
-			this.length = length;
-			this.width = width;
-			countRec++;
-		}
+		this.length = length;
+		this.width = width;
 	}
 
 	public float getLength() {

@@ -162,7 +162,7 @@ public class RandomNumber {
 		int date = now.getDate();
 
 		int dayNow = (int) LocalDate.now().toEpochDay();
-		int now1 = (int) LocalDate.of(year, month, date).toEpochDay();
+		int now1 = (int) LocalDate.of(year, month + 1, date).toEpochDay();
 		int randomint1 = now1 + random.nextInt(dayNow - now1 + 1);
 		LocalDate randomDay1 = LocalDate.ofEpochDay(randomint1);
 		System.out.println(randomDay1 + "\n");

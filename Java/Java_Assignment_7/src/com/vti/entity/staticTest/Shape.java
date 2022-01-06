@@ -5,11 +5,10 @@ public abstract class Shape {
 	public static int count = 0;
 
 	public Shape() throws Exception {
-		if (count < maximumNumber && Rectangle.countRec + Circle.countCir < maximumNumber) {
-			count++;
-		} else {
+		if (count >= maximumNumber) {
 			throw new Exception("Maximum number of shapes: " + maximumNumber);
-		}
+		} 
+		count++;
 	}
 
 }
