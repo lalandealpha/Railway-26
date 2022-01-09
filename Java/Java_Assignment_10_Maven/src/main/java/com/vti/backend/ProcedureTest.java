@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import com.mysql.cj.jdbc.CallableStatement;
-import com.vti.backend.utils.DepartmentMethod;
+import com.vti.backend.utils.DepartmentDao;
 import com.vti.backend.utils.ScannerUtils;
 
 public class ProcedureTest {
@@ -43,7 +43,7 @@ public class ProcedureTest {
 	}
 	
 	private void deleteDepartment(int id) throws Exception {
-		DepartmentMethod departmentMethod = new DepartmentMethod();
+		DepartmentDao departmentMethod = new DepartmentDao();
 		if(!departmentMethod.isDeptIdExist(connection, id)) {
 			throw new Exception("Department not found!");
 		} else {

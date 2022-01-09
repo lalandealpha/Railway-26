@@ -9,17 +9,17 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
-import com.vti.backend.utils.DepartmentMethod;
+import com.vti.backend.utils.DepartmentDao;
 import com.vti.backend.utils.ScannerUtils;
-import com.vti.backend.utils.StudentAccountMethod;
+import com.vti.backend.utils.StudentAccountDao;
 import com.vti.entity.jdbc.Department;
 import com.vti.entity.jdbc.Student;
 
 public class Crud {
 	
 	private Connection connection;
-	DepartmentMethod departmentMethod = new DepartmentMethod();
-	StudentAccountMethod studentAccountMethod = new StudentAccountMethod();
+	DepartmentDao departmentMethod = new DepartmentDao();
+	StudentAccountDao studentAccountMethod = new StudentAccountDao();
 	
 	public Crud() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
 		Properties properties = new Properties();
