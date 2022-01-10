@@ -30,6 +30,3 @@ INSERT INTO `Employee` (Email, Fullname, `Password`, ProSkill) VALUES
 ('adurtnall9@etsy.com', 'Alexis Durtnall', 'Jg5nRYo0ZaMO', 'sql'),
 ('fcandlin7@army.mil', 'Farlie Candlin', '6B6peju', 'python'),
 ('kkingdonl@toplist.cz', 'Kevyn Kingdon', 'VPNoqY', 'c++');
-
-
-
