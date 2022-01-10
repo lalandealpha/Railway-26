@@ -30,7 +30,7 @@ public class ProcedureTest {
 	
 	public void Demo() throws ClassNotFoundException, IOException, SQLException {	
 		CallableStatement callableStatement = (CallableStatement) connection.prepareCall("{CALL sp_update_student_account(?, ?)}");
-		callableStatement.setString(1, "Nguyen Thanh Luan");
+		callableStatement.setString(1, "Luan Nguyen");
 		callableStatement.setInt(2, 3);
 		int affectedRecordAmount = callableStatement.executeUpdate();
 		System.out.println("Affected record amount: " + affectedRecordAmount);
