@@ -52,9 +52,10 @@ public interface IUserRepostitory {
 	 * @param connection
 	 * @param scanner
 	 * @param id
+	 * @return boolean
 	 * @throws Exception
 	 */
-	void getUserInfo(Connection connection, Scanner scanner, int id) throws Exception;
+	boolean getUserInfo(Connection connection, Scanner scanner, int id) throws Exception;
 
 	/**
 	 * This method is for checking if user exists or not. 
@@ -67,7 +68,7 @@ public interface IUserRepostitory {
 	 * @modifer_date: 10 thg 1, 2022
 	 * @param connection
 	 * @param id
-	 * @return
+	 * @return boolean
 	 * @throws SQLException
 	 */
 	boolean isUserExist(Connection connection, int id) throws SQLException;
@@ -83,7 +84,7 @@ public interface IUserRepostitory {
 	 * @modifer_date: 10 thg 1, 2022
 	 * @param connection
 	 * @param email
-	 * @return
+	 * @return boolean
 	 * @throws SQLException
 	 */
 	boolean isUserExist(Connection connection, String email) throws SQLException;

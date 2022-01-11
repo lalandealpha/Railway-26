@@ -2,7 +2,7 @@ package com.vti.utils;
 
 public class RegexUtils {
 	// Email pattern: abc@domain.xxx or abc@domain.xxx.yyy
-	private static final String emailPattern = "^[a-zA-Z\\w-._]+@([\\w]+\\.[\\w]+|[\\w]+\\.[\\w]{2,}\\.[\\w]{2,})$";
+	private static final String emailPattern = "^[a-zA-Z0-9-._]+@([a-z]+\\.[a-z]+|[a-z]+\\.[a-z]{2,}\\.[a-z]{2,})$";
 	
 	/*Password:
 	 * 6-12 characters (that aren't new lines)

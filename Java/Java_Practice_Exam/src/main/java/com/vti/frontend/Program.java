@@ -37,7 +37,7 @@ public class Program {
 		Connection connection = jdbcUtils.ConnectToDb("/Users/user/Code/Java_Practice_Exam/src/main/source/database.properties");
 		while(true) {
 			System.out.println("Please select the function you want to use:");
-			System.out.println("(1) Get list of all Users");
+			System.out.println("(1) Get a list of all Users");
 			System.out.println("(2) Get an User's information");
 			System.out.println("(3) Delete an User");
 			System.out.println("(4) Log in");
@@ -64,6 +64,7 @@ public class Program {
 					System.out.println("Exiting the program...");
 					scanner.close();
 					jdbcUtils.disconnect(connection);
+					System.gc();
 					return;
 			}
 			System.out.println("");

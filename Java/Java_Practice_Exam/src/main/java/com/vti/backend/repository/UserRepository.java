@@ -67,19 +67,16 @@ public class UserRepository implements IUserRepostitory {
 	/* 
 	* @see com.vti.backend.repository.IUserRepostitory#getUserInfo(java.sql.Connection, java.util.Scanner, int)
 	*/
-	public void getUserInfo(Connection connection, Scanner scanner, int id) throws Exception {
+	public boolean getUserInfo(Connection connection, Scanner scanner, int id) throws Exception {
 		List<User> users = getUserList(connection, scanner);
-		boolean isExist = false;
 		System.out.println("Information of the user:");
 		for (User u : users) {
 			if (u.getId() == id) {
 				System.out.println(u.toString(u));
-				isExist = true;
+				return true;
 			}
 		}
-		if (isExist == false) {
-			throw new Exception("User not found!");
-		}
+		return false;
 	}
 
 	/* 

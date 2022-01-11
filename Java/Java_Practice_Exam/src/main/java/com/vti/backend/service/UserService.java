@@ -22,26 +22,6 @@ import com.vti.entity.User;
  * @modifer: LuanNT
  * @modifer_date: 9 thg 1, 2022
  */
-/**
- * This class is . 
- * 
- * @Description: .
- * @author: LuanNT
- * @create_date: 9 thg 1, 2022
- * @version: 1.0
- * @modifer: LuanNT
- * @modifer_date: 9 thg 1, 2022
- */
-/**
- * This class is . 
- * 
- * @Description: .
- * @author: LuanNT
- * @create_date: 9 thg 1, 2022
- * @version: 1.0
- * @modifer: LuanNT
- * @modifer_date: 9 thg 1, 2022
- */
 public class UserService implements IUserService{
 	
 	private IUserRepostitory userRepostitory;
@@ -83,8 +63,9 @@ public class UserService implements IUserService{
 	* @see com.vti.backend.service.IUserService#getUserInfo(java.sql.Connection, java.util.Scanner, int)
 	*/
 	public void getUserInfo(Connection connection, Scanner scanner, int id) throws Exception {
-		userRepostitory.getUserInfo(connection, scanner, id);
-		
+		if(!userRepostitory.getUserInfo(connection, scanner, id)) {
+			throw new Exception("User not found!");
+		}
 	}
 	
 	/* 
