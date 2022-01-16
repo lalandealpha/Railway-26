@@ -1,5 +1,7 @@
 package com.vti.backend.repository;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +14,7 @@ import java.util.Scanner;
 import com.vti.entity.Admin;
 import com.vti.entity.Employee;
 import com.vti.entity.User;
+import com.vti.utils.JdbcUtils;
 
 /**
  * This class is User repository.
@@ -24,11 +27,20 @@ import com.vti.entity.User;
  * @modifer_date: 9 thg 1, 2022
  */
 public class UserRepository implements IUserRepostitory {
+	private Connection connection;
+	private JdbcUtils jdbcUtils;
 
-	/* 
-	* @see com.vti.backend.repository.IUserRepostitory#getUserList(java.sql.Connection, java.util.Scanner)
-	*/
-	public List<User> getUserList(Connection connection, Scanner scanner) throws SQLException {
+	public UserRepository() throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
+		jdbcUtils = new JdbcUtils();
+		connection = jdbcUtils.connectToDb("/Users/user/Code/Java_Practice_Exam/src/main/source/database.properties");
+	}
+
+	/*
+	 * @see
+	 * com.vti.backend.repository.IUserRepostitory#getUserList(java.sql.Connection,
+	 * java.util.Scanner)
+	 */
+	public List<User> getUserList() throws SQLException {
 		Statement statement = connection.createStatement();
 		ResultSet resultSet1 = statement.executeQuery("SELECT * FROM `Admin`");
 		List<User> users = new ArrayList<>();
@@ -48,11 +60,12 @@ public class UserRepository implements IUserRepostitory {
 		return users;
 	}
 
-	/* 
-	* @see com.vti.backend.repository.IUserRepostitory#printUserList(java.sql.Connection, java.util.Scanner)
-	*/
-	public void printUserList(Connection connection, Scanner scanner) throws SQLException {
-		List<User> users = getUserList(connection, scanner);
+	/*
+	 * @see com.vti.backend.repository.IUserRepostitory#printUserList(java.sql.
+	 * Connection, java.util.Scanner)
+	 */
+	public void printUserList() throws SQLException {
+		List<User> users = getUserList();
 		System.out.println("Information of all users:");
 		System.out.println("+---+--------------------+------------------------------+----------+");
 		System.out.printf("|%-3s|%-20s|%-30s|%-10s|\n", "ID", "Fullname", "Email", "Position");
@@ -64,11 +77,13 @@ public class UserRepository implements IUserRepostitory {
 		}
 	}
 
-	/* 
-	* @see com.vti.backend.repository.IUserRepostitory#getUserInfo(java.sql.Connection, java.util.Scanner, int)
-	*/
-	public boolean getUserInfo(Connection connection, Scanner scanner, int id) throws Exception {
-		List<User> users = getUserList(connection, scanner);
+	/*
+	 * @see
+	 * com.vti.backend.repository.IUserRepostitory#getUserInfo(java.sql.Connection,
+	 * java.util.Scanner, int)
+	 */
+	public boolean getUserInfo(int id) throws Exception {
+		List<User> users = getUserList();
 		System.out.println("Information of the user:");
 		for (User u : users) {
 			if (u.getId() == id) {
@@ -79,10 +94,12 @@ public class UserRepository implements IUserRepostitory {
 		return false;
 	}
 
-	/* 
-	* @see com.vti.backend.repository.IUserRepostitory#isUserExist(java.sql.Connection, int)
-	*/
-	public boolean isUserExist(Connection connection, int id) throws SQLException {
+	/*
+	 * @see
+	 * com.vti.backend.repository.IUserRepostitory#isUserExist(java.sql.Connection,
+	 * int)
+	 */
+	public boolean isUserExist(int id) throws SQLException {
 		// get admin
 		PreparedStatement preparedStatement1 = connection.prepareStatement("SELECT * FROM `Admin` WHERE Id = ?");
 		preparedStatement1.setInt(1, id);
@@ -99,11 +116,12 @@ public class UserRepository implements IUserRepostitory {
 		return false;
 	}
 
-
-	/* 
-	* @see com.vti.backend.repository.IUserRepostitory#isUserExist(java.sql.Connection, java.lang.String)
-	*/
-	public boolean isUserExist(Connection connection, String email) throws SQLException {
+	/*
+	 * @see
+	 * com.vti.backend.repository.IUserRepostitory#isUserExist(java.sql.Connection,
+	 * java.lang.String)
+	 */
+	public boolean isUserExist(String email) throws SQLException {
 		// get admin
 		PreparedStatement preparedStatement1 = connection.prepareStatement("SELECT * FROM `Admin` WHERE Email = ?");
 		preparedStatement1.setString(1, email);
@@ -120,11 +138,12 @@ public class UserRepository implements IUserRepostitory {
 		return false;
 	}
 
-
-	/* 
-	* @see com.vti.backend.repository.IUserRepostitory#deleteUser(java.sql.Connection, int)
-	*/
-	public void deleteUser(Connection connection, int id) throws SQLException {
+	/*
+	 * @see
+	 * com.vti.backend.repository.IUserRepostitory#deleteUser(java.sql.Connection,
+	 * int)
+	 */
+	public void deleteUser(int id) throws SQLException {
 		PreparedStatement preparedStatement1 = connection.prepareStatement("DELETE FROM `Admin` WHERE Id = ?");
 		preparedStatement1.setInt(1, id);
 		int AffectedRecordAmount = preparedStatement1.executeUpdate();
@@ -137,12 +156,12 @@ public class UserRepository implements IUserRepostitory {
 		System.out.println("Affected Record Amount: " + AffectedRecordAmount);
 	}
 
-
-	/* 
-	* @see com.vti.backend.repository.IUserRepostitory#login(java.sql.Connection, java.util.Scanner, java.lang.String, java.lang.String)
-	*/
-	public boolean login(Connection connection, Scanner scanner, String email, String password) throws Exception {
-		List<User> users = getUserList(connection, scanner);
+	/*
+	 * @see com.vti.backend.repository.IUserRepostitory#login(java.sql.Connection,
+	 * java.util.Scanner, java.lang.String, java.lang.String)
+	 */
+	public boolean login(String email, String password) throws Exception {
+		List<User> users = getUserList();
 		for (User u : users) {
 			if (u.getEmail().equals(email) && u.getPassword().equals(password)) {
 				System.out.println("Logged in!");
@@ -152,22 +171,25 @@ public class UserRepository implements IUserRepostitory {
 		return false;
 	}
 
-
-	/* 
-	* @see com.vti.backend.repository.IUserRepostitory#isAdmin(java.sql.Connection, java.lang.String)
-	*/
-	public boolean isAdmin(Connection connection, String email) throws SQLException {
+	/*
+	 * @see com.vti.backend.repository.IUserRepostitory#isAdmin(java.sql.Connection,
+	 * java.lang.String)
+	 */
+	public boolean isAdmin(String email) throws SQLException {
 		PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM `Admin` WHERE Email = ?");
 		preparedStatement.setString(1, email);
 		ResultSet resultSet = preparedStatement.executeQuery();
 		return resultSet.next();
 	}
 
-	/* 
-	* @see com.vti.backend.repository.IUserRepostitory#createUser(java.sql.Connection, java.lang.String, java.lang.String)
-	*/
-	public void createUser(Connection connection, String fullName, String email) throws Exception {
-		PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `Employee` (Email, Fullname, `Password`) VALUES (?, ?, ?)");
+	/*
+	 * @see
+	 * com.vti.backend.repository.IUserRepostitory#createUser(java.sql.Connection,
+	 * java.lang.String, java.lang.String)
+	 */
+	public void createUser(String fullName, String email) throws Exception {
+		PreparedStatement preparedStatement = connection
+				.prepareStatement("INSERT INTO `Employee` (Email, Fullname, `Password`) VALUES (?, ?, ?)");
 		preparedStatement.setString(1, email);
 		preparedStatement.setString(2, fullName);
 		preparedStatement.setString(3, "123456");
@@ -175,5 +197,13 @@ public class UserRepository implements IUserRepostitory {
 		int AffectedRecordAmount = preparedStatement.executeUpdate();
 		System.out.println("Affected record(s) amount:" + AffectedRecordAmount);
 	}
-}
 
+	/* 
+	* @see com.vti.backend.repository.IUserRepostitory#closeConnection()
+	*/
+	public void closeConnection() throws SQLException {
+		if (jdbcUtils.isDbConnected(connection)) {
+			connection.close();
+		}
+	}
+}

@@ -47,23 +47,23 @@ public class UserService implements IUserService{
 	/* 
 	* @see com.vti.backend.service.IUserService#getUserList(java.sql.Connection, java.util.Scanner)
 	*/
-	public List<User> getUserList(Connection connection, Scanner scanner) throws SQLException {
-		return userRepostitory.getUserList(connection, scanner);
+	public List<User> getUserList() throws SQLException {
+		return userRepostitory.getUserList();
 	}
 
 	/* 
 	* @see com.vti.backend.service.IUserService#printUserList(java.sql.Connection, java.util.Scanner)
 	*/
-	public void printUserList(Connection connection, Scanner scanner) throws SQLException {
-		userRepostitory.printUserList(connection, scanner);
+	public void printUserList() throws SQLException {
+		userRepostitory.printUserList();
 		
 	}
 
 	/* 
 	* @see com.vti.backend.service.IUserService#getUserInfo(java.sql.Connection, java.util.Scanner, int)
 	*/
-	public void getUserInfo(Connection connection, Scanner scanner, int id) throws Exception {
-		if(!userRepostitory.getUserInfo(connection, scanner, id)) {
+	public void getUserInfo(int id) throws Exception {
+		if(!userRepostitory.getUserInfo(id)) {
 			throw new Exception("User not found!");
 		}
 	}
@@ -71,39 +71,36 @@ public class UserService implements IUserService{
 	/* 
 	* @see com.vti.backend.service.IUserService#isUserExist(java.sql.Connection, int)
 	*/
-	public boolean isUserExist(Connection connection, int id) throws SQLException {
-		return userRepostitory.isUserExist(connection, id);
+	public boolean isUserExist(int id) throws SQLException {
+		return userRepostitory.isUserExist(id);
 	}
 	
 	/* 
 	* @see com.vti.backend.service.IUserService#isUserExist(java.sql.Connection, java.lang.String)
 	*/
-	public boolean isUserExist(Connection connection, String email) throws SQLException {
-		return userRepostitory.isUserExist(connection, email);
+	public boolean isUserExist(String email) throws SQLException {
+		return userRepostitory.isUserExist(email);
 	}
 	
 
 	/* 
 	* @see com.vti.backend.service.IUserService#deleteUser(java.sql.Connection, int)
 	*/
-	public void deleteUser(Connection connection, int id) throws Exception {
-		if (isUserExist(connection, id) == false) {
+	public void deleteUser(int id) throws Exception {
+		if (isUserExist(id) == false) {
 			throw new Exception("User not found!");
 		} else {
-			userRepostitory.deleteUser(connection, id);
+			userRepostitory.deleteUser(id);
 		}
 	}
 
 
-	/* 
-	* @see com.vti.backend.service.IUserService#login(java.sql.Connection, java.util.Scanner, java.lang.String, java.lang.String)
-	*/
-	public void login(Connection connection, Scanner scanner, String email, String password) throws Exception {
+	public void login(String email, String password) throws Exception {
 		// check if user exists or not
-		if (isUserExist(connection, email) == false) {
+		if (isUserExist(email) == false) {
 			throw new Exception("The email you entered isn’t connected to an account.");
 		} else {
-			if (userRepostitory.login(connection, scanner, email, password) == false) {
+			if (userRepostitory.login(email, password) == false) {
 				throw new Exception("The password you’ve entered is incorrect.");
 			}
 		}
@@ -113,22 +110,29 @@ public class UserService implements IUserService{
 	/* 
 	* @see com.vti.backend.service.IUserService#isAdmin(java.sql.Connection, java.lang.String)
 	*/
-	public boolean isAdmin(Connection connection, String email) throws SQLException {
-		return userRepostitory.isAdmin(connection, email);
+	public boolean isAdmin(String email) throws SQLException {
+		return userRepostitory.isAdmin(email);
 	}
 
 
 	/* 
 	* @see com.vti.backend.service.IUserService#createUser(java.sql.Connection, java.lang.String, java.lang.String)
 	*/
-	public boolean createUser(Connection connection, String fullName, String email) throws Exception {
+	public boolean createUser(String fullName, String email) throws Exception {
 		// check if user exists or not
-		if (isUserExist(connection, email) == true) {
+		if (isUserExist(email) == true) {
 			 System.err.println("User exists!");
 			 return false;
 		} else {
-			userRepostitory.createUser(connection, fullName, email);
+			userRepostitory.createUser(fullName, email);
 			return true;
 		}
 	}
+
+	@Override
+	public void closeConnection() throws SQLException {
+		userRepostitory.closeConnection();
+		
+	}
+
 }

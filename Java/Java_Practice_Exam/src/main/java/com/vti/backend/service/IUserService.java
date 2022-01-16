@@ -23,7 +23,7 @@ public interface IUserService {
 	 * @return
 	 * @throws SQLException
 	 */
-	List<User> getUserList(Connection connection, Scanner scanner) throws SQLException;
+	List<User> getUserList() throws SQLException;
 
 	/**
 	 * This method is for printing out all users' information. 
@@ -38,7 +38,7 @@ public interface IUserService {
 	 * @param scanner
 	 * @throws SQLException
 	 */
-	void printUserList(Connection connection, Scanner scanner) throws SQLException;
+	void printUserList() throws SQLException;
 
 	/**
 	 * This method is for getting user's information. 
@@ -54,7 +54,7 @@ public interface IUserService {
 	 * @param id
 	 * @throws Exception
 	 */
-	void getUserInfo(Connection connection, Scanner scanner, int id) throws Exception;
+	void getUserInfo(int id) throws Exception;
 
 	/**
 	 * This method is for checking if user exists or not. 
@@ -70,7 +70,7 @@ public interface IUserService {
 	 * @return
 	 * @throws SQLException
 	 */
-	boolean isUserExist(Connection connection, int id) throws SQLException;
+	boolean isUserExist(int id) throws SQLException;
 
 	/**
 	 * This method is for checking if user exists or not. 
@@ -86,7 +86,7 @@ public interface IUserService {
 	 * @return
 	 * @throws SQLException
 	 */
-	boolean isUserExist(Connection connection, String email) throws SQLException;
+	boolean isUserExist(String email) throws SQLException;
 
 	/**
 	 * This method is for checking if user exists or not. 
@@ -102,7 +102,7 @@ public interface IUserService {
 	 * @throws SQLException
 	 * @throws Exception 
 	 */
-	void deleteUser(Connection connection, int id) throws SQLException, Exception;
+	void deleteUser(int id) throws SQLException, Exception;
 
 	/**
 	 * This method is for logging in. 
@@ -119,7 +119,7 @@ public interface IUserService {
 	 * @param password
 	 * @throws Exception
 	 */
-	void login(Connection connection, Scanner scanner, String email, String password) throws Exception;
+	void login(String email, String password) throws Exception;
 
 	/**
 	 * This method is for checking if user is an Administrator or not. 
@@ -135,7 +135,7 @@ public interface IUserService {
 	 * @return
 	 * @throws SQLException
 	 */
-	boolean isAdmin(Connection connection, String email) throws SQLException;
+	boolean isAdmin(String email) throws SQLException;
 
 	/**
 	 * This method is for creating an user. 
@@ -152,5 +152,18 @@ public interface IUserService {
 	 * @return boolean
 	 * @throws Exception
 	 */
-	boolean createUser(Connection connection, String fullName, String email) throws Exception;
+	boolean createUser(String fullName, String email) throws Exception;
+	
+	/**
+	 * This method is for closing connection to a database. 
+	 * 
+	 * @Description: .
+	 * @author: LuanNT
+	 * @create_date: 13 thg 1, 2022
+	 * @version: 1.0
+	 * @modifer: LuanNT
+	 * @modifer_date: 13 thg 1, 2022
+	 * @throws SQLException
+	 */
+	void closeConnection() throws SQLException;
 }

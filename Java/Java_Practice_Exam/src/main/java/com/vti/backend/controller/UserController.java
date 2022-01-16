@@ -27,7 +27,6 @@ import com.vti.utils.ScannerUtils;
 public class UserController  {
 	private IUserService userService;
 	private ScannerUtils scannerUtils;
-	private Scanner scanner;
 	
 	/**
 	 * Constructor for class UserController.
@@ -46,7 +45,6 @@ public class UserController  {
 	public UserController() throws ClassNotFoundException, FileNotFoundException, SQLException, IOException {
 		userService = new UserService();
 		scannerUtils = new ScannerUtils();
-		scanner = new Scanner(System.in);
 	}
 
 	/**
@@ -63,8 +61,8 @@ public class UserController  {
 	 * @return List
 	 * @throws SQLException
 	 */
-	public List<User> getUserList(Connection connection, Scanner scanner) throws SQLException {
-		return userService.getUserList(connection, scanner);
+	public List<User> getUserList() throws SQLException {
+		return userService.getUserList();
 	}
 
 	/**
@@ -80,8 +78,8 @@ public class UserController  {
 	 * @param scanner
 	 * @throws SQLException
 	 */
-	public void printUserList(Connection connection, Scanner scanner) throws SQLException {
-		userService.printUserList(connection, scanner);
+	public void printUserList() throws SQLException {
+		userService.printUserList();
 	}
 
 	/**
@@ -96,12 +94,12 @@ public class UserController  {
 	 * @param connection
 	 * @param scanner
 	 */
-	public void getUserInfo(Connection connection, Scanner scanner) {
+	public void getUserInfo() {
 		System.out.println("Please enter the id of the User:");
 		// validate id input
-		int id = scannerUtils.inputID(scanner, "ID must be an integer and greater than 0. Please try again");
+		int id = scannerUtils.inputID("ID must be an integer and greater than 0. Please try again");
 		try {
-			userService.getUserInfo(connection, scanner, id);
+			userService.getUserInfo(id);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
@@ -122,8 +120,8 @@ public class UserController  {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean isUserExist(Connection connection, int id) throws SQLException {
-		return userService.isUserExist(connection, id);
+	public boolean isUserExist(int id) throws SQLException {
+		return userService.isUserExist(id);
 	}
 	
 	/**
@@ -140,8 +138,8 @@ public class UserController  {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean isUserExist(Connection connection, String email) throws SQLException {
-		return userService.isUserExist(connection, email);
+	public boolean isUserExist(String email) throws SQLException {
+		return userService.isUserExist(email);
 	}
 
 
@@ -157,12 +155,12 @@ public class UserController  {
 	 * @param connection
 	 * @throws Exception 
 	 */
-	public void deleteUser(Connection connection) {
+	public void deleteUser() {
 		System.out.println("Please enter the id of the User:");
 		// validate id input
-		int id = scannerUtils.inputID(scanner, "ID must be an integer and greater than 0. Please try again");
+		int id = scannerUtils.inputID("ID must be an integer and greater than 0. Please try again");
 		try {
-			userService.deleteUser(connection, id);
+			userService.deleteUser(id);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
@@ -181,20 +179,20 @@ public class UserController  {
 	 * @param connection
 	 * @param scanner
 	 */
-	public void login(Connection connection, Scanner scanner) {
+	public void login() {
 		while(true) {
 			System.out.println("Please enter your email:");
-			String email = scannerUtils.inputString(scanner);
+			String email = scannerUtils.inputString();
 			// validate email input
 			if(RegexUtils.isEmail(email)) {
 				boolean isCorrect = false;
 				while(!isCorrect) {
 					System.out.println("Please enter your password:");
-					String password = scannerUtils.inputString(scanner);
+					String password = scannerUtils.inputString();
 					// validate password input
 					if(RegexUtils.isPassword(password)) {
 						try {
-							userService.login(connection, scanner, email, password);
+							userService.login(email, password);
 							return;
 						} catch (Exception e) {
 							System.err.println(e.getMessage());
@@ -205,7 +203,7 @@ public class UserController  {
 					}
 				}
 			} else {
-				System.err.println("Invalid email domain (abc@domain.xxx.yyy). Please try again!");
+				System.err.println("Invalid email (abc@domain.xxx.yyy). Please try again!");
 			}
 		}
 	}
@@ -225,8 +223,8 @@ public class UserController  {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean isAdmin(Connection connection, String email) throws SQLException {
-		return userService.isAdmin(connection, email);
+	public boolean isAdmin(String email) throws SQLException {
+		return userService.isAdmin(email);
 	}
 
 
@@ -242,26 +240,26 @@ public class UserController  {
 	 * @param connection
 	 * @param fullName
 	 */
-	public void createUser(Connection connection, Scanner scanner) {
+	public void createUser() {
 		while(true) {
 			System.out.println("Please enter your email:");
-			String email = scannerUtils.inputString(scanner);
+			String email = scannerUtils.inputString();
 			// validate email input
 			if(RegexUtils.isEmail(email)) {
 				try {
 					// check if the user is an administrator or not
-					if(!isAdmin(connection, email)) {
+					if(!isAdmin(email)) {
 						System.err.println("The email you entered isn’t connected to an administrator account.");
 					} else {
 						boolean isCorrect = false;
 						while(!isCorrect) {
 							System.out.println("Please enter your password:");
-							String password = scannerUtils.inputString(scanner);
+							String password = scannerUtils.inputString();
 							// validate password input
 							if(RegexUtils.isPassword(password)) {
 								try {
-									userService.login(connection, scanner, email, password);
-									validateUserInfo(connection, scanner);
+									userService.login(email, password);
+									validateUserInfo();
 									isCorrect = true;
 									return;
 								} catch (Exception e) {
@@ -277,7 +275,7 @@ public class UserController  {
 					System.err.println(e.getMessage());
 				}
 			} else {
-				System.err.println("Invalid email domain (abc@domain.xxx.yyy). Please try again!");
+				System.err.println("Invalid email (abc@domain.xxx.yyy). Please try again!");
 			}
 		}
 
@@ -296,29 +294,33 @@ public class UserController  {
 	 * @param scanner
 	 * @throws Exception
 	 */
-	private void validateUserInfo(Connection connection, Scanner scanner) throws Exception {
+	private void validateUserInfo() throws Exception {
 		while(true) {
 			System.out.println("Please enter the name of the user:");
-			String fullName = scannerUtils.inputString(scanner);
+			String fullName = scannerUtils.inputString();
 			// validate full name input
 			if(RegexUtils.isFullname(fullName)) {
 				boolean isCreated = false;
 				while(!isCreated) {
 					System.out.println("Please enter the email of the user:");
-					String email1 = scannerUtils.inputString(scanner);
+					String email1 = scannerUtils.inputString();
 					// validate email input
 					if(RegexUtils.isEmail(email1)) {
-						if(userService.createUser(connection, fullName, email1)) {
+						if(userService.createUser(fullName, email1)) {
 							isCreated = true;
 							return;
 						}
 					}else {
-						System.err.println("Invalid email domain (abc@domain.xxx.yyy). Please try again!");
+						System.err.println("Invalid email (abc@domain.xxx.yyy). Please try again!");
 					}
 				}
 			} else {
 				System.err.println("Invalid Fullname. Fullname must not contain numbers or special characters. Please try again!");
 			}
 		}
+	}
+	
+	public void closeConnection() throws SQLException {
+		userService.closeConnection();
 	}
 }

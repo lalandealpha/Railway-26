@@ -19,11 +19,10 @@ public interface IUserRepostitory {
 	 * @modifer: LuanNT
 	 * @modifer_date: 10 thg 1, 2022
 	 * @param connection
-	 * @param scanner
 	 * @return
 	 * @throws SQLException
 	 */
-	List<User> getUserList(Connection connection, Scanner scanner) throws SQLException;
+	List<User> getUserList() throws SQLException;
 
 	/**
 	 * This method is for printing out all users' information. 
@@ -35,10 +34,9 @@ public interface IUserRepostitory {
 	 * @modifer: LuanNT
 	 * @modifer_date: 10 thg 1, 2022
 	 * @param connection
-	 * @param scanner
 	 * @throws SQLException
 	 */
-	void printUserList(Connection connection, Scanner scanner) throws SQLException;
+	void printUserList() throws SQLException;
 
 	/**
 	 * This method is for getting user's information. 
@@ -50,12 +48,11 @@ public interface IUserRepostitory {
 	 * @modifer: LuanNT
 	 * @modifer_date: 10 thg 1, 2022
 	 * @param connection
-	 * @param scanner
 	 * @param id
 	 * @return boolean
 	 * @throws Exception
 	 */
-	boolean getUserInfo(Connection connection, Scanner scanner, int id) throws Exception;
+	boolean getUserInfo(int id) throws Exception;
 
 	/**
 	 * This method is for checking if user exists or not. 
@@ -71,7 +68,7 @@ public interface IUserRepostitory {
 	 * @return boolean
 	 * @throws SQLException
 	 */
-	boolean isUserExist(Connection connection, int id) throws SQLException;
+	boolean isUserExist(int id) throws SQLException;
 
 	/**
 	 * This method is for checking if user exists or not. 
@@ -87,7 +84,7 @@ public interface IUserRepostitory {
 	 * @return boolean
 	 * @throws SQLException
 	 */
-	boolean isUserExist(Connection connection, String email) throws SQLException;
+	boolean isUserExist(String email) throws SQLException;
 
 	/**
 	 * This method is for checking if user exists or not. 
@@ -102,7 +99,7 @@ public interface IUserRepostitory {
 	 * @param id
 	 * @throws SQLException
 	 */
-	void deleteUser(Connection connection, int id) throws SQLException;
+	void deleteUser(int id) throws SQLException;
 
 	/**
 	 * This method is for logging in. 
@@ -120,7 +117,7 @@ public interface IUserRepostitory {
 	 * @return 
 	 * @throws Exception
 	 */
-	boolean login(Connection connection, Scanner scanner, String email, String password) throws Exception;
+	boolean login(String email, String password) throws Exception;
 
 	/**
 	 * This method is for checking if user is an Administrator or not. 
@@ -136,7 +133,7 @@ public interface IUserRepostitory {
 	 * @return
 	 * @throws SQLException
 	 */
-	boolean isAdmin(Connection connection, String email) throws SQLException;
+	boolean isAdmin(String email) throws SQLException;
 
 	/**
 	 * This method is for creating an user. 
@@ -152,5 +149,18 @@ public interface IUserRepostitory {
 	 * @param email
 	 * @throws Exception
 	 */
-	void createUser(Connection connection, String fullName, String email) throws Exception;
+	void createUser(String fullName, String email) throws Exception;
+	
+	/**
+	 * This method is for closing connection to a database. 
+	 * 
+	 * @Description: .
+	 * @author: LuanNT
+	 * @create_date: 13 thg 1, 2022
+	 * @version: 1.0
+	 * @modifer: LuanNT
+	 * @modifer_date: 13 thg 1, 2022
+	 * @throws SQLException
+	 */
+	void closeConnection() throws SQLException;
 }
