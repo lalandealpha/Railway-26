@@ -55,7 +55,7 @@ public class LastButtonView extends JFrame {
 		jLabel.setFont(font2);
 		
 		JPanel jPanelNumbers = new JPanel();
-		jPanelNumbers.setLayout(new GridLayout(2, 2));
+		jPanelNumbers.setLayout(new GridLayout(2,  2));
 		jPanelNumbers.add(jButtonOne);
 		jPanelNumbers.add(jButtonTwo);
 		jPanelNumbers.add(jButtonThree);
