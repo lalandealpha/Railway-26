@@ -1,0 +1,131 @@
+h1 {
+    margin-left: 100px;
+    color: green;
+    font-size: x-large;
+}
+h2 {
+    margin-left: 180px;
+    padding: 20px;
+}
+h3 {
+    margin-left: 180px;
+    color: rgb(254, 48, 157);
+}
+.bai1 {
+    text-align: center;
+}
+.bai2p1 {
+    text-align: center;
+    color: blue;
+}
+.bai2p2 {
+    text-align: center;
+    color: red;
+}
+.bai2p3 {
+    text-align: center;
+    color: green;
+}
+.dauPhanCach {
+    width: 25%;
+    display:table;
+    margin: 0 auto; 
+    border: 1px solid gray;
+}
+#bai4Absolute1 {
+    width: 180px;
+    position: absolute;
+    padding-left: 0;
+}
+#bai4Absolute2 {
+    position: relative;
+    padding-left: 180px;
+    line-height: 25px;
+}
+#bai4Absolute3 {
+    position: relative;
+    padding-left: 180px;
+}
+#bai5div {
+    background-color: rgb(234, 179, 152);
+    width: 700px;
+    height: 500px;
+    position: relative;
+}
+#bai5title {
+    position: relative;
+    padding-left: 80px;
+    padding-top: 20px;
+    color: rgb(144, 71, 40);
+}
+#bai5image {
+    position: absolute;
+    padding-top: 90px;
+}
+#bai5table {
+    position: absolute;
+    padding-left: 250px;
+}
+
+#bai5div table, td{
+    border:1px solid #868585;
+}
+#bai5div table {
+    width: 400px;
+    height: 350px;
+    border-collapse:collapse;
+}
+#bai5div table tr:nth-child(odd){
+    background-color:rgb(234, 179, 152);
+}
+#bai5div table tr:nth-child(even){
+    background-color:white;
+}
+#bai5div table th {
+    height: 40px;
+    background-color: rgb(144, 71, 40);
+    color: white;
+}
+
+#bai6div table {
+    width: 750px;
+    height: 350px;
+    border-collapse:collapse;
+    border: 1px solid #ff00ea;
+}
+
+#bai6div table th {
+    height: 20px;
+    background-color: rgb(255, 0, 0);
+    border: 1px solid #ff00ea;
+    color: white;
+}
+
+#bai6div table td {
+    border: 1px solid #ff00ea;
+}
+
+.canGiuaO {
+    text-align: center;
+}
+
+#bai7div table {
+    margin-left: 60px;
+    width: 600px;
+    height: 350px;
+    border-collapse:collapse;
+    border: 1px solid;
+    background-color: rgba(55, 237, 61, 0.331);
+}
+
+#bai7div table th {
+    height: 20px;
+    background-color: rgb(255, 0, 0);
+    border: 1px solid;
+    color: white;
+}
+
+#bai7div table td {
+    padding-left: 10px;
+    border: 1px solid;
+}
