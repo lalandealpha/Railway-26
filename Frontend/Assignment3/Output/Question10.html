@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output</title>
+</head>
+<body>
+    <p id="tong"></p>
+    <p id="hieu"></p>
+    <p id="thuong"></p>
+    <p id="chiaLayDu"></p>
+    <script>
+        var num1 = window.prompt("Mời bạn nhập vào số thứ nhất:");
+        var num2 = window.prompt("Mời bạn nhập vào số thứ hai:");
+        if(num1 != null && num2 != null && !isNaN(num1) && !isNaN(num2)) {
+            document.getElementById("tong").innerHTML = "Tổng của hai số là: " + (num1 + num2);
+            document.getElementById("hieu").innerHTML = "Hiệu của hai số là: " + (num1 - num2);
+            document.getElementById("thuong").innerHTML = "Thương của hai số là: " + (num1 / num2);
+            document.getElementById("chiaLayDu").innerHTML = "Số dư khi chia hai số cho nhau là: " + (num1 % num2);
+        } else {
+            document.write("Bạn cần nhập đúng hai số. Bấm F5 để refresh!")
+        }
+    </script>
+</body>
+</html>

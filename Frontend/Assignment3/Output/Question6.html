@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt</title>
+</head>
+<body>
+    <p id="ten"></p>
+    <p id="tuoi"></p>
+    <script>
+       var ten = window.prompt("Nhập vào tên của bạn:");
+       var tuoi = window.prompt("Nhập vào tuổi của bạn:");
+       if(ten != null && tuoi != null) {
+            document.getElementById("ten").innerHTML = "Chào bạn: <b>" + ten + "</b>";
+            document.getElementById("tuoi").innerHTML = "Tuổi của bạn là: " + tuoi;
+       } else {
+        document.getElementById("ten").innerHTML = "Bạn chưa nhập tên hoặc tuổi. Bấm F5 để refresh!";
+       }
+    </script>
+</body>
+</html>

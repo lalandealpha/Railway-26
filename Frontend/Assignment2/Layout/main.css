@@ -1,0 +1,42 @@
+header, section, footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    text-align: center;
+    color: darkblue;
+    font-size: 30px;
+    border: 3px solid;
+}
+body {
+    display: grid;
+    row-gap: 10px;
+    column-gap: 10px;
+    height: 800px;
+    grid-template-rows: 20% 60% 10%; 
+    grid-template-columns: 15% auto 15%;
+    grid-template-areas: 
+    "header header header"
+    "leftSidebar content rightSidebar"
+    "footer footer footer";
+}
+header {
+    grid-area: header;
+    border-color:  pink;
+}
+.leftSidebar {
+    grid-area: leftSidebar;  
+    border-color: blue;
+}
+.content {
+    grid-area: content;  
+    border-color:  red;
+}
+.rightSidebar {
+    grid-area: rightSidebar;  
+    border-color:  yellow;
+}
+footer {
+    grid-area: footer;
+    border-color:  green;
+}
