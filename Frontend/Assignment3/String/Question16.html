@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Methods</title>
+    <style>
+        #string, #button1 {
+            display: inline;
+        }
+        #number, #button2 {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="string" placeholder="Nhập chuỗi:">
+    <input type="button" id="button1" value="Nhập" onclick="function1()">
+    <input type="number" id="number" placeholder="Số ký tự">
+    <input type="button" id="button2" value="Chia" onclick="function2()">
+
+    <p id="output"></p>
+    <script>
+        function function1() {
+            document.getElementById("number").style.display = "inline";
+            document.getElementById("button2").style.display = "inline";
+            document.getElementById("button1").style.display = "none";
+        }
+
+        function function2() {
+            let str = document.getElementById("string").value.trim();
+            let n = document.getElementById("number").value.trim();
+            let result = "";
+            if(n < 0) {
+                result = "Nhập sai. Bấm F5 để nhập lại.";
+            } else {
+                if(n == 0) {
+                    result = str;
+                } else if(str.length % n != 0) {
+                   result = "Không thể chia đều chuỗi thành " + n + " phần bằng nhau."
+                } else if(n == 1) {
+                    result = "Chuỗi đã được chia: <br>";
+                    let strArray = str.split("");
+                    for (const element of strArray) {
+                        result += element + "<br>";
+                    }
+                } else {
+                    result = "Chuỗi đã được chia: <br>";
+                    for (let i = 1; i <= n; i++) {
+                        result += str.slice((i - 1) * n, i * n) + "<br>";
+                    }  
+                }
+            }
+            document.getElementById("output").innerHTML = result;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Methods</title>
+</head>
+<body>
+    <input type="text" id="input1" placeholder="Nhập một chuỗi thứ nhất">
+    <input type="text" id="input2" placeholder="Nhập một chuỗi thứ hai">
+    <input type="button" value="Nối" onclick="checkString()">
+    <p id="output"></p>
+    <script>
+        function concatString() {
+            const input1 = document.getElementById("input1").value;
+            const input2 = document.getElementById("input2").value;
+            const output = input1 + input2;
+            document.getElementById("output").innerHTML = 
+            "Hai chuỗi sau khi gộp lại: " + output;
+        }
+    </script>
+</body>
+</body>
+</html>

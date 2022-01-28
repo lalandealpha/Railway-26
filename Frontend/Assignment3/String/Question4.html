@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Methods</title>
+</head>
+<body>
+    <input type="text" id="input" placeholder="Nhập tên của bạn">
+    <input type="button" value="Nhập" onclick="printChar()">
+    <p id="output"></p>
+    <script>
+        function printChar() {
+            let name = document.getElementById("input").value.trim();
+            let output = "";
+            for (let i = 0; i < name.length; i++) {
+                output += "Ký tự thứ " + (i + 1) + " là: " + 
+                name.charAt(i).toUpperCase() + "<br>";
+            }
+            document.getElementById("output").innerHTML = output;
+        }
+    </script>
+</body>
+</html>

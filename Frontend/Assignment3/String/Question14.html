@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Methods</title>
+</head>
+<body>
+    <input type="text" id="input" placeholder="Nhập một chuỗi bất kỳ">
+    <input type="button" value="Nhập" onclick="replaceChar()">
+    <p id="output"></p>
+    <script>
+        function replaceChar() {
+            let str = document.getElementById("input").value.trim();
+            document.getElementById("output").innerHTML = 
+            "Chuỗi sau khi chỉnh sửa: " + str.replaceAll("e", "*");
+        }
+    </script>
+</body>
+</html>

@@ -35,6 +35,50 @@
             return (/[A-Z]/).test(char)
         }
 
+        // check if input is integer
+        function isInt(n){
+            return !(Number(n) === n && n % 1 === 0);
+        }
+
+        // check if input is float
+
+        function isFloat(n){
+            return !(Number(n) === n && n % 1 !== 0);
+        }
+
+        // check days in moth
+        function daysInMonth (month, year) {
+            return new Date(year, month, 0).getDate();
+        }
+
+        // check if string is white space or not
+        if(element.replaceAll(" ", "").length != 0);
+
+        if (!element.replace(/\s/g, "").length);
+        
+        // First char of word to upper case
+        function getUpperCase(input) {
+            return input.charAt(0).toUpperCase() + input.toLowerCase().slice(1);
+        }
+
+        // Reverse string
+        function reverseString(str) {
+            var newString = "";
+            for (var i = str.length - 1; i >= 0; i--) {
+                newString += str[i];
+            }
+            return newString;
+        }
+
+        // check number of char 'a'
+        // return array 
+        str.match(/a/g).length;
+
+        // check if string contain a number
+        function hasNumber(myString) {
+            return /\d/.test(myString);
+        }
+
     </script>
 </body>
 </html>

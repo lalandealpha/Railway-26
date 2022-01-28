@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Methods</title>
+    <style>
+        #string1, #button1 {
+            display: inline;
+        }
+        #string2, #button2 {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="string1" placeholder="Nhập chuỗi thứ nhất">
+    <input type="button" id="button1" value="Nhập" onclick="function1()">
+    <input type="text" id="string2" placeholder="Nhập chuỗi thứ hai">
+    <input type="button" id="button2" value="Nhập" onclick="function2()">
+
+    <p id="output"></p>
+    <script>
+        function function1() {
+            document.getElementById("string2").style.display = "inline";
+            document.getElementById("button2").style.display = "inline";
+            document.getElementById("button1").style.display = "none";
+        }
+
+        function function2() {
+            let str1 = document.getElementById("string1").value.trim();
+            let str2 = document.getElementById("string2").value.trim();
+            const reversedStr = reverseString(str1);
+            if(str2 == reversedStr) {
+                document.getElementById("output").innerHTML = "Hai chuỗi là đảo ngược của nhau.";
+            } else {
+                document.getElementById("output").innerHTML = "Hai chuỗi không phải là đảo ngược của nhau.";
+            }
+        }
+
+        // Reverse string
+        function reverseString(str) {
+            var newString = "";
+            for (var i = str.length - 1; i >= 0; i--) {
+                newString += str[i];
+            }
+            return newString;
+        }
+    </script>
+</body>
+</html>

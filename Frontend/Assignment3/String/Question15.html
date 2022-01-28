@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Methods</title>
+</head>
+<body>
+    <input type="text" id="input" placeholder="Nhập tên của bạn">
+    <input type="button" value="Nhập" onclick="reverseStr()">
+    <p id="output"></p>
+    <script>
+        function reverseStr() {
+            let s = document.getElementById("input").value.trim();
+            let splitedArray = s.split(" ");
+
+            let output = "";
+            for (let i = splitedArray.length - 1; i >= 0; i--) {
+                output += (splitedArray[i] + " ");
+            }
+            
+            document.getElementById("output").innerHTML = 
+            "Chuỗi sau khi đảo ngược từ: " + output;
+        }
+    </script>
+</body>
+</body>
+</html>

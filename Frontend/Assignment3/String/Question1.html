@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Methods</title>
+</head>
+<body>
+    <input type="text" id="input" placeholder="Nhập một chuỗi bất kỳ">
+    <input type="button" value="Nhập" onclick="check()">
+    <p id="output"></p>
+    <script>
+        function check() {
+            let s = document.getElementById("input").value.trim();
+            let sArray = s.split(" ");
+            let noSpacesArray =[];
+  
+            for(const element of sArray) {
+                if(element.replaceAll(" ", "").length != 0) {
+                    noSpacesArray.push(element);
+                }
+            }
+            document.getElementById("output").innerHTML = 
+            "Bạn vừa nhập một chuỗi có: " + noSpacesArray.length + " từ.";
+        }
+    </script>
+</body>
+</html>

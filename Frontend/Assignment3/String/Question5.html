@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Methods</title>
+    <style>
+        #ho, #buttonHo {
+            display: inline;
+        }
+        #ten, #buttonTen {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="ho" placeholder="Nhập họ của bạn">
+    <input type="button" id="buttonHo" value="Nhập" onclick="function1()">
+    <input type="text" id="ten" placeholder="Nhập tên của bạn">
+    <input type="button" id="buttonTen" value="Nhập" onclick="function2()">
+
+    <p id="output"></p>
+    <script>
+        function function1() {
+            document.getElementById("ten").style.display = "inline";
+            document.getElementById("buttonTen").style.display = "inline";
+            document.getElementById("buttonHo").style.display = "none";
+        }
+
+        function function2() {
+            let ho = document.getElementById("ho").value.trim();
+            let ten = document.getElementById("ten").value.trim()
+            document.getElementById("output").innerHTML = "Tên của bạn là: " + ho + " " + ten;
+        }
+    </script>
+</body>
+</html>

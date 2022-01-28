@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Methods</title>
+</head>
+<body>
+    <input type="text" id="input" placeholder="Nhập tên của bạn">
+    <input type="button" value="Nhập" onclick="checkName()">
+    <p id="outputHo"></p>
+    <p id="outputTendem"></p>
+    <p id="outputTen"></p>
+    <script>
+        function checkName() {
+            let s = document.getElementById("input").value.trim();
+            let splitedArray = s.split(" ");
+            let noSpacesArray =[];
+
+            for(const element of splitedArray) {
+                if(element.replaceAll(" ", "").length != 0) {
+                    noSpacesArray.push(element);
+                }
+            }
+            const ho = capitalize(noSpacesArray[0]);
+            const ten = capitalize(noSpacesArray[noSpacesArray.length - 1]);
+            let tendem = "";
+            for (let i = 1; i < noSpacesArray.length - 1; i++) {
+                tendem += capitalize(noSpacesArray[i]) + " "; 
+            }
+            
+            document.getElementById("outputHo").innerHTML = "Họ là: " + ho;
+            document.getElementById("outputTendem").innerHTML = "Tên đệm là: " + tendem;
+            document.getElementById("outputTen").innerHTML = "Tên là: " + ten;
+        }
+
+        // First char of word to upper case
+        function capitalize(input) {
+            return input.charAt(0).toUpperCase() + input.toLowerCase().slice(1);
+        }
+    </script>
