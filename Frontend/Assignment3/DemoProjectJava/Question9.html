@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Project</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        div {
+            text-align: center;
+            width: 320px;
+            margin: 30px;
+        }
+        table, tr, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            border-collapse: collapse;
+            font-size: 14px;
+            text-align: left;
+            background-color: rgba(250, 235, 215, 0.29);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h3>Đăng ký tài khoản</h3>
+        <form action="">
+            <table>
+                <tr>
+                    <td>Họ tên:</td>
+                    <td>
+                        <input type="text" id="name" required autofocus>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Số điện thoại:</td>
+                    <td>
+                        <input type="text" id="phoneNumber" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <input type="text" id="email" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mật khẩu:</td>
+                    <td>
+                        <input type="password" id="password" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Xác nhận mật khẩu:</td>
+                    <td>
+                        <input type="password" id="passwordConfirm" required>
+                        <br>
+                        <input type="checkbox" onclick="togglePassVisibility()">Hiện mật khẩu
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding-left: 110px;">
+                        <input type="button" value="Đăng ký" onclick="register()">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function register() {
+            let name = document.getElementById("name").value;
+            let phoneNumber = document.getElementById("phoneNumber").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let passwordConfirm = document.getElementById("passwordConfirm").value;
+            const nameRegex = /^([a-zA-Z\s]{5,})$/;
+            const phoneNumberRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+            const emailRegex = /\S+@\S+\.\S+/;
+            const passwordRegex = /^(?=\S+$).{6,12}$/;
+            
+            if(!nameRegex.test(name)) {
+                window.alert("Invalid. Họ tên chỉ chấp nhận chữ cái, ít nhất có 5 ký tự. Vui lòng nhập lại!");
+            } else {
+                if(!phoneNumberRegex.test(phoneNumber)) {
+                    window.alert("Invalid. Số điện thoại không được chứa chữ cái," 
+                        + " ký tự đặc biệt. Số điện thoại được chấp nhận: 'xxx xxx xxxx'. Vui lòng nhập lại!");
+                } else {
+                    if(!emailRegex.test(email)) {
+                        window.alert("Invalid. Email được phép chứa ký tự '-' '.' và chữ số." 
+                            + " Email phải có tên miền. Vui lòng nhập lại!");
+                    } else {
+                        if(!passwordRegex.test(password)) {
+                            window.alert("Invalid. Password phải có ít nhất 6 ký tự. Vui lòng nhập lại!");
+                        } else {
+                            if(password != passwordConfirm) {
+                                window.alert("Mật khẩu nhập lại chưa đúng. Vui lòng nhập lại!");
+                            } else {
+                                window.alert("Đăng ký thành công!");
+                                let result = "Họ và tên: " + name + "<br>"
+                                    + "Số điện thoại: " + phoneNumber + "<br>"
+                                    + "Email: " + email + "<br>"
+                                    + "Password: *********";
+                                document.getElementById("result").innerHTML = result;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // toggle password visibility
+        function togglePassVisibility() {
+            let x = document.getElementById("password");
+            let x2 = document.getElementById("passwordConfirm");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+            if (x2.type === "password") {
+                x2.type = "text";
+            } else {
+                x2.type = "password";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Project</title>
+    <style>
+        table, tr, td {
+            border: 1px groove;
+        }
+        td {
+            height: 30px;
+            width: 100px;
+        }
+        td#tinhToan {
+            padding-left: 45px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Giải phương trình bậc hai: ax<sup>2</sup> + bx + c = 0</h3>
+    <table>
+        <tr>
+            <td>Nhập a:</td>
+            <td>
+                <input type="number" id="numberA" placeholder="a">
+            </td>
+        </tr>
+        <tr>
+            <td>Nhập b:</td>
+            <td>
+                <input type="number" id="numberB" placeholder="b">
+            </td>
+        </tr>
+        <tr>
+            <td>Nhập c:</td>
+            <td>
+                <input type="number" id="numberC" placeholder="c">
+            </td>
+        </tr>
+        <tr>
+            <td id="tinhToan" colspan="2">
+                <input type="button" value="Giải phương trình" onclick="giaiPhuongTrinh()">
+            </td>
+        </tr>
+        <tr>
+            <td>Nghiệm:</td>
+            <td>
+                <input type="text" id="result" placeholder="result" readonly="readonly">
+            </td>
+        </tr>
+    </table>
+
+    <script>
+       function giaiPhuongTrinh() {
+            let a = Number.parseFloat(document.getElementById("numberA").value);
+            let b = Number.parseFloat(document.getElementById("numberB").value);
+            let c = Number.parseFloat(document.getElementById("numberC").value);
+            let delta = Math.pow(b, 2) - 4 * a * c;
+            if(a == 0) {
+                document.getElementById("result").value = "a phải khác 0!"
+            } else {
+                if(delta < 0) {
+                document.getElementById("result").value = "Vô nghiệm!"
+            } else if (delta == 0) {
+                const x = - b / (2 * a);
+                document.getElementById("result").value = "x1 = x2 = " + x;
+            } else {
+                const x1 = ((- b - Math.sqrt(delta)) / (2 * a)).toFixed(2);
+                const x2 = ((- b + Math.sqrt(delta)) / (2 * a)).toFixed(2);
+                document.getElementById("result").value = "x1 = " + x1 + ", x2 = " + x2;
+            }
+            }
+       }
+    </script>
+</body>
+</html>

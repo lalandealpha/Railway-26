@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Project</title>
+    <style>
+        table, tr, td {
+            border: 1px groove;
+        }
+        td {
+            height: 30px;
+        }
+        td#tinhToan {
+            text-align: center;
+        }
+        td.leftCol {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Tính chu vi, diện tích hình chữ nhật</h3>
+    <table>
+        <tr>
+            <td class="leftCol">Nhập chiều dài:</td>
+            <td>
+                <input type="number" id="chieuDai" placeholder="Chiều dài">
+            </td>
+        </tr>
+        <tr>
+            <td class="leftCol">Nhập chiều rộng:</td>
+            <td>
+                <input type="number" id="chieuRong" placeholder="Chiều rộng">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" id="tinhToan">
+                <input type="button" value="Tính toán" onclick="tinhToan()">
+            </td>
+        </tr>
+        <tr>
+            <td  class="leftCol">Chu vi là:</td>
+            <td>
+                <input type="number" id="chuVi" placeholder="Kết quả chu vi" readonly="readonly">
+            </td>
+        </tr>
+        <tr>
+            <td  class="leftCol">Diện tích là:</td>
+            <td>
+                <input type="number" id="dienTich" placeholder="Kết quả diện tích" readonly="readonly">
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        function tinhToan() {
+            let a = Number.parseFloat(document.getElementById("chieuDai").value);
+            let b = Number.parseFloat(document.getElementById("chieuRong").value);
+            tinhChuVi(a, b);
+            tinhDienTich(a, b);
+        }
+        function tinhChuVi(a, b) {
+            document.getElementById("chuVi").value = (a + b) * 2;
+        }
+        function tinhDienTich(a, b) {
+            document.getElementById("dienTich").value = a * b;
+        }
+    </script>
+</body>
+</html>

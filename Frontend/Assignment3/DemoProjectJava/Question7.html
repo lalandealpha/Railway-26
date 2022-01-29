@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Question7.css">
+    <title>Demo Project</title>
+</head>
+<body>
+    <div>
+        <h3>QUẢN LÝ NHÂN VIÊN</h3>
+        <input type="button" value="Danh sách" onclick="getList()">
+        <input type="button" value="Thêm" onclick="addEmp()">
+        <input type="button" value="Xoá" onclick="delEmp()">
+        <input type="button" value="Update" onclick="updateEmp()">
+    </div>
+    <p id="empListP"></p>
+    <div id="addEmpDiv">
+        <p>Thêm nhân viên:</p>
+        <form action="">
+            <table id="addEmpTable">
+                <tr>
+                    <td>Họ tên</td>
+                    <td>
+                        <input type="text" id="addNewName" placeholder="Luan Nguyen" autofocus required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tuổi</td>
+                    <td>
+                        <input type="number" id="addNewAge" placeholder="28" min="18" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>
+                        <input type="email" id="addNewEmail" placeholder="luannt@gmail.com" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Vị trí</td>
+                    <td>
+                        <input type="text" id="addNewJob" placeholder="System Engineer" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" value="Thêm" onclick="confirmAddEmp()">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="delEmpDiv">
+        <p>Nhập tên hoặc email của NV cần xoá:</p>
+        <form action="">
+            <table id="delEmpTable">
+                <tr>
+                    <td>Họ tên</td>
+                    <td>
+                        <input type="text" id="delName" placeholder="Luan Nguyen" autofocus>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>
+                        <input type="email" id="delEmail" placeholder="luannt@gmail.com">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" value="Xoá" onclick="confirmDelEmp()">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="searchEmpDiv">
+        <p>Nhập tên hoặc email của NV cần update:</p>
+        <form action="">
+            <table id="searchEmpTable">
+                <tr>
+                    <td>Họ tên</td>
+                    <td>
+                        <input type="text" id="nameToSearch" placeholder="Luan Nguyen" autofocus>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>
+                        <input type="email" id="emailToSearch" placeholder="luannt@gmail.com">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" value="Tìm" onclick="searchEmp()">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="chooseInfoToUpdateDiv">
+        <span>Chọn mục muốn update:</span>
+        <select name="options" id="options">
+            <option value="name">Tên</option>
+            <option value="age">Tuổi</option>
+            <option value="email">Email</option>
+            <option value="job">Vị trí</option>
+        </select>
+        <input type="button" value="Xác nhận" onclick="updateInfo()">
+    </div>
+    <div id="updateNameDiv">
+        <form action="">
+            <span>Tên mới:</span>
+            <input type="text" id="newNameToUpdate" placeholder="ABC" required autofocus>
+            <input type="button" value="Update" onclick="updateName()">
+        </form>
+    </div>
+    <div id="updateAgeDiv">
+        <form action="">
+            <span>Tuổi mới:</span>
+            <input type="number" id="newAgeToUpdate" placeholder="28" required autofocus>
+            <input type="button" value="Update" onclick="updateAge()">
+        </form>
+    </div>
+    <div id="updateEmailDiv">
+        <form action="">
+            <span>Email mới:</span>
+            <input type="email" id="newEmailToUpdate" placeholder="abc@gmail.com" required autofocus>
+            <input type="button" value="Update" onclick="updateEmail()">
+        </form>
+    </div>
+    <div id="updateJobDiv">
+        <form action="">
+            <span>Vị trí mới:</span>
+            <input type="text" id="newJobToUpdate" placeholder="Worker" required autofocus>
+            <input type="button" value="Update" onclick="updateJob()">
+        </form>
+    </div>
+    <script>
+        function Employee(name, age, email, job) {
+            this.name = name;
+            this.age = age;
+            this.email = email;
+            this.job = job;
+        }
+        let employees = [];
+        employees.push(new Employee("Bernadina Kenner", 38, "bkenner0@reverbnation.com", "Programmer IV"));
+        employees.push(new Employee("Otis Creegan", 40, "ocreegan1@etsy.com", "Engineer II"));
+        employees.push(new Employee("Katrine Di Biagi", 36, "kdi2@ifeng.com", "Data Coordiator"));
+        employees.push(new Employee("Josh Rimer", 33, "jrimer3@furl.net", "Recruiter"));
+        employees.push(new Employee("Clio Tuxwell", 30, "ctuxwell4@columbia.edu", "Staff Accountant I"));
+        employees.push(new Employee("Ezequiel Ciccoloi", 27, "eciccoloi5@com.com", "Web Developer I"));
+        employees.push(new Employee("Payton Marie", 24, "pmarie6@tinypic.com", "Geologist IV"));
+        employees.push(new Employee("Dyane Loughhead", 28, "dloughhead7@goodreads.com", "Office Assistant I"));
+        employees.push(new Employee("Elene Faux", 22, "efaux8@ovh.net", "Payment Adjustment Coordinator"));
+        employees.push(new Employee("Yolanda McCurrie", 30, "ymccurrie9@edublogs.org", "Librarian"));
+
+        function getList() {
+            document.getElementById("addEmpDiv").style.display = "none";
+            document.getElementById("delEmpDiv").style.display = "none";
+            document.getElementById("searchEmpDiv").style.display = "none";
+            document.getElementById("chooseInfoToUpdateDiv").style.display = "none";
+            document.getElementById("updateNameDiv").style.display = "none";
+            document.getElementById("updateAgeDiv").style.display = "none";
+            document.getElementById("updateEmailDiv").style.display = "none";
+            document.getElementById("updateJobDiv").style.display = "none";
+            let result = "Danh sách nhân viên: <br>";
+            result += " <table id='empTableList'> <thead> <tr>" 
+                + " <th>No.</th> <th>Tên NV</th> <th>Tuổi</th> <th>Email</th> <th>Vị trí</th>" 
+                + " </tr></thead> <tbody>";
+               
+            for (let i = 0; i < employees.length; i++) {
+                const element = employees[i];
+                result += "<tr><td>" + (i + 1) + "</td><td>" + element.name 
+                    + "</td><td>" + element.age + "</td><td>" + element.email 
+                    + "</td><td>" + element.job + "</td></tr>";
+            }
+            result += "</tbody></table>";
+            document.getElementById("empListP").innerHTML = result;
+        }
+
+        function addEmp() {
+            document.getElementById("addEmpDiv").style.display = "block";
+            document.getElementById("delEmpDiv").style.display = "none";
+            document.getElementById("searchEmpDiv").style.display = "none";
+            document.getElementById("chooseInfoToUpdateDiv").style.display = "none";
+            document.getElementById("updateNameDiv").style.display = "none";
+            document.getElementById("updateAgeDiv").style.display = "none";
+            document.getElementById("updateEmailDiv").style.display = "none";
+            document.getElementById("updateJobDiv").style.display = "none";
+            document.getElementById("empListP").innerHTML = "";
+        }
+
+        function confirmAddEmp() {
+            let name = document.getElementById("addNewName").value;
+            let age = document.getElementById("addNewAge").value;
+            let email = document.getElementById("addNewEmail").value;
+            let job = document.getElementById("addNewJob").value;
+            employees.push(new Employee(name, age, email, job));
+            window.alert("Thêm thành công! Vui lòng mở danh sách để kiểm tra!");
+        }
+
+        function delEmp() {
+            document.getElementById("delEmpDiv").style.display = "block";
+            document.getElementById("addEmpDiv").style.display = "none";
+            document.getElementById("searchEmpDiv").style.display = "none";
+            document.getElementById("chooseInfoToUpdateDiv").style.display = "none";
+            document.getElementById("updateNameDiv").style.display = "none";
+            document.getElementById("updateAgeDiv").style.display = "none";
+            document.getElementById("updateEmailDiv").style.display = "none";
+            document.getElementById("updateJobDiv").style.display = "none";
+            document.getElementById("empListP").innerHTML = "";
+        }
+
+        function confirmDelEmp() {
+            let name = document.getElementById("delName").value;
+            let email = document.getElementById("delEmail").value;
+            if((name == null && email == null) || (name == undefined && email == undefined) || (name == "" && email == "")) {
+                window.alert("Vui lòng nhập tên hoặc email của nhân viên!");
+            } else {
+                let isDeleted = false;
+                for (let i = 0; i < employees.length; i++) {
+                    const element = employees[i];
+                    if(element.name == name || element.email == email) {
+                        employees.splice(i, 1);
+                        isDeleted = true;
+                        
+                    }
+                }
+                if(isDeleted) {
+                    window.alert("Đã xoá thành công! Vui lòng mở danh sách để kiểm tra!");
+                } else {
+                    window.alert("Không tìm thấy nhân viên!");
+                }
+            }
+        }
+        function updateEmp() {
+            document.getElementById("searchEmpDiv").style.display = "block";
+            document.getElementById("delEmpDiv").style.display = "none";
+            document.getElementById("addEmpDiv").style.display = "none";
+            document.getElementById("chooseInfoToUpdateDiv").style.display = "none";
+            document.getElementById("updateNameDiv").style.display = "none";
+            document.getElementById("updateAgeDiv").style.display = "none";
+            document.getElementById("updateEmailDiv").style.display = "none";
+            document.getElementById("updateJobDiv").style.display = "none";
+            document.getElementById("empListP").innerHTML = "";
+        }
+        function searchEmp() {
+            let name = document.getElementById("nameToSearch").value;
+            let email = document.getElementById("emailToSearch").value;
+            if((name == null && email == null) || (name == undefined && email == undefined) || (name == "" && email == "")) {
+                window.alert("Vui lòng nhập tên hoặc email của nhân viên!");
+            } else {
+                let result = "";
+                for (let i = 0; i < employees.length; i++) {
+                    const element = employees[i];
+                    if(element.name == name || element.email == email) {
+                        result = "Thông tin nhân viên: <br>";
+                        result += " <table id='empTableList'> <thead> <tr>" 
+                            + " <th>No.</th> <th>Tên NV</th> <th>Tuổi</th> <th>Email</th> <th>Vị trí</th>" 
+                            + " </tr></thead> <tbody>"
+                            + "<tr><td>" + (i + 1) + "</td><td>" + element.name 
+                            + "</td><td>" + element.age + "</td><td>" + element.email 
+                            + "</td><td>" + element.job + "</td></tr>" + "</tbody></table>";
+                            document.getElementById("chooseInfoToUpdateDiv").style.display = "block";
+                            document.getElementById("searchEmpDiv").style.display = "none";
+                    } 
+                }
+                if(result == "") {
+                    window.alert("Không tìm thấy nhân viên!");
+                }
+                document.getElementById("empListP").innerHTML = result;
+            }
+        }
+        
+        function updateInfo() {
+            let option = document.getElementById("options").value;
+            switch (option) {
+                case "name":
+                    document.getElementById("updateNameDiv").style.display = "block";
+                    document.getElementById("updateAgeDiv").style.display = "none";
+                    document.getElementById("updateEmailDiv").style.display = "none";
+                    document.getElementById("updateJobDiv").style.display = "none";
+                    document.getElementById("chooseInfoToUpdateDiv").style.display = "none";
+                    break;
+                case "age":
+                    document.getElementById("updateAgeDiv").style.display = "block";
+                    document.getElementById("updateNameDiv").style.display = "none";
+                    document.getElementById("updateEmailDiv").style.display = "none";
+                    document.getElementById("updateJobDiv").style.display = "none";
+                    document.getElementById("chooseInfoToUpdateDiv").style.display = "none";
+                    break;
+                case "email":
+                    document.getElementById("updateEmailDiv").style.display = "block";
+                    document.getElementById("updateNameDiv").style.display = "none";
+                    document.getElementById("updateAgeDiv").style.display = "none";
+                    document.getElementById("updateJobDiv").style.display = "none";
+                    document.getElementById("chooseInfoToUpdateDiv").style.display = "none";
+                    break;
+                default:
+                    document.getElementById("updateJobDiv").style.display = "block";
+                    document.getElementById("updateNameDiv").style.display = "none";
+                    document.getElementById("updateAgeDiv").style.display = "none";
+                    document.getElementById("updateEmailDiv").style.display = "none";
+                    document.getElementById("chooseInfoToUpdateDiv").style.display = "none";
+                    break;
+            }
+        }
+
+        function searchAndReturnEmpIndex(name, email) {
+            for (let i = 0; i < employees.length; i++) {
+                const element = employees[i];
+                if(element.name == name || element.email == email) {
+                    return i;
+                }
+            }
+        }
+
+        function updateName() {
+            let oldName = document.getElementById("nameToSearch").value;
+            let oldEmail = document.getElementById("emailToSearch").value;
+            let empIndex = searchAndReturnEmpIndex(oldName, oldEmail);
+            let newName = document.getElementById("newNameToUpdate").value;
+            for (let i = 0; i < employees.length; i++) {
+                if(i == empIndex) {
+                    employees[i].name = newName;
+                }
+            }
+            window.alert("Update thành công! Vui lòng mở danh sách NV để kiểm tra!");
+        }
+        function updateAge() {
+            let oldName = document.getElementById("nameToSearch").value;
+            let oldEmail = document.getElementById("emailToSearch").value;
+            let empIndex = searchAndReturnEmpIndex(oldName, oldEmail);
+            let newAge = document.getElementById("newAgeToUpdate").value;
+            for (let i = 0; i < employees.length; i++) {
+                if(i == empIndex) {
+                    employees[i].age = newAge;
+                }
+            }
+            window.alert("Update thành công! Vui lòng mở danh sách NV để kiểm tra!");
+        }
+        function updateEmail() {
+            let oldName = document.getElementById("nameToSearch").value;
+            let oldEmail = document.getElementById("emailToSearch").value;
+            let empIndex = searchAndReturnEmpIndex(oldName, oldEmail);
+            let newEmail = document.getElementById("newEmailToUpdate").value;
+            for (let i = 0; i < employees.length; i++) {
+                if(i == empIndex) {
+                    employees[i].email = newEmail;
+                }
+            }
+            window.alert("Update thành công! Vui lòng mở danh sách NV để kiểm tra!");
+        }
+        function updateJob() {
+            let oldName = document.getElementById("nameToSearch").value;
+            let oldEmail = document.getElementById("emailToSearch").value;
+            let empIndex = searchAndReturnEmpIndex(oldName, oldEmail);
+            let newJob = document.getElementById("newJobToUpdate").value;
+            for (let i = 0; i < employees.length; i++) {
+                if(i == empIndex) {
+                    employees[i].job = newJob;
+                }
+            }
+            window.alert("Update thành công! Vui lòng mở danh sách NV để kiểm tra!");
+        }
+    </script>
+</body>
+</html>

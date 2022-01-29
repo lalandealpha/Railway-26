@@ -28,7 +28,7 @@
         }
 
         // regex string
-        function isCharacterALetter(char) {
+        function isCharacterAUpperCaseLetter(char) {
             if(char == null) {
                 return false;
             }
@@ -37,13 +37,13 @@
 
         // check if input is integer
         function isInt(n){
-            return !(Number(n) === n && n % 1 === 0);
+            return Number(n) === n && n % 1 === 0;
         }
 
         // check if input is float
 
         function isFloat(n){
-            return !(Number(n) === n && n % 1 !== 0);
+            return Number(n) === n && n % 1 !== 0;
         }
 
         // check days in moth
@@ -77,6 +77,71 @@
         // check if string contain a number
         function hasNumber(myString) {
             return /\d/.test(myString);
+        }
+
+        // aproximate
+        result = (no1 / no2).toFixed(2);
+
+        // get radio value
+        const gender = displayRadioValue(document.getElementsByName("gender"));
+        function displayRadioValue(element) {
+            for(i = 0; i < element.length; i++) {
+                if(element[i].checked) {
+                   return element[i].value;
+                }
+            }
+        }
+
+        // get checked box value
+        const hobbies = displayCheckboxValue(document.getElementsByName("hobbies"));
+        function displayCheckboxValue(cboxes) {
+            let result = "";
+            for (var i = 0; i < cboxes.length; i++) {
+                if(cboxes[i].checked == true) {
+                    result += cboxes[i].value + ", ";
+                }
+            }
+            return result.slice(0, result.length - 2);
+        }
+
+        // delete element from array
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+        for(let i = 0; i < arr.length; i++){ 
+            if ( arr[i] === 5) { 
+                arr.splice(i, 1); 
+            }
+        }
+        for (let i = 0; i < employees.length; i++) {
+            const element = employees[i];
+            if(element.name == name || element.email == email) {
+                employees.splice(i, 1);
+            }
+        }
+
+        // toggle password visibility
+        function togglePassVisibility() {
+            let x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+
+        // toggle password visibility
+        function togglePassVisibility() {
+            let x = document.getElementById("password");
+            let x2 = document.getElementById("passwordConfirm");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+            if (x2.type === "password") {
+                x2.type = "text";
+            } else {
+                x2.type = "password";
+            }
         }
 
     </script>

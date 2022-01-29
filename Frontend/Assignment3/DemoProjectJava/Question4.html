@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Project</title>
+    <style>
+        table, tr, td {
+            border: 1px groove;
+        }
+        td {
+            height: 30px;
+        }
+        td.leftCol {
+            width: 80px;
+        }
+        td#tinhToan {
+            padding-left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Basic calculation</h3>
+    <table>
+        <tr>
+            <td class="leftCol">Number 1</td>
+            <td>
+                <input type="number" id="number1" placeholder="12">
+            </td>
+        </tr>
+        <tr>
+            <td class="leftCol">Number 2</td>
+            <td>
+                <input type="number" id="number2" placeholder="35">
+            </td>
+        </tr>
+        <tr>
+            <td class="leftCol">Option</td>
+            <td>
+                <select name="options" id="options">
+                    <option value="add">Add</option>
+                    <option value="sub">Sub</option>
+                    <option value="multiply">Multiply</option>
+                    <option value="divide">Devide</option>
+                  </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="leftCol">Result</td>
+            <td>
+                <input type="text" id="result" placeholder="result" readonly="readonly">
+            </td>
+        </tr>
+        <tr>
+            <td id="tinhToan" colspan="2">
+                <input type="button" value="Calculate" onclick="calculate()">
+            </td>
+        </tr>
+    </table>
+
+    <script>
+       function calculate() {
+            let no1 = Number.parseFloat(document.getElementById("number1").value);
+            let no2 = Number.parseFloat(document.getElementById("number2").value);
+            let option = document.getElementById("options").value;
+            let result = 0;
+
+            if(no1 == null || no2 == null) {
+                result = "Wrong input!";
+            } else {
+                switch (option) {
+                case "add":
+                    result = no1 + no2;
+                    break;
+                case "sub":
+                    result = no1 - no2;
+                    break;
+                case "multiply":
+                    result = no1 * no2;
+                    break;
+                default:
+                    if(no2 == 0) {
+                        result = "Can not devide by 0!"
+                    } else {
+                        result = (no1 / no2).toFixed(2);
+                    }
+                    break;
+                }
+            }
+            document.getElementById("result").value = result;
+       }
+
+       function isFloat(n){
+            return Number(n) === n && n % 1 !== 0;
+        }
+    </script>
+</body>
+</html>

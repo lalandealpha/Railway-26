@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Project</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        table, tr, td {
+            border: 1px solid;
+        }
+        div {
+            width: 400px;
+        }
+        table {
+            margin-left: 70px;
+        }
+        p, h3 {
+            text-align: center;
+        }
+        td.leftCol {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h3>Form khảo sát thông tin cá nhân</h3>
+        <table>
+            <tr>
+            <td class="leftCol">Họ tên:</td>
+            <td>
+                <input type="text" id="name" placeholder="Nguyễn Thành Luân">
+            </td>
+            </tr>
+            <tr>
+                <td class="leftCol">Số điện thoại</td>
+                <td>
+                    <input type="number" id="phoneNumber" placeholder="0359827268">
+                </td>
+            </tr>
+            <tr>
+                <td class="leftCol">Giới tính</td>
+                <td>
+                    <input type="radio" name="gender" checked="checked" value="Nam">
+                    <label for="gender">Nam</label>
+                    <input type="radio" name="gender" value="Nữ">
+                    <label for="gender">Nữ</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="leftCol">Sở thích</td>
+                <td>
+                    <input type="checkbox" name="hobbies" value="Nghe nhạc">
+                    <label for="hobbies">Nghe nhạc</label>
+                    <br>
+                    <input type="checkbox" name="hobbies" value="Bóng đá">
+                    <label for="hobbies">Bóng đá</label>
+                    <br>
+                    <input type="checkbox" name="hobbies" value="Du lịch">
+                    <label for="hobbies">Du lịch</label>
+                    <br>
+                    <input type="checkbox" name="hobbies" value="Đọc sách">
+                    <label for="hobbies">Đọc sách</label>
+                </td>
+            </tr>
+        </table>
+        <p>
+            <input type="button" value="Xác nhận" onclick="confirmInfo()">
+        </p>
+    </div>
+
+    <script>
+        function confirmInfo() {
+            const name = document.getElementById("name").value;
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const gender = displayRadioValue(document.getElementsByName("gender"));
+            const hobbies = displayCheckboxValue(document.getElementsByName("hobbies"));
+            let alertMess = "Họ tên: " + name + " | Số điện thoại: " + phoneNumber + 
+            " | Giới tính: " + gender + " | Sở thích: " + hobbies;
+            window.alert(alertMess);
+        }
+
+        // get radio value
+        function displayRadioValue(element) {
+            for(i = 0; i < element.length; i++) {
+                if(element[i].checked) {
+                   return element[i].value;
+                }
+            }
+        }
+
+        // get checked box value
+        function displayCheckboxValue(cboxes) {
+            let result = "";
+            for (var i = 0; i < cboxes.length; i++) {
+                if(cboxes[i].checked == true) {
+                    result += cboxes[i].value + ", ";
+                }
+            }
+            return result.slice(0, result.length - 2);
+        }
+    </script>
+</body>
+</html>
