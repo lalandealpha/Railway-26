@@ -1,56 +1,74 @@
-*{
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 table#empTableList {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 15px;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 15px;
 }
-table#empTableList td, th {
-    border: 1px solid #ddd;
-    padding: 8px;
+table#empTableList td,
+th {
+  border: 1px solid #ddd;
+  padding: 8px;
 }
-#empTableList tr:nth-child(even){background-color: #f2f2f2;}
-#empTableList tr:hover {background-color: #ddd;}
+#empTableList tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+#empTableList tr:hover {
+  background-color: #ddd;
+}
 #empTableList th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #65c604;
-    color: white;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #65c604;
+  color: white;
 }
-table#addEmpTable, #delEmpTable, #searchEmpTable {
-    border: 1px solid #ddd;
-    border-collapse: collapse;
-    font-size: 14px;
+table#addEmpTable,
+#delEmpTable,
+#searchEmpTable {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  font-size: 14px;
 }
-table#addEmpTable td, th {
-    border: 1px solid #ddd;
-    padding: 8px;
-    font-size: 14px;
+table#addEmpTable td,
+th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 14px;
 }
-table#delEmpTable td, th {
-    border: 1px solid #ddd;
-    padding: 8px;
-    font-size: 14px;
+table#delEmpTable td,
+th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 14px;
 }
-table#searchEmpTable td, th {
-    border: 1px solid #ddd;
-    padding: 8px;
-    font-size: 14px;
+table#searchEmpTable td,
+th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 14px;
 }
-table#updateEmpDiv td, th {
-    border: 1px solid #ddd;
-    padding: 8px;
-    font-size: 14px;
+table#updateEmpDiv td,
+th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 14px;
 }
-p, span {
-    font-size: 15px;
+p,
+span {
+  font-size: 15px;
 }
-div#addEmpDiv, #delEmpDiv, #searchEmpDiv, #chooseInfoToUpdateDiv {
-    display: none;
+div#addEmpDiv,
+#delEmpDiv,
+#searchEmpDiv,
+#chooseInfoToUpdateDiv {
+  display: none;
 }
-div#updateNameDiv, #updateAgeDiv, #updateEmailDiv, #updateJobDiv {
-    display: none;
+div#updateNameDiv,
+#updateAgeDiv,
+#updateEmailDiv,
+#updateJobDiv {
+  display: none;
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Question7.css">
     <title>Demo Project</title>
+    
 </head>
 <body>
     <div>
@@ -182,6 +183,10 @@
         }
 
         function addEmp() {
+            document.getElementById("addNewName").value = "";
+            document.getElementById("addNewAge").value = "";
+            document.getElementById("addNewEmail").value = "";
+            document.getElementById("addNewJob").value = "";
             document.getElementById("addEmpDiv").style.display = "block";
             document.getElementById("delEmpDiv").style.display = "none";
             document.getElementById("searchEmpDiv").style.display = "none";
@@ -198,11 +203,19 @@
             let age = document.getElementById("addNewAge").value;
             let email = document.getElementById("addNewEmail").value;
             let job = document.getElementById("addNewJob").value;
-            employees.push(new Employee(name, age, email, job));
-            window.alert("Thêm thành công! Vui lòng mở danh sách để kiểm tra!");
+            if((name == null || email == null || age == null || job == null) 
+                || (name == undefined || email == undefined || age == undefined || job == undefined) 
+                || (name == "" || email == "" || age == "" || job == "")) {
+                window.alert("Vui lòng nhập đầy đủ thông tin của nhân viên!");
+            } else {
+                employees.push(new Employee(name, age, email, job));
+                window.alert("Thêm thành công! Vui lòng mở danh sách để kiểm tra!");
+            }
         }
 
         function delEmp() {
+            document.getElementById("delName").value = "";
+            document.getElementById("delEmail").value = "";
             document.getElementById("delEmpDiv").style.display = "block";
             document.getElementById("addEmpDiv").style.display = "none";
             document.getElementById("searchEmpDiv").style.display = "none";
@@ -237,6 +250,8 @@
             }
         }
         function updateEmp() {
+            document.getElementById("nameToSearch").value = "";
+            document.getElementById("emailToSearch").value = "";
             document.getElementById("searchEmpDiv").style.display = "block";
             document.getElementById("delEmpDiv").style.display = "none";
             document.getElementById("addEmpDiv").style.display = "none";
@@ -279,6 +294,7 @@
             let option = document.getElementById("options").value;
             switch (option) {
                 case "name":
+                    document.getElementById("newNameToUpdate").value = "";
                     document.getElementById("updateNameDiv").style.display = "block";
                     document.getElementById("updateAgeDiv").style.display = "none";
                     document.getElementById("updateEmailDiv").style.display = "none";
@@ -286,6 +302,7 @@
                     document.getElementById("chooseInfoToUpdateDiv").style.display = "none";
                     break;
                 case "age":
+                    document.getElementById("newAgeToUpdate").value = "";
                     document.getElementById("updateAgeDiv").style.display = "block";
                     document.getElementById("updateNameDiv").style.display = "none";
                     document.getElementById("updateEmailDiv").style.display = "none";
@@ -293,6 +310,7 @@
                     document.getElementById("chooseInfoToUpdateDiv").style.display = "none";
                     break;
                 case "email":
+                    document.getElementById("newEmailToUpdate").value = "";
                     document.getElementById("updateEmailDiv").style.display = "block";
                     document.getElementById("updateNameDiv").style.display = "none";
                     document.getElementById("updateAgeDiv").style.display = "none";
@@ -300,6 +318,7 @@
                     document.getElementById("chooseInfoToUpdateDiv").style.display = "none";
                     break;
                 default:
+                    document.getElementById("newJobToUpdate").value = "";
                     document.getElementById("updateJobDiv").style.display = "block";
                     document.getElementById("updateNameDiv").style.display = "none";
                     document.getElementById("updateAgeDiv").style.display = "none";
@@ -323,48 +342,65 @@
             let oldEmail = document.getElementById("emailToSearch").value;
             let empIndex = searchAndReturnEmpIndex(oldName, oldEmail);
             let newName = document.getElementById("newNameToUpdate").value;
-            for (let i = 0; i < employees.length; i++) {
-                if(i == empIndex) {
-                    employees[i].name = newName;
+            if(newName == null || newName == undefined || newName == "") {
+                window.alert("Vui lòng nhập tên của nhân viên!");
+            } else {
+                for (let i = 0; i < employees.length; i++) {
+                    if(i == empIndex) {
+                        employees[i].name = newName;
+                    }
                 }
+                window.alert("Update thành công! Vui lòng mở danh sách NV để kiểm tra!");
             }
-            window.alert("Update thành công! Vui lòng mở danh sách NV để kiểm tra!");
         }
+        
         function updateAge() {
             let oldName = document.getElementById("nameToSearch").value;
             let oldEmail = document.getElementById("emailToSearch").value;
             let empIndex = searchAndReturnEmpIndex(oldName, oldEmail);
             let newAge = document.getElementById("newAgeToUpdate").value;
-            for (let i = 0; i < employees.length; i++) {
-                if(i == empIndex) {
-                    employees[i].age = newAge;
+            if(newAge == null || newAge == undefined || newAge == "") {
+                window.alert("Vui lòng nhập tuổi của nhân viên!");
+            } else {
+                for (let i = 0; i < employees.length; i++) {
+                    if(i == empIndex) {
+                        employees[i].age = newAge;
+                    }
                 }
+                window.alert("Update thành công! Vui lòng mở danh sách NV để kiểm tra!");
             }
-            window.alert("Update thành công! Vui lòng mở danh sách NV để kiểm tra!");
         }
         function updateEmail() {
             let oldName = document.getElementById("nameToSearch").value;
             let oldEmail = document.getElementById("emailToSearch").value;
             let empIndex = searchAndReturnEmpIndex(oldName, oldEmail);
             let newEmail = document.getElementById("newEmailToUpdate").value;
-            for (let i = 0; i < employees.length; i++) {
-                if(i == empIndex) {
-                    employees[i].email = newEmail;
+            if(newEmail == null || newEmail == undefined || newEmail == "") {
+                window.alert("Vui lòng nhập email của nhân viên!");
+            } else {
+                for (let i = 0; i < employees.length; i++) {
+                    if(i == empIndex) {
+                        employees[i].email = newEmail;
+                    }
                 }
+                window.alert("Update thành công! Vui lòng mở danh sách NV để kiểm tra!");
             }
-            window.alert("Update thành công! Vui lòng mở danh sách NV để kiểm tra!");
         }
         function updateJob() {
             let oldName = document.getElementById("nameToSearch").value;
             let oldEmail = document.getElementById("emailToSearch").value;
             let empIndex = searchAndReturnEmpIndex(oldName, oldEmail);
             let newJob = document.getElementById("newJobToUpdate").value;
-            for (let i = 0; i < employees.length; i++) {
-                if(i == empIndex) {
-                    employees[i].job = newJob;
+            if(newJob == null || newJob == undefined || newJob == "") {
+                window.alert("Vui lòng nhập email của nhân viên!");
+            } else {
+                for (let i = 0; i < employees.length; i++) {
+                    if(i == empIndex) {
+                        employees[i].job = newJob;
+                    }
                 }
+                window.alert("Update thành công! Vui lòng mở danh sách NV để kiểm tra!");
             }
-            window.alert("Update thành công! Vui lòng mở danh sách NV để kiểm tra!");
         }
     </script>
 </body>
