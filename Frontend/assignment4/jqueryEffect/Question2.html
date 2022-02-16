@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Effect</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $("a").click(function() {
+                $("p").slideDown();
+            });
+        })
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+            text-align: center;
+        }
+        
+        #main {
+            background-color: rgba(155, 223, 53, 0.653);
+            width: 700px;
+            margin: 50px 100px;
+        }
+        
+        #header {
+            border-bottom: 1px solid rgba(128, 128, 128, 0.64);
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        p {
+            margin: 0;
+            padding: 20px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="header">
+            <a href="#">Click vào đây để học kiếm tiền</a>
+        </div>
+        <p>Ra xã hội làm ăn bươn chải, liều thì ăn nhiều, không liều thì ăn ít. Muốn thành công thì phải trải qua đắng cay ngọt bùi. Làm ăn muốn kiếm được tiền thì phải chấp nhận mạo hiểm, nguy hiểm hơn một tí nhưng trong tầm kiểm soát. Sau này chỉ có làm,
+            chịu khó cần cù bù siêng năng, chỉ có làm thì mới có ăn, những cái loại không làm mà đòi có ăn thì chỉ có ăn backend thôi :v
+        </p>
+    </div>
+</body>
+
+</html>

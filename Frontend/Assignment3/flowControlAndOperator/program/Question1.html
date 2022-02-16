@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program</title>
+</head>
+<body>
+    <p id="result"></p>
+    <script>
+        var result = window.prompt("Nhập vào một số nguyên:");
+        if(result != null && !isNaN(result) && result % 1 === 0) {
+            if(result % 2 == 0) {
+                document.getElementById("result").innerHTML = "Số vừa nhập là số chẵn.";
+            } else {
+                document.getElementById("result").innerHTML = "Số vừa nhập là số lẻ.";
+            }
+        } else {
+            document.write("Bạn cần nhập vào một số nguyên. Bấm F5 để refresh!")
+        }
+    </script>
+</body>
+</html>

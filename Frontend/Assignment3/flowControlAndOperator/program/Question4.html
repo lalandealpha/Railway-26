@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output</title>
+</head>
+<body>
+    <p id="text"></p>
+    <script>
+        var result = window.prompt("Nhập xếp loại học lực của sinh viên: ");
+        if(isCharacterALetter(result)) {
+            switch (result) {
+                case "A":
+                    document.getElementById("text").innerHTML = "Điểm tín chỉ: 4";
+                    break;
+                case "B":
+                    document.getElementById("text").innerHTML = "Điểm tín chỉ: 3";
+                    break;
+                case "C":
+                    document.getElementById("text").innerHTML = "Điểm tín chỉ: 2";
+                    break;
+                case "D":
+                    document.getElementById("text").innerHTML = "Điểm tín chỉ: 1";
+                    break;
+                default:
+                    document.getElementById("text").innerHTML = "Sinh viên này đã thôi học.";
+                    break;
+            }
+        } else {
+            document.getElementById("text").innerHTML = "Bạn chưa nhập đúng. Bấm F5 để nhập lại!";
+        }
+        
+        function isCharacterALetter(char) {
+            if(char == null) {
+                return false;
+            }
+            return (/[A-Z]/).test(char)
+        }
+    </script>
+</body>
+</html>

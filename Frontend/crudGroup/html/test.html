@@ -1,0 +1,10 @@
+<input type="text" placeholder="Enter a name" name="name" id="name" required onkeyup="checkNameExist()">
+<div id="errMess">
+    Group name exists!
+</div>
+<script>
+    function checkNameExist() {
+        var x = document.getElementById("#errMess");
+        x.style.display = "none";
+    }
+</script>

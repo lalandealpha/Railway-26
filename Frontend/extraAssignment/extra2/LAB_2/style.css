@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0px;
+    font-weight: bold;
+}
+
+.menu {
+    height: 50px;
+    background-color: rgb(85, 147, 149);
+}
+
+.banner {
+    height: 450px;
+    background-color: rgba(10, 162, 10, 0.598);
+}
+
+.main {
+    display: flex;
+    height: 200px;
+}
+
+.main-row1-left {
+    width: 33.3%;
+    background-color: brown;
+}
+
+.main-row1-center {
+    width: 33.3%;
+    background-color: lightgray;
+}
+
+.main-row1-right {
+    width: 33.3%;
+    background-color: pink;
+}
+
+.main-row2-left {
+    width: 50%;
+    background-color: green;
+}
+
+.main-row2-right {
+    width: 50%;
+    background-color: blue;
+}
+
+.footer {
+    height: 70px;
+    background-color: violet;
+}

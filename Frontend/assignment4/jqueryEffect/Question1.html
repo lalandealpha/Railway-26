@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Effect</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $("button").click(function() {
+                $(".box1").fadeIn();
+                $(".box2").fadeIn("slow");
+                $(".box3").fadeIn(3000);
+            });
+        })
+    </script>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .box1 {
+            background-color: red;
+        }
+        
+        .box2 {
+            background-color: green;
+        }
+        
+        .box3 {
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Demonstrate faceIn() with different parameters</p>
+    <button>Click to fade in boxes</button>
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Effect</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $("a").click(function() {
+                $("p").slideDown(5000);
+            });
+            $("button").click(function() {
+                $("p").stop().slideDown();
+            });
+        })
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+            color: white;
+        }
+        
+        #main {
+            background-color: rgba(56, 58, 52, 0.653);
+            width: 700px;
+            margin: 0px 100px;
+            text-align: center;
+        }
+        
+        #header {
+            border-bottom: 1px solid rgba(203, 199, 199, 0.921);
+            text-align: center;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        p {
+            margin: 0;
+            padding: 200px;
+            display: none;
+        }
+        
+        button {
+            margin-top: 50px;
+            margin-left: 100px;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <button>Dừng rút tiền</button>
+    <div id="main">
+        <div id="header">
+            <a href="#">Click để rút tiền</a>
+        </div>
+        <p>Đang rút tiền . . .
+        </p>
+    </div>
+</body>
+
+</html>

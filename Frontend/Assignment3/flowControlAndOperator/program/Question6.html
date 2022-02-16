@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output</title>
+</head>
+<body>
+    <p id="text"></p>
+    <script>
+        var x = window.prompt("Nhập số nguyên dương bất kỳ:");
+        var count = 0;
+        if(x != null && isInt(x) && x > 0 && x < 11) {
+            for (let i = 1; i <= x; i++) {
+                if(i % 2 == 0) {
+                    count++;
+                }
+            }
+            document.getElementById("text").innerHTML = "Có " + count + " số chia hết cho 2 trong khoảng [1-" + x +"]";
+        } else {
+            document.getElementById("text").innerHTML = "Bạn chưa nhập đúng. Bấm F5 để nhập lại!";
+        }
+        function isInt(n){
+            return !(Number(n) === n && n % 1 === 0);
+        }
+    </script>
+</body>
+</html>

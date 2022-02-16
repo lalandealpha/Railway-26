@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowControl - If</title>
+</head>
+<body>
+    <script>
+        function Department(id, name) {
+            this.id = id;
+            this.name = name;
+        }
+        var sale = new Department(1, "Sale");
+        var marketting = new Department(2, "Marketting");
+        var departments = [sale, marketting];
+        console.log(sale);
+
+        function Position(id, name) {
+            this.id = id;
+            this.name = name;
+        }
+        var dev = new Position(1, "Dev");
+        var scrumMaster = new Position(2, "Scrum Master");
+        var positions = [dev, scrumMaster];
+        console.log(scrumMaster);
+
+        function Account(id, email, username, fullName, departmentId, 
+        positionId, createDate) {
+            this.id = id;
+            this.email = email;
+            this.username = username;
+            this.fullName = fullName;
+            this.departmentId = departmentId;
+            this.positionId = positionId;
+            this.createDate = createDate;
+        }
+        var employee = new Account(1, "luannt.hanu@gmail.com", "luannt.hanu", 
+        "Luan Nguyễn Thành", 2, 2, new Date("2022-01-25"));
+        console.log(employee);
+
+        function Group(id, name, creatorId, createDate) {
+            this.id = id;
+            this.name = name;
+            this.creatorId = creatorId;
+            this.createDate = createDate;
+        }
+        var group1 = new Group(1, "Group 1", 1, new Date("2022-03-25"));
+        console.log(group1);
+
+        //Question1
+        if(employee.departmentId == null || employee.departmentId == undefined) {
+            console.log("Nhân viên này chưa có phòng ban")
+        } else {
+            var deptNameOfEmployee = "";
+            for(var i = 0; i < departments.length; i++) {
+                if(departments[i].id == employee.departmentId) {
+                    deptNameOfEmployee = departments[i].name;
+                }
+            }
+            console.log("Phòng ban của nhân viên này là: " + deptNameOfEmployee)
+        }
+        
+        // Question3
+        employee.departmentId == null || employee.departmentId == undefined ?
+        console.log("Nhân viên này chưa có phòng ban") : 
+        console.log("Phòng ban của nhân viên này là: " + deptNameOfEmployee);
+
+        //Question4
+        var positionOfEmployee = "";
+        for (var i = 0; i < positions.length; i++) {
+            if(positions[i].id = employee.positionId) {
+                positionOfEmployee = positions[i].name;
+            }
+        }
+        positionOfEmployee === "Dev" ?
+        console.log("Người này là Developer") : 
+        console.log("Người này không phải Developer");
+    </script> 
+</body>
+</html>

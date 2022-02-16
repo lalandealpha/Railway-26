@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+
+.sidebar {
+    width: 70px;
+    height: 100%;
+    text-align: center;
+    border: 1px solid black;
+}
+
+a {
+    border: 1px solid black;
+    font-size: 40px;
+    text-decoration: none;
+    display: block;
+    color: black;
+}
+
+img {
+    width: 70px;
+    height: 70px;
+}
