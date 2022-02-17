@@ -45,3 +45,11 @@ input[type="password"]:focus {
     padding: 5px 10px;
     font-size: 16px;
 }
+
+#deleteModal #delete-confirm-mess {
+    font-size: 15px;
+}
+
+#deleteModal #delete-btn {
+    color: red;
+}

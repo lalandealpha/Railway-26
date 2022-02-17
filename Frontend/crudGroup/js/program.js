@@ -3,7 +3,6 @@ $(function() {
     $(".sidebar").load("sidebar.html");
     $(".main").load("home.html");
     $(".footer").load("footer.html");
-    $(".noti").load("notification.html");
     $(".toast").toast("hide");
 });
 
@@ -148,8 +147,8 @@ function addGroup() {
             return;
         }
         hideAddAndUpdateModal();
-        showSuccessAlert();
-        buildTable();
+        showSuccessSnackBar();
+        refreshGroupList();
     });
 }
 
@@ -201,11 +200,12 @@ function resetForm() {
     document.getElementById("name").value = "";
 }
 
-function showDeleteConfirm() {
-    let result = window.confirm("This action can not be undone. Delete?");
-    if (result) {
-        getCheckedGroup();
-    }
+function showDeleteModal() {
+    $('#deleteModal').modal('show');
+}
+
+function hideshowDeleteModalModal() {
+    $('#deleteModal').modal('hide');
 }
 
 function getCheckedGroup() {
@@ -247,9 +247,10 @@ function deleteGroup(groupNos) {
         });
         console.log(id);
     }
-    showSuccessAlert();
+    hideshowDeleteModalModal();
+    showSuccessSnackBar();
     setTimeout(() => {
-        buildTable();
+        refreshGroupList();
     }, 1000);
 }
 
@@ -262,9 +263,9 @@ function showDetailModal(id) {
         }
     });
     document.getElementById("detail-name").innerHTML = group.name + '<a href="#" onclick="showUpdateModal(' + group.id + ')"><i class="fa-solid fa-pencil"></i></a>';
-    document.getElementById("detail-creator").innerHTML = "Creator:" + group.creator;
-    document.getElementById("detail-createDate").innerHTML = "Create Date:" + group.createDate;
-    document.getElementById("detail-member").innerHTML = "Member:" + group.member;
+    document.getElementById("detail-creator").innerHTML = "Creator: " + group.creator;
+    document.getElementById("detail-createDate").innerHTML = "Create Date: " + group.createDate;
+    document.getElementById("detail-member").innerHTML = "Member: " + group.member;
 }
 
 function showUpdateModal(id) {
@@ -296,9 +297,9 @@ function updateGroup() {
                 alert("Error when loading data");
                 return;
             }
-            showSuccessAlert();
+            showSuccessSnackBar();
             hideAddAndUpdateModal();
-            buildTable();
+            refreshGroupList();
         }
     });
 }
@@ -312,9 +313,13 @@ function save() {
     }
 }
 
-function showSuccessAlert() {
-    $(".toast").toast("show");
-    $(".toast").toast({
-        autohide: true
-    });
+function showSuccessSnackBar() {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar");
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function() { x.className = x.className.replace("show", ""); }, 3000);
 }

@@ -19,7 +19,7 @@
                     <a href="#" data-toggle="tooltip" title="Refresh" onclick="refreshGroupList()">
                         <i class="fas fa-sync"></i>
                     </a>
-                    <a href="#" data-toggle="tooltip" title="Delete" onclick="showDeleteConfirm()">
+                    <a href="#" data-toggle="tooltip" title="Delete" onclick="showDeleteModal()">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                 </div>
@@ -132,6 +132,25 @@
                     <div id="detail-member">
 
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Group detail modal HTML -->
+    <div class="modal fade" id="deleteModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="text-align: center;">Delete Group <i class="fas fa-users"></i></h4>
+                </div>
+                <div class="modal-body" id="delete-confirm-mess">
+                    This action can not be undone. Delete?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="delete-btn" type="button" class="btn btn-default" onclick="getCheckedGroup()">Delete</button>
                 </div>
             </div>
         </div>
