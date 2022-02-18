@@ -157,7 +157,7 @@ function addGroup() {
             return;
         }
         hideAddAndUpdateModal();
-        showSuccessSnackBar("Success! New group created.");
+        showSnackBar("Success! New group created.");
         refreshGroupList();
     });
 }
@@ -228,7 +228,7 @@ function showDeleteModal() {
 
 }
 
-function hideDeleteModalModal() {
+function hideDeleteModal() {
     $('#deleteModal').modal('hide');
 }
 
@@ -242,7 +242,6 @@ function getCheckedGroup() {
         let checkboxValue = $(this).val();
         groupNos.push(checkboxValue);
     });
-
     deleteGroup(groupNos);
 }
 
@@ -256,26 +255,31 @@ function deleteGroup(groupNos) {
             }
         });
     });
-    console.log(groupIds)
-    for (let i = 0; i < groupIds.length; i++) {
-        const id = groupIds[i];
-        $.ajax({
-            url: 'https://61f9d3ca31f9c2001759658e.mockapi.io/groups/' + id,
-            type: 'DELETE',
-            success: function(result) {
-                if (result == undefined || result == null) {
-                    alert("Error when loading data");
-                    return;
+
+
+    deleteGroupAjax(0, groupIds);
+
+}
+
+function deleteGroupAjax(index, groupIds) {
+    $.ajax({
+        url: 'https://61f9d3ca31f9c2001759658e.mockapi.io/groups/' + groupIds[index],
+        type: 'DELETE',
+        success: function(result) {
+            if (result == undefined || result == null) {
+                alert("Error when loading data");
+                return;
+            } else {
+                if (index < groupIds.length - 1) {
+                    deleteGroupAjax(index + 1, groupIds);
+                } else {
+                    hideDeleteModal();
+                    showSnackBar("Success! Group has been deleted.");
+                    refreshGroupList();
                 }
             }
-        });
-        console.log(id);
-    }
-    hideDeleteModalModal();
-    showSuccessSnackBar("Success! Group has been deleted.");
-    setTimeout(() => {
-        refreshGroupList();
-    }, 1000);
+        }
+    });
 }
 
 function showDetailModal(id) {
@@ -321,7 +325,7 @@ function updateGroup() {
                 alert("Error when loading data");
                 return;
             }
-            showSuccessSnackBar("Success! Group name has been updated.");
+            showSnackBar("Success! Group name has been updated.");
             hideAddAndUpdateModal();
             refreshGroupList();
         }
@@ -337,7 +341,7 @@ function save() {
     }
 }
 
-function showSuccessSnackBar(message) {
+function showSnackBar(message) {
     // Get the snackbar DIV
     var x = document.getElementById("snackbar");
 
