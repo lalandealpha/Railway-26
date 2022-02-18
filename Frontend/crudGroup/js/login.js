@@ -36,7 +36,7 @@ function login() {
     let loggedIn = false;
     users.forEach(element => {
         if (username == element.username && password == element.password) {
-            window.location.href = "http://127.0.0.1:5500/Frontend/crudGroup/html/program.html";
+            window.location.href = "http://127.0.0.1:5500/crudGroup/html/program.html";
             loggedIn = true;
         }
     });
