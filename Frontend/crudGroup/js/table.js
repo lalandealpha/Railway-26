@@ -1,3 +1,8 @@
+$(function() {
+    // Activate tooltip
+    $('[data-toggle="tooltip"]').tooltip();
+})
+
 function sort_number() {
     var table = $('#mytable');
     var tbody = $('#table-body');

@@ -34,6 +34,9 @@ function refreshGroupList() {
         '#th-creator .fa-arrow-up-short-wide, #th-creator .fa-arrow-down-short-wide, ' +
         '#th-createDate .fa-arrow-up-short-wide, #th-createDate .fa-arrow-down-short-wide'
     ).css('display', 'none');
+    $(
+        '#number_order, #name_order, #member_order, #creator_order, #createDate_order'
+    ).attr('value', 'asc');
 
     $('#th-number a, #th-number i').css('color', '#000');
     $('#th-name a, #th-name i').css('color', '#000');
@@ -76,7 +79,7 @@ function fillGroupToTable() {
         count++;
         item.no = count;
         $('tbody').append(
-            '<tr ondblclick="showDetailModal(' + item.id + ')"><td><span class="custom-checkbox"><input type="checkbox" id="checkbox' + item.no + '" name="options[]" value="' + item.no + '"><label for="checkbox' + item.no +
+            '<tr data-toggle="tooltip" title="Input anything" ondblclick="showDetailModal(' + item.id + ')"><td><span class="custom-checkbox"><input type="checkbox" id="checkbox' + item.no + '" name="options[]" value="' + item.no + '"><label for="checkbox' + item.no +
             '"></label></span></td><td>' + item.no +
             '</td><td>' + item.name +
             '</td><td>' + item.member +
