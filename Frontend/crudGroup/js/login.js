@@ -1,8 +1,6 @@
-// $(function() {
-//     $("#id01").css('display', 'block');
-// });
-
-document.getElementById('id01').style.display = 'block';
+$(function() {
+    document.getElementById('id01').style.display = 'block';
+})
 
 let users = [];
 
