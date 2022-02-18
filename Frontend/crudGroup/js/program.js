@@ -157,8 +157,7 @@ function addGroup() {
             return;
         }
         hideAddAndUpdateModal();
-        $('#snackbar').html("Success! New group created.");
-        showSuccessSnackBar();
+        showSuccessSnackBar("Success! New group created.");
         refreshGroupList();
     });
 }
@@ -273,8 +272,7 @@ function deleteGroup(groupNos) {
         console.log(id);
     }
     hideDeleteModalModal();
-    $('#snackbar').html("Success! Group has been deleted.");
-    showSuccessSnackBar();
+    showSuccessSnackBar("Success! Group has been deleted.");
     setTimeout(() => {
         refreshGroupList();
     }, 1000);
@@ -323,8 +321,7 @@ function updateGroup() {
                 alert("Error when loading data");
                 return;
             }
-            $('#snackbar').html("Success! Group name has been updated.");
-            showSuccessSnackBar();
+            showSuccessSnackBar("Success! Group name has been updated.");
             hideAddAndUpdateModal();
             refreshGroupList();
         }
@@ -340,9 +337,11 @@ function save() {
     }
 }
 
-function showSuccessSnackBar() {
+function showSuccessSnackBar(message) {
     // Get the snackbar DIV
     var x = document.getElementById("snackbar");
+
+    $('#snackbar').html(message);
 
     // Add the "show" class to DIV
     x.className = "show";
