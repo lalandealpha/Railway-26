@@ -28,18 +28,20 @@ function viewGroupList() {
 function refreshGroupList() {
     buildTable();
     $(
-        '#th-number .fa-arrow-up-short-wide, #th-number .fa-arrow-down-short-wide, ' +
+        '#th-number .fa-arrow-down-short-wide, ' +
         '#th-name .fa-arrow-up-short-wide, #th-name .fa-arrow-down-short-wide, ' +
         '#th-member .fa-arrow-up-short-wide, #th-member .fa-arrow-down-short-wide, ' +
         '#th-creator .fa-arrow-up-short-wide, #th-creator .fa-arrow-down-short-wide, ' +
         '#th-createDate .fa-arrow-up-short-wide, #th-createDate .fa-arrow-down-short-wide'
     ).css('display', 'none');
 
+    $('#th-number .fa-arrow-up-short-wide').css('display', 'inline');
+
     $(
         '#number_order, #name_order, #member_order, #creator_order, #createDate_order'
     ).attr('value', 'asc');
 
-    $('#th-number a, #th-number i').css('color', '#000');
+    $('#th-number a').css('color', '#fe6100');
     $('#th-name a, #th-name i').css('color', '#000');
     $('#th-member a, #th-member i').css('color', '#000');
     $('#th-creator a, #th-creator i').css('color', '#000');
@@ -54,6 +56,7 @@ function Group(id, name, member, creator, createDate) {
     this.member = member;
     this.creator = creator;
     this.createDate = createDate;
+
 }
 
 function getGroupList() {
@@ -209,10 +212,24 @@ function resetForm() {
 }
 
 function showDeleteModal() {
-    $('#deleteModal').modal('show');
+    let checkedBoxs = $(".custom-checkbox input:checked");
+    // console.log(typeof(checkedBoxs));
+    // console.log(checkedBoxs);
+
+    let groupNos = [];
+    checkedBoxs.each(function() {
+        let checkboxValue = $(this).val();
+        groupNos.push(checkboxValue);
+    });
+    if (groupNos.length == 0) {
+        $('#mustCheckToDeleteModal').modal('show');
+    } else {
+        $('#deleteModal').modal('show');
+    }
+
 }
 
-function hideshowDeleteModalModal() {
+function hideDeleteModalModal() {
     $('#deleteModal').modal('hide');
 }
 
@@ -255,7 +272,7 @@ function deleteGroup(groupNos) {
         });
         console.log(id);
     }
-    hideshowDeleteModalModal();
+    hideDeleteModalModal();
     $('#snackbar').html("Success! Group has been deleted.");
     showSuccessSnackBar();
     setTimeout(() => {
