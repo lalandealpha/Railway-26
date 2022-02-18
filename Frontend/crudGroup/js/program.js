@@ -34,6 +34,7 @@ function refreshGroupList() {
         '#th-creator .fa-arrow-up-short-wide, #th-creator .fa-arrow-down-short-wide, ' +
         '#th-createDate .fa-arrow-up-short-wide, #th-createDate .fa-arrow-down-short-wide'
     ).css('display', 'none');
+
     $(
         '#number_order, #name_order, #member_order, #creator_order, #createDate_order'
     ).attr('value', 'asc');
@@ -79,7 +80,7 @@ function fillGroupToTable() {
         count++;
         item.no = count;
         $('tbody').append(
-            '<tr data-toggle="tooltip" title="Input anything" ondblclick="showDetailModal(' + item.id + ')"><td><span class="custom-checkbox"><input type="checkbox" id="checkbox' + item.no + '" name="options[]" value="' + item.no + '"><label for="checkbox' + item.no +
+            '<tr data-toggle="tooltip" title="Double click to edit" ondblclick="showDetailModal(' + item.id + ')"><td><span class="custom-checkbox"><input type="checkbox" id="checkbox' + item.no + '" name="options[]" value="' + item.no + '"><label for="checkbox' + item.no +
             '"></label></span></td><td>' + item.no +
             '</td><td>' + item.name +
             '</td><td>' + item.member +
@@ -107,6 +108,9 @@ function fillGroupToTable() {
             $("#selectAll").prop("checked", false);
         }
     });
+
+    // Activate tooltip
+    $('[data-toggle="tooltip"]').tooltip();
 }
 
 function buildTable() {
@@ -150,6 +154,7 @@ function addGroup() {
             return;
         }
         hideAddAndUpdateModal();
+        $('#snackbar').html("Success! New group created.");
         showSuccessSnackBar();
         refreshGroupList();
     });
@@ -251,6 +256,7 @@ function deleteGroup(groupNos) {
         console.log(id);
     }
     hideshowDeleteModalModal();
+    $('#snackbar').html("Success! Group has been deleted.");
     showSuccessSnackBar();
     setTimeout(() => {
         refreshGroupList();
@@ -300,6 +306,7 @@ function updateGroup() {
                 alert("Error when loading data");
                 return;
             }
+            $('#snackbar').html("Success! Group name has been updated.");
             showSuccessSnackBar();
             hideAddAndUpdateModal();
             refreshGroupList();
