@@ -106,6 +106,7 @@ function fillGroupToTable() {
             });
         }
     });
+
     checkbox.click(function() {
         if (!this.checked) {
             $("#selectAll").prop("checked", false);
