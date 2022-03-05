@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="hibernate" name="Hibernate">
+      <configuration>
+        <datasource-map>
+          <unit-entry name="Assignment_1_Question1_2:src:main:resources:hibernate.cfg.xml" value="5324838d-4a73-408a-a8e2-1c7a91c58e0a" />
+          <unit-entry name="Assignment_1_Question1_2:target:classes:hibernate.cfg.xml" value="d9795f19-2584-4894-b54f-b217ffec3b82" />
+          <unit-entry name="Assignment_1_Question_3:src:main:resources:TestingSystemHibernate.cfg.xml" value="f7f14d16-8441-47b1-b303-24a37b0db262" />
+          <unit-entry name="Assignment_1_Question_3:target:classes:TestingSystemHibernate.cfg.xml" value="84e0ad51-95a3-4335-8de7-9e332caa262d" />
+          <unit-entry name="Assignment_2:src:main:resources:TestingSystemHibernate.cfg.xml" value="b88c0b6a-1ea8-4488-a8d3-55e57b80fcd9" />
+          <unit-entry name="Assignment_2:target:classes:TestingSystemHibernate.cfg.xml" value="67199202-0807-4554-be3f-5236e40689c1" />
+          <unit-entry name="DemoHibernate:src:main:resources:hibernate.cfg.xml" value="b4245dfd-4a89-4c4d-991b-53da56c426ce" />
+          <unit-entry name="DemoHibernate:target:classes:hibernate.cfg.xml" value="634689e1-f7de-4526-b7f6-5d084711f8c3" />
+        </datasource-map>
+        <naming-strategy-map />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/Assignment_1_Question1_2/src/main/resources/hibernate.cfg.xml" />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/Assignment_1_Question1_2/target/classes/hibernate.cfg.xml" />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/Assignment_1_Question_3/src/main/resources/TestingSystemHibernate.cfg.xml" />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/Assignment_1_Question_3/target/classes/TestingSystemHibernate.cfg.xml" />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/Assignment_2/src/main/resources/TestingSystemHibernate.cfg.xml" />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/Assignment_2/target/classes/TestingSystemHibernate.cfg.xml" />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/DemoHibernate/src/main/resources/hibernate.cfg.xml" />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/DemoHibernate/target/classes/hibernate.cfg.xml" />
+      </configuration>
+    </facet>
+    <facet type="web" name="Web">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/Section1/src/main/webapp/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/Section1/src/main/webapp" relative="/" />
+        </webroots>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

@@ -28,20 +28,14 @@ function viewGroupList() {
 function refreshGroupList() {
     buildTable();
     $(
-        '#th-number .fa-arrow-down-short-wide, ' +
+        '#th-number .fa-arrow-up-short-wide, #th-number .fa-arrow-down-short-wide, ' +
         '#th-name .fa-arrow-up-short-wide, #th-name .fa-arrow-down-short-wide, ' +
         '#th-member .fa-arrow-up-short-wide, #th-member .fa-arrow-down-short-wide, ' +
         '#th-creator .fa-arrow-up-short-wide, #th-creator .fa-arrow-down-short-wide, ' +
         '#th-createDate .fa-arrow-up-short-wide, #th-createDate .fa-arrow-down-short-wide'
     ).css('display', 'none');
 
-    $('#th-number .fa-arrow-up-short-wide').css('display', 'inline');
-
-    $(
-        '#number_order, #name_order, #member_order, #creator_order, #createDate_order'
-    ).attr('value', 'asc');
-
-    $('#th-number a').css('color', '#fe6100');
+    $('#th-number a, #th-number i').css('color', '#000');
     $('#th-name a, #th-name i').css('color', '#000');
     $('#th-member a, #th-member i').css('color', '#000');
     $('#th-creator a, #th-creator i').css('color', '#000');
@@ -50,17 +44,16 @@ function refreshGroupList() {
 
 let groups = [];
 
-function Group(id, name, member, creator, createDate) {
+function Group(id, name, memberAmount, creator, createDate) {
     this.id = id;
     this.name = name;
-    this.member = member;
+    this.memberAmount = memberAmount;
     this.creator = creator;
     this.createDate = createDate;
-
 }
 
 function getGroupList() {
-    $.get("https://61f9d3ca31f9c2001759658e.mockapi.io/groups", function(data, status) {
+    $.get("http://localhost:8080/api/v1/groups", function(data, status) {
         if (status == "error") {
             alert("Error when loading data");
             return;
@@ -68,12 +61,14 @@ function getGroupList() {
         groups = [];
         parseData(data);
         fillGroupToTable();
+        // Activate tooltip
+        $('[data-toggle="tooltip"]').tooltip();
     });
 }
 
 function parseData(data) {
     data.forEach(element => {
-        groups.push(new Group(element.id, element.name, element.member, element.creator, element.createDate));
+        groups.push(new Group(element.id, element.name, element.memberAmount, element.creator, element.createDate));
     });
 }
 
@@ -86,7 +81,7 @@ function fillGroupToTable() {
             '<tr data-toggle="tooltip" title="Double click to edit" ondblclick="showDetailModal(' + item.id + ')"><td><span class="custom-checkbox"><input type="checkbox" id="checkbox' + item.no + '" name="options[]" value="' + item.no + '"><label for="checkbox' + item.no +
             '"></label></span></td><td>' + item.no +
             '</td><td>' + item.name +
-            '</td><td>' + item.member +
+            '</td><td>' + item.memberAmount +
             '</td><td>' + item.creator +
             '</td><td>' + item.createDate +
             '</td></tr>'
@@ -106,15 +101,11 @@ function fillGroupToTable() {
             });
         }
     });
-
     checkbox.click(function() {
         if (!this.checked) {
             $("#selectAll").prop("checked", false);
         }
     });
-
-    // Activate tooltip
-    $('[data-toggle="tooltip"]').tooltip();
 }
 
 function buildTable() {
@@ -141,26 +132,45 @@ function showAddGroupModal() {
 
 function addGroup() {
     let name = document.getElementById("name").value;
-    let d = new Date();
-    let month = d.getMonth() + 1;
-    let day = d.getDate();
 
-    let now = d.getFullYear() + '/' + (month < 10 ? '0' : '') + month + '/' + (day < 10 ? '0' : '') + day;
-
-    $.post("https://61f9d3ca31f9c2001759658e.mockapi.io/groups", {
+    let group = {
         name: name,
-        member: 0,
+        memberAmount: 0,
         creator: "NAT",
-        createDate: now
-    }, function(data, status) {
-        if (status == "error") {
-            alert("Error when loading data");
-            return;
+        createDate: new Date()
+    };
+
+    $.ajax({
+        url: 'http://localhost:8080/api/v1/groups',
+        type: 'POST',
+        data: JSON.stringify(group), // body
+        contentType: "application/json", // type of body (json, xml, text)
+        success: function(data, textStatus, xhr) {
+            hideAddAndUpdateModal();
+            showSuccessSnackBar();
+            refreshGroupList();
+        },
+        error(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
         }
-        hideAddAndUpdateModal();
-        showSnackBar("Success! New group created.");
-        refreshGroupList();
     });
+
+    // $.post("http://localhost:8080/api/v1/groups", {
+    //     name: name,
+    //     // member: 0,
+    //     // creator: "NAT",
+    //     // createDate: now
+    // }, function(data, status) {
+    //     if (status == "error") {
+    //         alert("Error when loading data");
+    //         return;
+    //     }
+    //     hideAddAndUpdateModal();
+    //     showSuccessSnackBar();
+    //     refreshGroupList();
+    // });
 }
 
 function checkNameExist() {
@@ -212,24 +222,10 @@ function resetForm() {
 }
 
 function showDeleteModal() {
-    let checkedBoxs = $(".custom-checkbox input:checked");
-    // console.log(typeof(checkedBoxs));
-    // console.log(checkedBoxs);
-
-    let groupNos = [];
-    checkedBoxs.each(function() {
-        let checkboxValue = $(this).val();
-        groupNos.push(checkboxValue);
-    });
-    if (groupNos.length == 0) {
-        $('#mustCheckToDeleteModal').modal('show');
-    } else {
-        $('#deleteModal').modal('show');
-    }
-
+    $('#deleteModal').modal('show');
 }
 
-function hideDeleteModal() {
+function hideshowDeleteModalModal() {
     $('#deleteModal').modal('hide');
 }
 
@@ -243,6 +239,7 @@ function getCheckedGroup() {
         let checkboxValue = $(this).val();
         groupNos.push(checkboxValue);
     });
+
     deleteGroup(groupNos);
 }
 
@@ -256,31 +253,26 @@ function deleteGroup(groupNos) {
             }
         });
     });
-
-
-    deleteGroupAjax(0, groupIds);
-
-}
-
-function deleteGroupAjax(index, groupIds) {
-    $.ajax({
-        url: 'https://61f9d3ca31f9c2001759658e.mockapi.io/groups/' + groupIds[index],
-        type: 'DELETE',
-        success: function(result) {
-            if (result == undefined || result == null) {
-                alert("Error when loading data");
-                return;
-            } else {
-                if (index < groupIds.length - 1) {
-                    deleteGroupAjax(index + 1, groupIds);
-                } else {
-                    hideDeleteModal();
-                    showSnackBar("Success! Group has been deleted.");
-                    refreshGroupList();
+    console.log(groupIds)
+    for (let i = 0; i < groupIds.length; i++) {
+        const id = groupIds[i];
+        $.ajax({
+            url: 'http://localhost:8080/api/v1/groups/' + id,
+            type: 'DELETE',
+            success: function(result) {
+                if (result == undefined || result == null) {
+                    alert("Error when loading data");
+                    return;
                 }
             }
-        }
-    });
+        });
+        console.log(id);
+    }
+    hideshowDeleteModalModal();
+    showSuccessSnackBar();
+    setTimeout(() => {
+        refreshGroupList();
+    }, 1000);
 }
 
 function showDetailModal(id) {
@@ -294,7 +286,7 @@ function showDetailModal(id) {
     document.getElementById("detail-name").innerHTML = group.name + '<a href="#" onclick="showUpdateModal(' + group.id + ')"><i class="fa-solid fa-pencil"></i></a>';
     document.getElementById("detail-creator").innerHTML = "Creator: " + group.creator;
     document.getElementById("detail-createDate").innerHTML = "Create Date: " + group.createDate;
-    document.getElementById("detail-member").innerHTML = "Member: " + group.member;
+    document.getElementById("detail-member").innerHTML = "Member: " + group.memberAmount;
 }
 
 function showUpdateModal(id) {
@@ -315,20 +307,24 @@ function showUpdateModal(id) {
 function updateGroup() {
     let id = document.getElementById("id").value;
     let name = document.getElementById("name").value;
+
+    let group = {
+        name: name
+    }
     $.ajax({
-        url: 'https://61f9d3ca31f9c2001759658e.mockapi.io/groups/' + id,
+        url: 'http://localhost:8080/api/v1/groups/' + id,
         type: 'PUT',
-        data: {
-            name: name
-        },
-        success: function(result) {
-            if (result == undefined || result == null) {
-                alert("Error when loading data");
-                return;
-            }
-            showSnackBar("Success! Group name has been updated.");
+        data: JSON.stringify(group),
+        contentType: "application/json",
+        success: function(data, textStatus, xhr) {
+            showSuccessSnackBar();
             hideAddAndUpdateModal();
             refreshGroupList();
+        },
+        error(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
         }
     });
 }
@@ -342,15 +338,24 @@ function save() {
     }
 }
 
-function showSnackBar(message) {
+function showSuccessSnackBar() {
     // Get the snackbar DIV
     var x = document.getElementById("snackbar");
-
-    $('#snackbar').html(message);
 
     // Add the "show" class to DIV
     x.className = "show";
 
     // After 3 seconds, remove the show class from DIV
     setTimeout(function() { x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function convertDatetimeToDate(datimeInput) {
+    let twoDigitMonth = datimeInput.getMonth() + "";
+    if (twoDigitMonth.length == 1)
+        twoDigitMonth = "0" + twoDigitMonth;
+    let twoDigitDate = datimeInput.getDate() + "";
+    if (twoDigitDate.length == 1)
+        twoDigitDate = "0" + twoDigitDate;
+    let result = twoDigitDate + "/" + twoDigitMonth + "/" + datimeInput.getFullYear();
+    return result;
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="src:main:resources:TestingSystemHibernate.cfg.xml/Hibernate" uuid="d2a7ab79-6c46-4109-853e-4072947aea73">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+/Users/user/Code/Advanced_Java/Assignment_3/src/main/resources/TestingSystemHibernate.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/TestingSystem</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="TestingSystemHibernate.cfg.xml/Hibernate" uuid="4925d56c-ad7e-4719-80b3-5908f75ef93a">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+/Users/user/Code/Advanced_Java/Assignment_4/Assignment_4_Exercise_1/target/classes/TestingSystemHibernate.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/TestingSystem</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="TestingSystemHibernate.cfg.xml/Hibernate" uuid="a73eaa1a-57a9-4b9e-b1f4-a3e6f5500892">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+/Users/user/Code/Advanced_Java/Assignment_4/Assignment_4_Exercise_1/src/main/resources/TestingSystemHibernate.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/TestingSystem</jdbc-url>
+    </data-source>
+  </component>
+</project>

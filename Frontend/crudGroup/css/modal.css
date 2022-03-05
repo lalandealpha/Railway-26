@@ -46,8 +46,7 @@ input[type="password"]:focus {
     font-size: 16px;
 }
 
-#deleteModal #delete-confirm-mess,
-#mustCheckToDeleteModal #must-checkbox-mess {
+#deleteModal #delete-confirm-mess {
     font-size: 15px;
 }
 

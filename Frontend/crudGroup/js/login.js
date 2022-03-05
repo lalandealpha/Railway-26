@@ -1,6 +1,8 @@
-$(function() {
-    document.getElementById('id01').style.display = 'block';
-})
+// $(function() {
+//     $("#id01").css('display', 'block');
+// });
+
+document.getElementById('id01').style.display = 'block';
 
 let users = [];
 
@@ -18,18 +20,6 @@ function getUserList() {
         }
         users = [];
         parseData(data);
-        let password = document.getElementById('password').value;
-        let username = document.getElementById('username').value;
-        let loggedIn = false;
-        users.forEach(element => {
-            if (username == element.username && password == element.password) {
-                window.location.href = "http://127.0.0.1:5500/html/program.html";
-                loggedIn = true;
-            }
-        });
-        if (loggedIn == false) {
-            $('#incorrect-mess').css('display', 'block');
-        }
     });
 }
 
@@ -40,5 +30,17 @@ function parseData(data) {
 }
 
 function login() {
+    let password = document.getElementById('password').value;
+    let username = document.getElementById('username').value;
     getUserList();
+    let loggedIn = false;
+    users.forEach(element => {
+        if (username == element.username && password == element.password) {
+            window.location.href = "http://127.0.0.1:5500/Frontend/crudGroup/html/program.html";
+            loggedIn = true;
+        }
+    });
+    if (loggedIn == false) {
+        $('#incorrect-mess').css('display', 'block');
+    }
 }

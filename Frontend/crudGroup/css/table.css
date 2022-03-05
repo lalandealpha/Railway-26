@@ -35,14 +35,6 @@ th .fa-arrow-down-short-wide {
     display: none;
 }
 
-#th-number a {
-    color: #fe6100;
-}
-
-#th-number .fa-arrow-up-short-wide {
-    display: inline;
-}
-
 .glv-container .glv-table {
     border: 2px solid #000;
 }
