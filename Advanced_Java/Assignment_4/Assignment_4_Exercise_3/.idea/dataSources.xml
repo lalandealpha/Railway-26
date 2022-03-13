@@ -11,5 +11,15 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/TestingSystem</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="TestingSystemHibernate.cfg.xml/Hibernate" uuid="cb4c5646-32bb-492f-be45-61c07342a9d3">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+/Users/user/Code/Advanced_Java/Assignment_4/Assignment_4_Exercise_3/src/main/resources/TestingSystemHibernate.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/TestingSystem</jdbc-url>
+    </data-source>
   </component>
 </project>

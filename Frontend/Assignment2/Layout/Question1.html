@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,29 +9,33 @@
     <style>
         * {
             box-sizing: border-box;
+            padding: 0;
+            margin: 0;
         }
+
         .container {
             display: grid;
-            height: 800px;
+            height: 100vh;
             grid-template-rows: 30% 60% 10%;
             grid-template-columns: 25% 75%;
-            grid-template-areas: 
-            "header header"
-            "menu main"
-            "footer footer";
+            grid-template-areas: "header header" "sidebar main" "footer footer";
         }
+
         .header {
             grid-area: header;
             background: yellow;
         }
-        .menu {
-            grid-area: menu;
-            background: red;
+
+        .sidebar {
+            grid-area: sidebar;
+            background: blue;
         }
+
         .main {
             grid-area: main;
             background: gray;
         }
+
         .footer {
             grid-area: footer;
             background: black;
@@ -38,12 +43,14 @@
     </style>
 
 </head>
+
 <body>
     <div class="container">
         <div class="header"></div>
-        <div class="menu"></div>
+        <div class="sidebar"></div>
         <div class="main"></div>
         <div class="footer"></div>
     </div>
 </body>
+
 </html>

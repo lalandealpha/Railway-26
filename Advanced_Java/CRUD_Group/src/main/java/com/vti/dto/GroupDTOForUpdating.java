@@ -16,7 +16,4 @@ public class GroupDTOForUpdating {
         this.name = name;
     }
 
-    public Group toEntity() {
-        return new Group(name);
-    }
 }

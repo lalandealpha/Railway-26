@@ -44,31 +44,16 @@ function refreshGroupList() {
 
 let groups = [];
 
-function Group(id, name, memberAmount, creator, createDate) {
-    this.id = id;
-    this.name = name;
-    this.memberAmount = memberAmount;
-    this.creator = creator;
-    this.createDate = createDate;
-}
-
 function getGroupList() {
     $.get("http://localhost:8080/api/v1/groups", function(data, status) {
         if (status == "error") {
             alert("Error when loading data");
             return;
         }
-        groups = [];
-        parseData(data);
+        groups = data;
         fillGroupToTable();
         // Activate tooltip
         $('[data-toggle="tooltip"]').tooltip();
-    });
-}
-
-function parseData(data) {
-    data.forEach(element => {
-        groups.push(new Group(element.id, element.name, element.memberAmount, element.creator, element.createDate));
     });
 }
 
@@ -350,12 +335,7 @@ function showSuccessSnackBar() {
 }
 
 function convertDatetimeToDate(datimeInput) {
-    let twoDigitMonth = datimeInput.getMonth() + "";
-    if (twoDigitMonth.length == 1)
-        twoDigitMonth = "0" + twoDigitMonth;
-    let twoDigitDate = datimeInput.getDate() + "";
-    if (twoDigitDate.length == 1)
-        twoDigitDate = "0" + twoDigitDate;
-    let result = twoDigitDate + "/" + twoDigitMonth + "/" + datimeInput.getFullYear();
-    return result;
+    let month = datimeInput.getMonth() + 1;
+    let day = datimeInput.getDate();
+    return datimeInput.getFullYear() + '/' + (month < 10 ? '0' : '') + month + '/' + (day < 10 ? '0' : '') + day;
 }

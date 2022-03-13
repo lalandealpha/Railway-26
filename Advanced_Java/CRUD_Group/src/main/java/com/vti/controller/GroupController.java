@@ -30,6 +30,11 @@ public class GroupController {
         return new ResponseEntity<Group> (service.getGroupByID(id), HttpStatus.OK);
     }
 
+    @GetMapping(value ="/name/{name}/exists")
+    public boolean existsByName(@PathVariable(name = "name") String name) {
+        return service.isGroupExistsByName(name);
+    }
+
     @PostMapping()
     public ResponseEntity<?> createGroup(@RequestBody GroupDTOForCreating dto) {
         service.createGroup(dto.toEntity());
@@ -49,4 +54,5 @@ public class GroupController {
         service.deleteGroup(id);
         return new ResponseEntity<String> ("Delete success!", HttpStatus.OK);
     }
+
 }
