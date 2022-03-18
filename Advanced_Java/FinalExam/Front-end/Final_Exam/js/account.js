@@ -8,10 +8,10 @@ function viewAccountList() {
 
         // Set filter department select
         setDepartmentSelectOptionForFilter();
-    });
 
-    // Refresh account list
-    refreshAccountList()
+        // Refresh account list
+        refreshAccountList();
+    });
 }
 
 function searchAccountByName() {
@@ -77,11 +77,11 @@ function refreshAccountList() {
     // Reset page number
     accountPageNumber = 1;
 
-    buildAccountTable("http://localhost:8080/api/v1/accounts");
-
     // Reset filter
     document.getElementById("filter-role-select").value = "";
     document.getElementById("filter-department-select").value = "";
+
+    buildAccountTable("http://localhost:8080/api/v1/accounts");
 
     resetInputAndSortingValues();
 
@@ -331,9 +331,15 @@ function showAddAccountModal() {
     document.getElementById("account-id").value = "";
     document.getElementById("addAndUpdateAccount-modal-title").innerHTML = "Create New Account";
 
+    // Disable Username, First name, Last name input
+    $("#modal-username").prop('disabled', false);
+    $("#modal-first-name").prop('disabled', false);
+    $("#modal-last-name").prop('disabled', false);
+
+
 }
 
-function setDepartmentSelectOptionForModal() {
+function setDepartmentSelectOptionForModal(id) {
     let option = '<option value="PickADepartment" disabled selected>- Pick a department -</option>';
     $.get("http://localhost:8080/api/v1/departments", function(data, status) {
         if (status == "error") {
@@ -346,6 +352,13 @@ function setDepartmentSelectOptionForModal() {
         });
         // console.log(departments);
         document.getElementById('modal-department-select').innerHTML = option;
+
+        document.getElementById("account-id").value = id;
+        accounts.forEach(element => {
+            if (element.id == id) {
+                document.getElementById("modal-department-select").value = element.departmentName;
+            }
+        });
     });
 }
 
@@ -354,6 +367,15 @@ function addAccount() {
     let firstName = document.getElementById("modal-first-name").value;
     let lastName = document.getElementById("modal-last-name").value;
     let role = document.getElementById("modal-role-select").value;
+    if (role == "Admin") {
+        role = "ADMIN";
+    }
+    if (role == "Employee") {
+        role = "EMPLOYEE";
+    }
+    if (role == "Manager") {
+        role == "MANAGER";
+    }
     let departmentName = document.getElementById("modal-department-select").value;
 
     // Custom input box Css
@@ -372,32 +394,41 @@ function addAccount() {
     if (!isAccountEmptySelection(departmentName)) {
         document.getElementById('modal-department-select').style.border = "1px solid #ccc";
     }
-    if (validateAccountInputForm(username, firstName, lastName, role, departmentName)) {
-        let account = {
-            username: username,
-            password: username + '0000',
-            firstName: firstName,
-            lastName: lastName,
-            role: role,
-            departmentName: departmentName
-        };
 
-        $.ajax({
-            url: 'https://61f9d3ca31f9c2001759658e.mockapi.io/accounts',
-            type: 'POST',
-            data: JSON.stringify(account), // body
-            contentType: "application/json", // type of body (json, xml, text)
-            success: function(data, textStatus, xhr) {
-                hideaddAndUpdateAcccountModal();
-                showSuccessSnackBar("Success! New account created!");
-                refreshAccountList();
-            },
-            error(jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR);
-                console.log(textStatus);
-                console.log(errorThrown);
+    if (validateAccountInputForm(username, firstName, lastName, role, departmentName)) {
+
+        $.get("http://localhost:8080/api/v1/departments/name/" + departmentName, function(data, status) {
+            if (status == "error") {
+                alert("Error when loading data");
+                return;
             }
+
+            let account = {
+                username: username,
+                firstName: firstName,
+                lastName: lastName,
+                role: role,
+                departmentId: data.id
+            };
+
+            $.ajax({
+                url: 'http://localhost:8080/api/v1/accounts',
+                type: 'POST',
+                data: JSON.stringify(account), // body
+                contentType: "application/json", // type of body (json, xml, text)
+                success: function(data, textStatus, xhr) {
+                    hideaddAndUpdateAcccountModal();
+                    showSuccessSnackBar("Success! New account created!");
+                    refreshAccountList();
+                },
+                error(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
         });
+
     }
 }
 
@@ -405,6 +436,8 @@ function validateAccountInputForm(username, firstName, lastName, role, departmen
     // console.log('isEmtry ' + isAccountEmptyInput(username));
     // console.log('regex ' + isUsernameRegex(username));
     // console.log('exist ' + isAccountUsernameExist(username));
+    // console.log(isAccountEmptySelection(departmentName));
+    // console.log(isAccountEmptySelection(role))
     if (!(isAccountEmptyInput(username) || isAccountEmptyInput(firstName) || isAccountEmptyInput(lastName) || isAccountEmptySelection(role) || isAccountEmptySelection(departmentName))) {
         if (isUsernameRegex(username)) {
             if (isFirstNameAndLastNameRegex(firstName)) {
@@ -418,13 +451,13 @@ function validateAccountInputForm(username, firstName, lastName, role, departmen
                         return false;
                     };
                 } else {
-                    document.getElementById('modal-input-errMess').innerHTML = "First name or last name cannot contain spaces, numbers or special characters";
+                    document.getElementById('modal-input-errMess').innerHTML = "Last name or last name cannot contain numbers or special characters";
                     document.getElementById('modal-input-errMess').style.display = "block";
                     document.getElementById('modal-last-name').style.border = "1px solid red";
                     return false;
                 }
             } else {
-                document.getElementById('modal-input-errMess').innerHTML = "First name or last name cannot contain spaces, numbers or special characters";
+                document.getElementById('modal-input-errMess').innerHTML = "First name or last name cannot contain numbers or special characters";
                 document.getElementById('modal-input-errMess').style.display = "block";
                 document.getElementById('modal-first-name').style.border = "1px solid red";
                 return false;
@@ -458,8 +491,12 @@ function validateAccountInputForm(username, firstName, lastName, role, departmen
 }
 
 function isAccountUsernameExist(username) {
-    // Call API
-    return false;
+    $.get("http://localhost:8080/api/v1/accounts/username/" + username + "/exists", function(data, status) {
+        if (status == "error") {
+            alert("Error when loading data");
+            return data;
+        }
+    });
 }
 
 function isUsernameRegex(username) {
@@ -468,7 +505,7 @@ function isUsernameRegex(username) {
 }
 
 function isFirstNameAndLastNameRegex(name) {
-    let regex = new RegExp('^[a-zA-Z]+$');
+    let regex = new RegExp('^[a-zA-Z\\s]+$');
     return regex.test(name);
 }
 
@@ -521,73 +558,66 @@ function showUpdateAccountModal(id) {
 
 
     // Set department select option
-    setDepartmentSelectOptionForModal();
-
-    // setDepartmentSelectionOptionForUpdateModal(function() {
+    setDepartmentSelectOptionForModal(id);
 
     document.getElementById("account-id").value = id;
+
     accounts.forEach(element => {
         if (element.id == id) {
             document.getElementById("modal-username").value = element.username;
             document.getElementById("modal-first-name").value = element.firstName;
             document.getElementById("modal-last-name").value = element.lastName;
             document.getElementById("modal-role-select").value = element.role;
-            document.getElementById("modal-department-select").value = element.departmentName;
-            // console.log(element.departmentName);
+
         }
     });
-    // })
-    document.getElementById("addAndUpdateAccount-modal-title").innerHTML = "Update Account";
-}
 
-function setDepartmentSelectionOptionForUpdateModal(callback) {
-    setDepartmentSelectOptionForModal();
-    callback();
+    document.getElementById("addAndUpdateAccount-modal-title").innerHTML = "Update Account";
 }
 
 function updateAccount() {
     let id = document.getElementById("account-id").value;
-    let username = document.getElementById("modal-username").value;
-    let firstName = document.getElementById("modal-first-name").value;
-    let lastName = document.getElementById("modal-last-name").value;
+    console.log(id);
+
     let role = document.getElementById("modal-role-select").value;
+    if (role == "Admin") {
+        role = "ADMIN";
+    }
+    if (role == "Employee") {
+        role = "EMPLOYEE";
+    }
+    if (role == "Manager") {
+        role == "MANAGER";
+    }
     let departmentName = document.getElementById("modal-department-select").value;
 
     accounts.forEach(account => {
-        if (account.id == id && account.username == username && account.firstName == firstName &&
-            account.lastName == lastName && account.role == role && account.departmentName == departmentName) {
+        if (account.id == id && account.role == role && account.departmentName == departmentName) {
             showSuccessSnackBar("Success! Account updated.");
             hideaddAndUpdateAcccountModal();
             refreshAccountList();
         }
     })
 
-    if (!isAccountEmptyInput(username)) {
-        document.getElementById('modal-username').style.border = "none";
-    }
-    if (!isAccountEmptyInput(firstName)) {
-        document.getElementById('modal-first-name').style.border = "none";
-    }
-    if (!isAccountEmptyInput(lastName)) {
-        document.getElementById('modal-last-name').style.border = "none";
-    }
-    if (!isAccountEmptySelection(role)) {
-        document.getElementById('modal-role-select').style.border = "1px solid #ccc";
-    }
-    if (!isAccountEmptySelection(departmentName)) {
-        document.getElementById('modal-department-select').style.border = "1px solid #ccc";
-    }
+    // if (!isAccountEmptySelection(role)) {
+    //     document.getElementById('modal-role-select').style.border = "1px solid #ccc";
+    // }
+    // if (!isAccountEmptySelection(departmentName)) {
+    //     document.getElementById('modal-department-select').style.border = "1px solid #ccc";
+    // }
 
-    if (validateAccountInputForm(username, firstName, lastName, role, departmentName)) {
+    $.get("http://localhost:8080/api/v1/departments/name/" + departmentName, function(data, status) {
+        if (status == "error") {
+            alert("Error when loading data");
+            return;
+        }
+
         let account = {
-            username: username,
-            firstName: firstName,
-            lastName: lastName,
             role: role,
-            departmentName: departmentName
+            departmentId: data.id
         }
         $.ajax({
-            url: 'https://61f9d3ca31f9c2001759658e.mockapi.io/accounts/' + id,
+            url: 'http://localhost:8080/api/v1/accounts/' + id,
             type: 'PUT',
             data: JSON.stringify(account),
             contentType: "application/json",
@@ -602,12 +632,16 @@ function updateAccount() {
                 console.log(errorThrown);
             }
         });
-    }
+    });
+
+
+
 }
 
 function saveAccount() {
     let id = document.getElementById("account-id").value;
-    if (id == null || id == "") {
+    console.log(id);
+    if (id == null || id == "" || id == undefined) {
         addAccount();
     } else {
         updateAccount();
@@ -615,7 +649,7 @@ function saveAccount() {
 }
 
 function getAccountById(id) {
-    $.get("https://61f9d3ca31f9c2001759658e.mockapi.io/accounts/" + id, function(data, status) {
+    $.get("http://localhost:8080/api/v1/accounts/" + id, function(data, status) {
         if (status == "error") {
             alert("Error when loading data");
             return;
@@ -633,6 +667,7 @@ function showDeleteSingleAccountModal(id) {
     getAccountById(id);
     document.getElementById('delete-single-account-id').value = id;
     singleAccountId = id;
+    console.log(singleAccountId);
 }
 
 function hideDeleteSingleAccountModal() {
@@ -642,19 +677,20 @@ function hideDeleteSingleAccountModal() {
 function deleteSingleAccount() {
     const id = singleAccountId;
     $.ajax({
-        url: 'https://61f9d3ca31f9c2001759658e.mockapi.io/accounts/' + id,
+        url: 'http://localhost:8080/api/v1/accounts/' + id,
         type: 'DELETE',
         success: function(result) {
             if (result == undefined || result == null) {
                 alert("Error when loading data");
                 return;
             }
+            refreshAccountList();
         }
     });
 
     hideDeleteSingleAccountModal();
     showSuccessSnackBar("Success! Account deleted.");
-    refreshAccountList();
+
 }
 
 function showDeleteMultipleAccountsModal() {
@@ -678,7 +714,7 @@ function getCheckedAccount() {
         accountNos.push(checkboxValue);
     });
 
-    console.log(accountNos);
+    // console.log(accountNos);
     // console.log(accounts);
 
     //Reset delete confirm message
@@ -698,7 +734,7 @@ function getCheckedAccount() {
                 }
             });
         });
-        // console.log(accountIds);
+        console.log(accountIds);
 
         document.getElementById('delete-accounts-confirm-mess').innerHTML = 'This action can not be undone. Delete <span id="user-fullName-delete-message"></span>?';
         for (let i = 0; i < accountIds.length; i++) {
@@ -725,7 +761,7 @@ function deleteMultipleAccounts() {
         for (let i = 0; i < accountIds.length; i++) {
             const id = accountIds[i];
             $.ajax({
-                url: 'https://61f9d3ca31f9c2001759658e.mockapi.io/accounts/' + id,
+                url: 'http://localhost:8080/api/v1/accounts/' + id,
                 type: 'DELETE',
                 success: function(result) {
                     if (result == undefined || result == null) {

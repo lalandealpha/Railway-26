@@ -91,26 +91,6 @@ function buildDepartmentTable() {
     getDepartmentList("http://localhost:8080/api/v1/departments");
 }
 
-// function buildDepartmentTableByMaxDate(maxDate) {
-//     $('tbody').empty();
-//     getDepartmentListByMaxDate(maxDate);
-// }
-
-// function buildDepartmentTableByMinDateAndMaxDate(minDate, maxDate) {
-//     $('tbody').empty();
-//     getDepartmentListByByMinDateAndMaxDate(minDate, maxDate);
-// }
-
-// function buildDepartmentTableByMaxDateAndType(maxDate, type) {
-//     $('tbody').empty();
-//     getDepartmentListByMaxDateAndType(maxDate, type);
-// }
-
-// function buildDepartmentTableByMinDateAndMaxDateAndType(minDate, maxDate, type) {
-//     $('tbody').empty();
-//     getDepartmentListByMinDateAndMaxDateAndType(minDate, maxDate, type);
-// }
-
 
 function getDepartmentList(apiLink) {
     $.get(apiLink, function(data, status) {
@@ -127,89 +107,6 @@ function getDepartmentList(apiLink) {
     });
 }
 
-// function getDepartmentListByMaxDate(maxDate) {
-//     $.get("https://61f9d3ca31f9c2001759658e.mockapi.io/departments/2", function(data, status) {
-//         if (status == "error") {
-//             alert("Error when loading data");
-//             return;
-//         }
-
-//         departments = [];
-
-//         if (Array.isArray(data)) {
-//             departments = data;
-//         } else {
-//             filterDepartmentSingleResult = data;
-//         }
-
-//         fillDepartmentToTable();
-//         // Activate tooltip
-//         $('[data-toggle="tooltip"]').tooltip();
-//     });
-// }
-
-// function getDepartmentListByByMinDateAndMaxDate(minDate, maxDate) {
-//     $.get("https://61f9d3ca31f9c2001759658e.mockapi.io/departments/3", function(data, status) {
-//         if (status == "error") {
-//             alert("Error when loading data");
-//             return;
-//         }
-
-//         departments = [];
-
-//         if (Array.isArray(data)) {
-//             departments = data;
-//         } else {
-//             filterDepartmentSingleResult = data;
-//         }
-
-//         fillDepartmentToTable();
-//         // Activate tooltip
-//         $('[data-toggle="tooltip"]').tooltip();
-//     });
-// }
-
-// function getDepartmentListByMaxDateAndType(maxDate, type) {
-//     $.get("https://61f9d3ca31f9c2001759658e.mockapi.io/departments/4", function(data, status) {
-//         if (status == "error") {
-//             alert("Error when loading data");
-//             return;
-//         }
-
-//         departments = [];
-
-//         if (Array.isArray(data)) {
-//             departments = data;
-//         } else {
-//             filterDepartmentSingleResult = data;
-//         }
-
-//         fillDepartmentToTable();
-//         // Activate tooltip
-//         $('[data-toggle="tooltip"]').tooltip();
-//     });
-// }
-
-// function getDepartmentListByMinDateAndMaxDateAndType(minDate, maxDate, type) {
-//     $.get("https://61f9d3ca31f9c2001759658e.mockapi.io/departments/5", function(data, status) {
-//         if (status == "error") {
-//             alert("Error when loading data");
-//             return;
-//         }
-
-//         departments = [];
-
-//         if (Array.isArray(data)) {
-//             departments = data;
-//         } else {
-//             filterDepartmentSingleResult = data;
-//         }
-
-//         fillDepartmentToTable();
-//         // Activate tooltip
-//         $('[data-toggle="tooltip"]').tooltip();
-//     });
-// }
 
 function fillDepartmentToTable(data) {
     let departmentCount = 0;
@@ -591,24 +488,7 @@ function getCheckedDepartment() {
 
             document.getElementById('delete-departments-confirm-mess').innerHTML = 'This action can not be undone. Delete these (<span style="color: red;">' + departmentIds.length + '</span>) departments?';
 
-            // document.getElementById('delete-departments-confirm-mess').innerHTML = 'This action can not be undone. Delete <span id="department-name-delete-message"></span>?';
-            // for (let i = 0; i < departmentIds.length; i++) {
-            //     const id = departmentIds[i];
-            //     for (let j = 0; j < departments.length; j++) {
-            //         if (id == departments[j].id) {
-            //             if (i != (departmentIds.length - 1)) {
-            //                 document.getElementById('department-name-delete-message').innerHTML += '<span style="color: red;">' + departments[j].name + '</span>, ';
-            //             } else {
-            //                 document.getElementById('department-name-delete-message').innerHTML += '<span style="color: red;">' + departments[j].name + '</span>';
-            //             }
-            //         };
-            //     }
-            // }
         }
-        // else {
-        //     document.getElementById('delete-multiple-departments-btn').style.display = 'inline-block';
-        //     document.getElementById('delete-departments-confirm-mess').innerHTML = 'This action can not be undone. Delete <span id="department-name-delete-message" style="color: red;">' + filterDepartmentSingleResult.name + '</span>?';
-        // }
     }
 }
 
@@ -642,38 +522,6 @@ function deleteMultipleDepartments() {
     showSuccessSnackBar(snackbarMessage);
     refreshDepartmentList();
 }
-
-// function deleteDepartment(departmentNos) {
-//     let departmentIds = [];
-
-//     departmentNos.forEach(departmentNos => {
-//         departmentNos.forEach(element => {
-//             if (element.no == departmentNos) {
-//                 departmentNos.push(element.id);
-//             }
-//         });
-//     });
-//     console.log(departmentIds)
-//     for (let i = 0; i < departmentIds.length; i++) {
-//         const id = departmentIds[i];
-//         $.ajax({
-//             url: 'http://localhost:8080/api/v1/groups/' + id,
-//             type: 'DELETE',
-//             success: function(result) {
-//                 if (result == undefined || result == null) {
-//                     alert("Error when loading data");
-//                     return;
-//                 }
-//             }
-//         });
-//         console.log(id);
-//     }
-//     hideshowDeleteModalModal();
-//     showSuccessSnackBar();
-//     setTimeout(() => {
-//         refreshDepartmentList();
-//     }, 1000);
-// }
 
 function showAddAccountsToDepartmentModal(id) {
     $('#addAccountsToDepartmentModal').modal('show');

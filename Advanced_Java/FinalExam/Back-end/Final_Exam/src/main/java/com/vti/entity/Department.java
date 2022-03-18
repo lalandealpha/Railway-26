@@ -16,7 +16,6 @@ import java.util.List;
 @Table(name = "Department")
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class Department implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -26,11 +25,7 @@ public class Department implements Serializable {
     private int id;
 
     @Column(name = "DepartmentName", length = 50, nullable = false, unique = true, updatable = false)
-    @NonNull
     private String name;
-
-//    @NonNull
-//    private int totalMember;
 
     @Column(name = "DepartmentType", nullable = false)
     @Convert(converter = DepartmentTypeConverter.class)
@@ -41,7 +36,7 @@ public class Department implements Serializable {
     @CreationTimestamp
     private Date createDate;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department", cascade = {CascadeType.ALL})
     private List<Account> accounts;
 
     public enum Type {
@@ -66,6 +61,13 @@ public class Department implements Serializable {
             return null;
         }
 
+    }
+
+    @PreRemove
+    public void preRemove() {
+        for (Account account : accounts) {
+            account.setDepartment(null);
+        }
     }
 
 }

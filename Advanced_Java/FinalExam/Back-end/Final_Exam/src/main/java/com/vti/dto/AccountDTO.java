@@ -17,6 +17,6 @@ public class AccountDTO {
 
     private String role;
 
-    private String DepartmentName;
+    private String departmentName;
 
 }

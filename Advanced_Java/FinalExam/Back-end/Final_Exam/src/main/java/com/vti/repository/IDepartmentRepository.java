@@ -1,6 +1,5 @@
 package com.vti.repository;
 
-import com.vti.entity.Account;
 import com.vti.entity.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -11,7 +10,10 @@ public interface IDepartmentRepository extends JpaRepository<Department, Integer
     boolean existsDepartmentByName(String name);
 
     @Query(value = "SELECT COUNT(*) FROM `Account` JOIN Department " +
+            "ON `Account`.DepartmentID = Department.DepartmentID " +
             "WHERE `Account`.DepartmentID = :DepartmentID " +
             "GROUP BY Department.DepartmentID", nativeQuery = true)
-    int getDepartmentTotalMemberById(@Param("DepartmentID") int id);
+    Integer getDepartmentTotalMemberById(@Param("DepartmentID") int id);
+
+    Department findByName(String name);
 }

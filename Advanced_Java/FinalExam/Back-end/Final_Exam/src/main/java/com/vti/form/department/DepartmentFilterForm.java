@@ -10,17 +10,12 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 public class DepartmentFilterForm {
-
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date createdDate;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date minCreatedDate;
+	private Date minCreateDate;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date maxCreatedDate;
-
-	private Integer minYear;
+	private Date maxCreateDate;
 	
 	private Department.Type type;
 

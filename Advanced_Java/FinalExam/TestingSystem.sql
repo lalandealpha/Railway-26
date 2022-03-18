@@ -22,7 +22,7 @@ CREATE TABLE `Account`(
     FirstName				NVARCHAR(50) NOT NULL,
     LastName				NVARCHAR(50) NOT NULL,
     `Role` 					ENUM('Admin','Employee','Manager') NOT NULL DEFAULT 'Employee',
-    DepartmentID 			INT UNSIGNED NOT NULL,
+    DepartmentID 			INT UNSIGNED,
     FOREIGN KEY(DepartmentID) REFERENCES Department(DepartmentID)
 );
 
@@ -41,7 +41,8 @@ VALUES
 						(N'Phó giám đốc',		'PM', 			NOW()		),
 						(N'Giám đốc'	,		'Test', 		'2019-10-14'),
 						(N'Thư kí'		,		'PM', 			'2020-12-22'),
-						(N'Bán hàng'	,		'Dev', 			'2021-08-26');
+						(N'Bán hàng'	,		'Dev', 			'2021-08-26'),
+						(N'Hành chính'	,		'Test', 		'2020-11-01');
                     
 -- Add data Account
 -- Password: 123456
@@ -141,7 +142,7 @@ insert into `Account` (AccountID, Username, `Password`, FirstName, LastName, `Ro
 insert into `Account` (AccountID, Username, `Password`, FirstName, LastName, `Role`, DepartmentID) values (94, 'bcordeix2l', '5LjEsujNU6', 'Barnard', 'Cordeix', 'Manager', 2);
 insert into `Account` (AccountID, Username, `Password`, FirstName, LastName, `Role`, DepartmentID) values (95, 'bdismore2m', 'JSbfr8HXp', 'Beck', 'Dismore', 'Employee', 6);
 insert into `Account` (AccountID, Username, `Password`, FirstName, LastName, `Role`, DepartmentID) values (96, 'tstruthers2n', 'ceA7rYXNX', 'Truman', 'Struthers', 'Manager', 4);
-insert into `Account` (AccountID, Username, `Password`, FirstName, LastName, `Role`, DepartmentID) values (97, 'bogilvie2o', 'VRwnkGD8i', 'Benny', 'Ogilvie', 'Employee', 10);
-insert into `Account` (AccountID, Username, `Password`, FirstName, LastName, `Role`, DepartmentID) values (98, 'emcginley2p', 'iobaEI', 'Earlie', 'McGinley', 'Admin', 8);
-insert into `Account` (AccountID, Username, `Password`, FirstName, LastName, `Role`, DepartmentID) values (99, 'lbeeson2q', 'EwXnaOJ', 'Laird', 'Beeson', 'Employee', 9);
-insert into `Account` (AccountID, Username, `Password`, FirstName, LastName, `Role`, DepartmentID) values (100, 'tjiras2r', 'IDw40gY', 'Trumaine', 'Jiras', 'Manager', 1);
+-- insert into `Account` (AccountID, Username, `Password`, FirstName, LastName, `Role`, DepartmentID) values (97, 'bogilvie2o', 'VRwnkGD8i', 'Benny', 'Ogilvie', 'Employee', 10);
+-- insert into `Account` (AccountID, Username, `Password`, FirstName, LastName, `Role`, DepartmentID) values (98, 'emcginley2p', 'iobaEI', 'Earlie', 'McGinley', 'Admin', 8);
+-- insert into `Account` (AccountID, Username, `Password`, FirstName, LastName, `Role`, DepartmentID) values (99, 'lbeeson2q', 'EwXnaOJ', 'Laird', 'Beeson', 'Employee', 9);
+-- insert into `Account` (AccountID, Username, `Password`, FirstName, LastName, `Role`, DepartmentID) values (100, 'tjiras2r', 'IDw40gY', 'Trumaine', 'Jiras', 'Manager', 1);

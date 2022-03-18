@@ -6,6 +6,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.Formula;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,7 +14,6 @@ import java.io.Serializable;
 @Table(name = "`Account`")
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class Account implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -23,19 +23,15 @@ public class Account implements Serializable {
     private int id;
 
     @Column(name = "Username", length = 18, nullable = false, unique = true, updatable = false)
-    @NonNull
     private String username;
 
     @Column(name = "`Password`", length = 12, nullable = false)
-    @NonNull
     private String password;
 
     @Column(name = "FirstName", length = 50, nullable = false, updatable = false)
-    @NonNull
     private String firstName;
 
     @Column(name = "LastName", length = 50, nullable = false, updatable = false)
-    @NonNull
     private String lastName;
 
     @Formula("CONCAT(FirstName, ' ', LastName)")
@@ -43,12 +39,10 @@ public class Account implements Serializable {
 
     @Column(name = "`Role`", nullable = false)
     @Convert(converter = AccountRoleConverter.class)
-    @NonNull
     private Role role;
 
-    @ManyToOne
-    @JoinColumn(name = "DepartmentID", nullable = false)
-    @NonNull
+    @ManyToOne()
+    @JoinColumn(name = "DepartmentID")
     private Department department;
 
     public enum Role {
@@ -71,6 +65,18 @@ public class Account implements Serializable {
                 }
             }
             return null;
+        }
+
+    }
+
+    @PrePersist
+    public void prePersist() {
+        if(this.role == null) {
+            role = Role.EMPLOYEE;
+        }
+
+        if(password == null) {
+            password = "123456";
         }
     }
 

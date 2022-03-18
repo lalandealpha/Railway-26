@@ -12,56 +12,47 @@ import java.util.Date;
 
 public class DepartmentSpecification {
 
+	private static String formatSearch(String search) {
+		search = search.trim();
+
+		while (search.contains("  ")) {
+			search = search.replace("  ", " ");
+		}
+
+		return search;
+	}
+
 	@SuppressWarnings("deprecation")
 	public static Specification<Department> buildWhere(String search, DepartmentFilterForm filterForm) {
 		
 		Specification<Department> where = null;
 		
 		if (!StringUtils.isEmpty(search)) {
-			search = search.trim();
-			CustomSpecification username = new CustomSpecification("username", search);
-			where = Specification.where(username);
+			search = formatSearch(search);
+			CustomSpecification name = new CustomSpecification("name", search);
+			where = Specification.where(name);
 		}
+
 		// if there is filter by min created date
-		if (filterForm != null && filterForm.getCreatedDate() != null) {
-			CustomSpecification createdDate = new CustomSpecification("createdDate", filterForm.getCreatedDate());
+		if (filterForm != null && filterForm.getMinCreateDate() != null) {
+			CustomSpecification minCreateDate = new CustomSpecification("minCreateDate", filterForm.getMinCreateDate());
 			if (where == null) {
-				where = createdDate;
+				where = minCreateDate;
 			} else {
-				where = where.and(createdDate);
-			}
-		}
-				
-		// if there is filter by min created date
-		if (filterForm != null && filterForm.getMinCreatedDate() != null) {
-			CustomSpecification minCreatedDate = new CustomSpecification("minCreatedDate", filterForm.getMinCreatedDate());
-			if (where == null) {
-				where = minCreatedDate;
-			} else {
-				where = where.and(minCreatedDate);
+				where = where.and(minCreateDate);
 			}
 		}		
 				
 		// if there is filter by max created date
-		if (filterForm != null && filterForm.getMaxCreatedDate() != null) {
-			CustomSpecification maxCreatedDate = new CustomSpecification("maxCreatedDate", filterForm.getMaxCreatedDate());
+		if (filterForm != null && filterForm.getMaxCreateDate() != null) {
+			CustomSpecification maxCreateDate = new CustomSpecification("maxCreateDate", filterForm.getMaxCreateDate());
 			if (where == null) {
-				where = maxCreatedDate;
+				where = maxCreateDate;
 			} else {
-				where = where.and(maxCreatedDate);
+				where = where.and(maxCreateDate);
 			}
 		}
-				
-		// if there is filter by min year
-		if (filterForm != null && filterForm.getMinYear() != null) {
-			CustomSpecification minYear = new CustomSpecification("minYear", filterForm.getMinYear());
-			if (where == null) {
-				where = minYear;
-			} else {
-				where = where.and(minYear);
-			}
-		}
-		
+
 		// if there is filter by type
 		if (filterForm != null && filterForm.getType() != null) {
 			CustomSpecification type = new CustomSpecification("type", filterForm.getType());
@@ -92,33 +83,21 @@ class CustomSpecification implements Specification<Department> {
 			CriteriaQuery<?> query, 
 			CriteriaBuilder criteriaBuilder) {
 
-		if (field.equalsIgnoreCase("username")) {
-			Join join = root.join("accounts", JoinType.LEFT);
-			return criteriaBuilder.like(join.get("username"), "%" + value.toString() + "%");
+		if (field.equalsIgnoreCase("name")) {
+			return criteriaBuilder.like(root.get("name"), "%" + value.toString() + "%");
 		}
 		
-		if (field.equalsIgnoreCase("createdDate")) {
-			return criteriaBuilder.equal(
-					root.get("createdDate").as(java.sql.Date.class),
-					(Date) value);
-		}
 		
-		if (field.equalsIgnoreCase("minCreatedDate")) {
+		if (field.equalsIgnoreCase("minCreateDate")) {
 			return criteriaBuilder.greaterThanOrEqualTo(
-					root.get("createdDate").as(java.sql.Date.class),
+					root.get("createDate").as(java.sql.Date.class),
 					(Date) value);
 		}
 	
-		if (field.equalsIgnoreCase("maxCreatedDate")) {
+		if (field.equalsIgnoreCase("maxCreateDate")) {
 			return criteriaBuilder.lessThanOrEqualTo(
-					root.get("createdDate").as(java.sql.Date.class),
+					root.get("createDate").as(java.sql.Date.class),
 					(Date) value);
-		}
-		
-		if (field.equalsIgnoreCase("minYear")) {
-			return criteriaBuilder.greaterThanOrEqualTo(
-					criteriaBuilder.function("YEAR", Integer.class, root.get("createdDate")),
-					(Integer) value);
 		}
 		
 		if (field.equalsIgnoreCase("type")) {

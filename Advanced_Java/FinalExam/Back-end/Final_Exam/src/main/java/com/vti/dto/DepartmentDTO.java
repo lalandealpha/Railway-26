@@ -28,7 +28,7 @@ public class DepartmentDTO {
 
     @Data
     @NoArgsConstructor
-    public static class AccountDTO {
+    private static class AccountDTO {
 
         private int id;
 

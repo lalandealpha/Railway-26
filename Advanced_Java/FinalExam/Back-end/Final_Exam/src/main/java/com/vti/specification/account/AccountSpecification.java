@@ -14,13 +14,23 @@ import javax.persistence.criteria.Root;
 
 public class AccountSpecification {
 
+	private static String formatSearch(String search) {
+		search = search.trim();
+
+		while (search.contains("  ")) {
+			search = search.replace("  ", " ");
+		}
+
+		return search;
+	}
+
 	@SuppressWarnings("deprecation")
 	public static Specification<Account> buildWhere(String search, AccountFilterForm filterForm) {
 		
 		Specification<Account> where = null;
 		
 		if (!StringUtils.isEmpty(search)) {
-			search = search.trim();
+			search = formatSearch(search);
 			CustomSpecification username = new CustomSpecification("username", search);
 			CustomSpecification firstName = new CustomSpecification("firstName", search);
 			CustomSpecification lastName = new CustomSpecification("lastName", search);

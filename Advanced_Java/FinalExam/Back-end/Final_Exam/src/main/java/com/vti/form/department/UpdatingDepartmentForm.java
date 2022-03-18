@@ -1,5 +1,6 @@
 package com.vti.form.department;
 
+import com.vti.entity.Department;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,11 +9,7 @@ import lombok.NoArgsConstructor;
 public class UpdatingDepartmentForm {
 
 	private int id;
-	
-	private String name;
 
-	private int totalMember;
-
-	private String type;
+	private Department.Type type;
 
 }

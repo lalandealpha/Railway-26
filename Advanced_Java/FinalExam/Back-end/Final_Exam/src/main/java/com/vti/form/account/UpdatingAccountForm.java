@@ -6,11 +6,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class AccountFilterForm {
+public class UpdatingAccountForm {
 
+	private int id;
+	
 	private Account.Role role;
 
-	private String departmentName;
+	private int departmentId;
 
 }
-

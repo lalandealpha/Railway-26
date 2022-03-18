@@ -84,7 +84,7 @@ function sortByAccountFullName() {
         $('#th-full-name .fa-sort-up').css('display', 'none');
         $('#th-full-name .fa-sort-down').css('display', 'inline');
 
-        let apiLink = "http://localhost:8080/api/v1/accounts?sort=firstName,desc";
+        let apiLink = "http://localhost:8080/api/v1/accounts?sort=fullName,desc";
 
         let name = $("#search-account-input").val();
         if (name != "") {
@@ -108,7 +108,7 @@ function sortByAccountFullName() {
         $('#th-full-name .fa-sort-up').css('display', 'inline');
         $('#th-full-name .fa-sort-down').css('display', 'none');
 
-        let apiLink = "http://localhost:8080/api/v1/accounts?sort=firstName,asc";
+        let apiLink = "http://localhost:8080/api/v1/accounts?sort=fullName,asc";
 
         let name = $("#search-account-input").val();
         if (name != "") {
