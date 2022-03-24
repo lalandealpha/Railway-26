@@ -18,7 +18,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/v1/accounts")
-@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class AccountController {
 
     @Autowired
@@ -56,6 +55,21 @@ public class AccountController {
         return service.isAccountExistsByUsername(username);
     }
 
+    @GetMapping(value = "/nullDepartment")
+    public Page<AccountDTO> getAccountsByDepartmentIsNull(Pageable pageable) {
+
+        Page<Account> entityPages = service.getAccountsByDepartmentIsNull(pageable);
+
+        // convert entities --> dtos
+        List<AccountDTO> dtos = modelMapper.map(
+                entityPages.getContent(),
+                new TypeToken<List<AccountDTO>>() {}.getType());
+
+        Page<AccountDTO> dtoPages = new PageImpl<>(dtos, pageable, entityPages.getTotalElements());
+
+        return dtoPages;
+    }
+
     @PostMapping()
     public void createAccount(@RequestBody CreatingAccountForm form) {
         service.createAccount(form);
@@ -69,6 +83,11 @@ public class AccountController {
     @DeleteMapping(value = "/{id}")
     public void deleteAccount(@PathVariable(name = "id") int id) {
         service.deleteAccount(id);
+    }
+
+    @DeleteMapping
+    public void deleteAccounts(@RequestParam(name = "ids") List<Integer> ids) {
+        service.deleteAccounts(ids);
     }
 
 }

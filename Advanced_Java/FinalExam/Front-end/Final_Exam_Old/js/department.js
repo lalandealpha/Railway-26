@@ -8,10 +8,10 @@ function viewDepartmentList() {
 
         // Set filter date min max value
         setDateValueForFilter();
-    });
 
-    // Build table
-    buildDepartmentTable();
+        // Build table
+        buildDepartmentTable("http://localhost:8080/api/v1/departments");
+    });
 
     // Reset page number
     departmentPageNumber = 1;
@@ -19,16 +19,29 @@ function viewDepartmentList() {
 
 function searchDepartmentByName() {
     $("#search-department-input").on("keyup", function(event) {
+        let apiLink = "http://localhost:8080/api/v1/departments?";
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
             let name = $(this).val();
-            if (name == "") {
-                // Show snack bar
-
-            } else {
-                // Call API
-                console.log("get department")
+            if (name != "") {
+                apiLink = apiLink + "&search=" + name;
             }
+
+            let minDate = document.getElementById('filter-min-date-select').value;
+            let maxDate = document.getElementById('filter-max-date-select').value;
+            let type = document.getElementById('filter-type-select').value;
+
+            if (minDate != "") {
+                apiLink = apiLink + "&minCreateDate=" + minDate;
+            }
+            if (maxDate != "") {
+                apiLink = apiLink + "&maxCreateDate=" + maxDate;
+            }
+            if (type != "") {
+                apiLink = apiLink + "&type=" + type;
+            }
+
+            buildDepartmentTable(apiLink);
 
         }
     });
@@ -42,21 +55,29 @@ function setDateValueForFilter() {
 }
 
 function filterDepartment() {
+
+    let apiLink = "http://localhost:8080/api/v1/departments?";
+
+    let name = document.getElementById('search-department-input').value;
     let minDate = document.getElementById('filter-min-date-select').value;
     let maxDate = document.getElementById('filter-max-date-select').value;
     let type = document.getElementById('filter-type-select').value;
-    if (maxDate == "") {
-        maxDate = maxDate = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+
+    if (name != "") {
+        apiLink = apiLink + "&search=" + name;
     }
-    // if (minDate == "" && type == "") {
-    //     buildDepartmentTableByMaxDate(maxDate);
-    // } else if (minDate != "" && type == "") {
-    //     buildDepartmentTableByMinDateAndMaxDate(minDate, maxDate);
-    // } else if (minDate == "" && type != "") {
-    //     buildDepartmentTableByMaxDateAndType(maxDate, type);
-    // } else {
-    //     buildDepartmentTableByMinDateAndMaxDateAndType(minDate, maxDate, type);
-    // }
+
+    if (minDate != "") {
+        apiLink = apiLink + "&minCreateDate=" + minDate;
+    }
+    if (maxDate != "") {
+        apiLink = apiLink + "&maxCreateDate=" + maxDate;
+    }
+    if (type != "") {
+        apiLink = apiLink + "&type=" + type;
+    }
+
+    buildDepartmentTable(apiLink);
 }
 
 function refreshDepartmentList() {
@@ -87,8 +108,8 @@ function Department(id, name, totalMember, type, createDate) {
     this.createDate = createDate;
 }
 
-function buildDepartmentTable() {
-    getDepartmentList("http://localhost:8080/api/v1/departments");
+function buildDepartmentTable(apiLink) {
+    getDepartmentList(apiLink);
 }
 
 

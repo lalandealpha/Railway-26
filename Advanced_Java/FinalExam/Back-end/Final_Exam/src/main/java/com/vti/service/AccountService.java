@@ -16,10 +16,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class AccountService implements IAccountService {
 
     @Autowired
@@ -40,6 +42,11 @@ public class AccountService implements IAccountService {
     @Override
     public List<Account> getAccountList() {
         return repository.findAll();
+    }
+
+    @Override
+    public Page<Account> getAccountsByDepartmentIsNull(Pageable pageable) {
+        return repository.getAccountsByDepartmentIsNull(pageable);
     }
 
     @Override
@@ -106,5 +113,10 @@ public class AccountService implements IAccountService {
     @Override
     public boolean isAccountExistsByUsername(String username) {
         return repository.existsAccountByUsername(username);
+    }
+
+    @Override
+    public void deleteAccounts(List<Integer> ids) {
+        repository.deleteByIds(ids);
     }
 }

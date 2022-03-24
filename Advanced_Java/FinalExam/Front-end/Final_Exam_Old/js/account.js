@@ -325,6 +325,8 @@ function hideaddAndUpdateAcccountModal() {
 }
 
 function showAddAccountModal() {
+
+    console.log("Show Add");
     resetAccountForm();
     setDepartmentSelectOptionForModal();
     showAddAndUpdateAcccountModal();
@@ -451,13 +453,13 @@ function validateAccountInputForm(username, firstName, lastName, role, departmen
                         return false;
                     };
                 } else {
-                    document.getElementById('modal-input-errMess').innerHTML = "Last name or last name cannot contain numbers or special characters";
+                    document.getElementById('modal-input-errMess').innerHTML = "Last name cannot contain numbers or special characters";
                     document.getElementById('modal-input-errMess').style.display = "block";
                     document.getElementById('modal-last-name').style.border = "1px solid red";
                     return false;
                 }
             } else {
-                document.getElementById('modal-input-errMess').innerHTML = "First name or last name cannot contain numbers or special characters";
+                document.getElementById('modal-input-errMess').innerHTML = "First name cannot contain numbers or special characters";
                 document.getElementById('modal-input-errMess').style.display = "block";
                 document.getElementById('modal-first-name').style.border = "1px solid red";
                 return false;
@@ -490,12 +492,15 @@ function validateAccountInputForm(username, firstName, lastName, role, departmen
     }
 }
 
+let isAccExists = false;
+
 function isAccountUsernameExist(username) {
+    console.log(1);
     $.get("http://localhost:8080/api/v1/accounts/username/" + username + "/exists", function(data, status) {
         if (status == "error") {
             alert("Error when loading data");
-            return data;
         }
+        isAccExists = data;
     });
 }
 
@@ -545,6 +550,9 @@ function resetAccountModalErrMessage() {
 }
 
 function showUpdateAccountModal(id) {
+
+    console.log("Show Update");
+
     // Reset error message
     resetAccountModalErrMessage();
 
@@ -641,7 +649,7 @@ function updateAccount() {
 function saveAccount() {
     let id = document.getElementById("account-id").value;
     console.log(id);
-    if (id == null || id == "" || id == undefined) {
+    if (id == null || id == "" || id == "undefined") {
         addAccount();
     } else {
         updateAccount();

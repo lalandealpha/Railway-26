@@ -1,9 +1,11 @@
 package com.vti.service;
 
+import com.vti.entity.Account;
 import com.vti.entity.Department;
 import com.vti.form.department.CreatingDepartmentForm;
 import com.vti.form.department.DepartmentFilterForm;
 import com.vti.form.department.UpdatingDepartmentForm;
+import com.vti.repository.IAccountRepository;
 import com.vti.repository.IDepartmentRepository;
 import com.vti.specification.department.DepartmentSpecification;
 import org.modelmapper.ModelMapper;
@@ -15,7 +17,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DepartmentService implements IDepartmentService {
@@ -24,27 +28,30 @@ public class DepartmentService implements IDepartmentService {
     private ModelMapper modelMapper;
 
     @Autowired
-    private IDepartmentRepository repository;
+    private IDepartmentRepository departmentRepository;
+
+    @Autowired
+    private IAccountRepository accountRepository;
 
     @Override
     public Page<Department> getAllDepartments(Pageable pageable, String search, DepartmentFilterForm filterForm) {
         Specification<Department> where = DepartmentSpecification.buildWhere(search, filterForm);
-        return repository.findAll(where, pageable);
+        return departmentRepository.findAll(where, pageable);
     }
 
     @Override
     public List<Department> getDepartmentList() {
-        return repository.findAll();
+        return departmentRepository.findAll();
     }
 
     @Override
     public Department getDepartmentById(int id) {
-        return repository.findById(id).get();
+        return departmentRepository.findById(id).get();
     }
 
     @Override
     public Department getDepartmentByName(String name) {
-        return repository.findByName(name);
+        return departmentRepository.findByName(name);
     }
 
     @Override
@@ -62,7 +69,22 @@ public class DepartmentService implements IDepartmentService {
 
         Department department = modelMapper.map(form, Department.class);
 
-        repository.save(department);
+        // save department
+        departmentRepository.save(department);
+
+        // get account list from input form
+        List<Integer> accountIds = form.getAccountIds();
+
+        // add department to account
+        List<Account> accounts = new ArrayList<>();
+        if(!accountIds.isEmpty()) {
+            for(Integer id : accountIds) {
+                Account account = accountRepository.findById(id).get();
+                account.setDepartment(department);
+                accounts.add(account);
+            }
+        }
+        accountRepository.saveAll(accounts);
     }
 
     @Override
@@ -84,25 +106,39 @@ public class DepartmentService implements IDepartmentService {
         //Get department's old properties
         Department oldDepartment = getDepartmentById(id);
         newDepartment.setName(oldDepartment.getName());
-        newDepartment.setAccounts(oldDepartment.getAccounts());
         newDepartment.setCreateDate(oldDepartment.getCreateDate());
 
-        repository.save(newDepartment);
+        // save new department
+        departmentRepository.save(newDepartment);
+
+        // get account list from input form
+        List<Integer> accountIds = form.getAccountIds();
+        List<Account> accounts = new ArrayList<>();
+        if(!accountIds.isEmpty()) {
+            for(Integer accountId : accountIds) {
+                Account account = accountRepository.findById(accountId).get();
+                account.setDepartment(newDepartment);
+                accounts.add(account);
+            }
+        }
+        accountRepository.saveAll(accounts);
+
+
     }
 
     @Override
     public void deleteDepartment(int id) {
         Department department = getDepartmentById(id);
-        repository.delete(department);
+        departmentRepository.delete(department);
     }
 
     @Override
     public boolean isDepartmentExistsByName(String name) {
-        return repository.existsDepartmentByName(name);
+        return departmentRepository.existsDepartmentByName(name);
     }
 
     @Override
     public Integer getDepartmentTotalMemberById(int id) {
-        return repository.getDepartmentTotalMemberById(id);
+        return departmentRepository.getDepartmentTotalMemberById(id);
     }
 }

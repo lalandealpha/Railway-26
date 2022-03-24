@@ -14,6 +14,8 @@ public interface IAccountService {
 
     List<Account> getAccountList();
 
+    Page<Account> getAccountsByDepartmentIsNull(Pageable pageable);
+
     Account getAccountById(int id);
 
     void createAccount(CreatingAccountForm form);
@@ -24,4 +26,5 @@ public interface IAccountService {
 
     boolean isAccountExistsByUsername(String username);
 
+    void deleteAccounts(List<Integer> ids);
 }

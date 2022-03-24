@@ -146,3 +146,5 @@ insert into `Account` (AccountID, Username, `Password`, FirstName, LastName, `Ro
 -- insert into `Account` (AccountID, Username, `Password`, FirstName, LastName, `Role`, DepartmentID) values (98, 'emcginley2p', 'iobaEI', 'Earlie', 'McGinley', 'Admin', 8);
 -- insert into `Account` (AccountID, Username, `Password`, FirstName, LastName, `Role`, DepartmentID) values (99, 'lbeeson2q', 'EwXnaOJ', 'Laird', 'Beeson', 'Employee', 9);
 -- insert into `Account` (AccountID, Username, `Password`, FirstName, LastName, `Role`, DepartmentID) values (100, 'tjiras2r', 'IDw40gY', 'Trumaine', 'Jiras', 'Manager', 1);
+
+UPDATE `Java_Advanced_Final_Exam`.`Account` SET `DepartmentID` =  null WHERE AccountID IN (1, 4 ,7, 10, 15, 22, 28, 33, 45, 48, 50, 62, 66, 70, 73, 79, 81);

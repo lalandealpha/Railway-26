@@ -18,7 +18,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/v1/departments")
-@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class DepartmentController {
 
     @Autowired
@@ -88,6 +87,11 @@ public class DepartmentController {
     @DeleteMapping(value = "/{id}")
     public void deleteDepartment(@PathVariable(name = "id") int id) {
         service.deleteDepartment(id);
+    }
+
+    @DeleteMapping
+    public void deleteAccounts(@RequestParam(name = "ids") List<Integer> ids) {
+        service.deleteAccounts(ids);
     }
 
 }

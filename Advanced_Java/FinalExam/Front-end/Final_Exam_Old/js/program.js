@@ -1,12 +1,14 @@
 $(function() {
-
-    $(".header").load("./common/header.html");
-    $(".sidebar").load("./common/sidebar.html");
-    // $(".main").load("./home/homePage.html");
-    $(".footer").load("./common/footer.html");
-
-    viewAccountPage();
+    $(".header").load("header.html");
+    $(".sidebar").load("sidebar.html");
+    $(".main").load("home.html");
+    $(".footer").load("footer.html");
+    $(".toast").toast("hide");
 });
+
+function viewHomepage() {
+    $(".main").load("home.html");
+}
 
 function showSuccessSnackBar(snackbarMessage) {
     // Get the snackbar DIV

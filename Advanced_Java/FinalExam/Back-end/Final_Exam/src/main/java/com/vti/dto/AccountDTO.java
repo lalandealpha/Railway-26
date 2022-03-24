@@ -15,8 +15,12 @@ public class AccountDTO {
 
     private String lastName;
 
+    private String fullName;
+
     private String role;
 
     private String departmentName;
+
+    private int departmentId;
 
 }

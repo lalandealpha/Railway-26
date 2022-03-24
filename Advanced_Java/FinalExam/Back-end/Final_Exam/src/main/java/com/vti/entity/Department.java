@@ -2,8 +2,6 @@ package com.vti.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Formula;
 
@@ -36,7 +34,7 @@ public class Department implements Serializable {
     @CreationTimestamp
     private Date createDate;
 
-    @OneToMany(mappedBy = "department", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "department")
     private List<Account> accounts;
 
     public enum Type {
