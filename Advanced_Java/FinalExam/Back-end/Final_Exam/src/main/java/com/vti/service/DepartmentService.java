@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DepartmentService implements IDepartmentService {
@@ -140,5 +139,10 @@ public class DepartmentService implements IDepartmentService {
     @Override
     public Integer getDepartmentTotalMemberById(int id) {
         return departmentRepository.getDepartmentTotalMemberById(id);
+    }
+
+    @Override
+    public void deleteDepartments(List<Integer> ids) {
+        departmentRepository.deleteByIds(ids);
     }
 }

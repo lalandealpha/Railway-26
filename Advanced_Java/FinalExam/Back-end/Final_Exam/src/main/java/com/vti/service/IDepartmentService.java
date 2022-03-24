@@ -28,4 +28,6 @@ public interface IDepartmentService {
     boolean isDepartmentExistsByName(String name);
 
     Integer getDepartmentTotalMemberById(int id);
+
+    void deleteDepartments(List<Integer> ids);
 }

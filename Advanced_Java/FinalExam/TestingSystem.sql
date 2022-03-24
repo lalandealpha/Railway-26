@@ -23,7 +23,7 @@ CREATE TABLE `Account`(
     LastName				NVARCHAR(50) NOT NULL,
     `Role` 					ENUM('Admin','Employee','Manager') NOT NULL DEFAULT 'Employee',
     DepartmentID 			INT UNSIGNED,
-    FOREIGN KEY(DepartmentID) REFERENCES Department(DepartmentID)
+    FOREIGN KEY(DepartmentID) REFERENCES Department(DepartmentID) ON DELETE SET NULL
 );
 
 -- =============================================

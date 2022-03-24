@@ -91,7 +91,7 @@ public class DepartmentController {
 
     @DeleteMapping
     public void deleteAccounts(@RequestParam(name = "ids") List<Integer> ids) {
-        service.deleteAccounts(ids);
+        service.deleteDepartments(ids);
     }
 
 }
