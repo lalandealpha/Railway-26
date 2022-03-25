@@ -137,11 +137,6 @@ public class DepartmentService implements IDepartmentService {
     }
 
     @Override
-    public Integer getDepartmentTotalMemberById(int id) {
-        return departmentRepository.getDepartmentTotalMemberById(id);
-    }
-
-    @Override
     public void deleteDepartments(List<Integer> ids) {
         departmentRepository.deleteByIds(ids);
     }

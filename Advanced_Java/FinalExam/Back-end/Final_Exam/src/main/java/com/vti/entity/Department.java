@@ -25,6 +25,9 @@ public class Department implements Serializable {
     @Column(name = "DepartmentName", length = 50, nullable = false, unique = true, updatable = false)
     private String name;
 
+    @Column(name = "TotalMember", nullable = false)
+    private int totalMember;
+
     @Column(name = "DepartmentType", nullable = false)
     @Convert(converter = DepartmentTypeConverter.class)
     private Type type;

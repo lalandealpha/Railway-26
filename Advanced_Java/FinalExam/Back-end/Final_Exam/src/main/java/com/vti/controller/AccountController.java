@@ -55,7 +55,7 @@ public class AccountController {
         return service.isAccountExistsByUsername(username);
     }
 
-    @GetMapping(value = "/nullDepartment")
+    @GetMapping(value = "/department/null")
     public Page<AccountDTO> getAccountsByDepartmentIsNull(Pageable pageable) {
 
         Page<Account> entityPages = service.getAccountsByDepartmentIsNull(pageable);

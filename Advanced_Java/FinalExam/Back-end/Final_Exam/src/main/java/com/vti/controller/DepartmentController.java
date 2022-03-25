@@ -39,12 +39,6 @@ public class DepartmentController {
                 new TypeToken<List<DepartmentDTO>>() {}.getType());
 
         for(DepartmentDTO dto : dtos) {
-            Integer totalMember = service.getDepartmentTotalMemberById(dto.getId());
-            if(totalMember != null) {
-                dto.setTotalMember(totalMember);
-            } else {
-                dto.setTotalMember(0);
-            }
             if(dto.getType() == "SCRUM_MASTER") {
                 dto.setType("Scrum Master");
             }

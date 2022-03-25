@@ -13,12 +13,6 @@ import java.util.List;
 public interface IDepartmentRepository extends JpaRepository<Department, Integer> , JpaSpecificationExecutor<Department> {
     boolean existsDepartmentByName(String name);
 
-    @Query(value = "SELECT COUNT(*) FROM `Account` JOIN Department " +
-            "ON `Account`.DepartmentID = Department.DepartmentID " +
-            "WHERE `Account`.DepartmentID = :DepartmentID " +
-            "GROUP BY Department.DepartmentID", nativeQuery = true)
-    Integer getDepartmentTotalMemberById(@Param("DepartmentID") int id);
-
     Department findByName(String name);
 
     @Modifying
