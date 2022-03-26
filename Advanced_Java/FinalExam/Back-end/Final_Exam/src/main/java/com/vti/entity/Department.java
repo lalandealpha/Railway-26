@@ -25,7 +25,7 @@ public class Department implements Serializable {
     @Column(name = "DepartmentName", length = 50, nullable = false, unique = true, updatable = false)
     private String name;
 
-    @Column(name = "TotalMember", nullable = false)
+    @Column(name = "TotalMember", nullable = false, updatable = false)
     private int totalMember;
 
     @Column(name = "DepartmentType", nullable = false)

@@ -6,13 +6,12 @@ import com.vti.form.account.CreatingAccountForm;
 import com.vti.form.account.UpdatingAccountForm;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface IAccountService {
+public interface IAccountService extends UserDetailsService {
     Page<Account> getAllAccounts(Pageable pageable, String search, AccountFilterForm filterForm);
-
-    List<Account> getAccountList();
 
     Page<Account> getAccountsByDepartmentIsNull(Pageable pageable);
 
@@ -27,4 +26,6 @@ public interface IAccountService {
     boolean isAccountExistsByUsername(String username);
 
     void deleteAccounts(List<Integer> ids);
+
+    Account getAccountByUsername(String username);
 }

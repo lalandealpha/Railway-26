@@ -3,7 +3,6 @@ package com.vti.repository;
 import com.vti.entity.Account;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -23,4 +22,5 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> , Jp
     @Query("DELETE FROM Account WHERE id IN(:ids)")
     void deleteByIds(@Param("ids") List<Integer> ids);
 
+    Account findByUsername(String username);
 }

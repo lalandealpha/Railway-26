@@ -3,6 +3,7 @@ package com.vti.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Formula;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 import javax.persistence.*;
@@ -23,7 +24,7 @@ public class Account implements Serializable {
     @Column(name = "Username", length = 18, nullable = false, unique = true, updatable = false)
     private String username;
 
-    @Column(name = "`Password`", length = 12, nullable = false)
+    @Column(name = "`Password`", length = 800, nullable = false)
     private String password;
 
     @Column(name = "FirstName", length = 50, nullable = false, updatable = false)
@@ -74,7 +75,7 @@ public class Account implements Serializable {
         }
 
         if(password == null) {
-            password = "123456";
+            password = new BCryptPasswordEncoder().encode("123456");
         }
     }
 

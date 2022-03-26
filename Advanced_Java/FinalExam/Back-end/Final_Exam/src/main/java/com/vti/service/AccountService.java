@@ -15,6 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,11 +41,6 @@ public class AccountService implements IAccountService {
     public Page<Account> getAllAccounts(Pageable pageable, String search, AccountFilterForm filterForm) {
         Specification<Account> where = AccountSpecification.buildWhere(search, filterForm);
         return repository.findAll(where, pageable);
-    }
-
-    @Override
-    public List<Account> getAccountList() {
-        return repository.findAll();
     }
 
     @Override
@@ -118,5 +117,25 @@ public class AccountService implements IAccountService {
     @Override
     public void deleteAccounts(List<Integer> ids) {
         repository.deleteByIds(ids);
+    }
+
+    @Override
+    public Account getAccountByUsername(String username) {
+        return repository.findByUsername(username);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Account account = repository.findByUsername(username);
+
+        if (account == null) {
+            // 401
+            throw new UsernameNotFoundException(username);
+        }
+
+        return new User(
+                account.getUsername(),
+                account.getPassword(),
+                AuthorityUtils.createAuthorityList(account.getRole().toString()));
     }
 }

@@ -106,6 +106,7 @@ public class DepartmentService implements IDepartmentService {
         Department oldDepartment = getDepartmentById(id);
         newDepartment.setName(oldDepartment.getName());
         newDepartment.setCreateDate(oldDepartment.getCreateDate());
+        newDepartment.setAccounts(oldDepartment.getAccounts());
 
         // save new department
         departmentRepository.save(newDepartment);
@@ -113,7 +114,14 @@ public class DepartmentService implements IDepartmentService {
         // get account list from input form
         List<Integer> accountIds = form.getAccountIds();
         List<Account> accounts = new ArrayList<>();
-        if(!accountIds.isEmpty()) {
+
+//        List<Account> oldAccounts = oldDepartment.getAccounts();
+//        if(!oldAccounts.isEmpty() && oldAccounts != null) {
+//            for (Account oldAccount : oldAccounts) {
+//                accounts.add(oldAccount);
+//            }
+//        }
+        if(!accountIds.isEmpty() && accountIds != null) {
             for(Integer accountId : accountIds) {
                 Account account = accountRepository.findById(accountId).get();
                 account.setDepartment(newDepartment);
@@ -121,7 +129,6 @@ public class DepartmentService implements IDepartmentService {
             }
         }
         accountRepository.saveAll(accounts);
-
 
     }
 
