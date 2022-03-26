@@ -50,13 +50,9 @@
     padding: 0px 10px;
 }
 
-#navbar .user-name {
+#navbar .full-name,
+#navbar .sign-out {
     display: inline-block;
-    font-size: 18px;
-}
-
-.user-name .fa-sort-down {
-    font-size: 18px !important;
 }
 
 #navbar .fa-house-chimney {

@@ -6,9 +6,9 @@
     <!-- Filter -->
     <div class="filter-wrapper">
         <div class="filter-item">
-            <select id="filter-role-select" style="width:90px;">
-                <option value="" selected>All Roles</option>
-                <option value="All Roles" selected>All Roles</option>
+            <select id="filter-role-select" style="width:200px;" class="operator">
+                <option value=""></option> <!-- Default value-->
+                <option value="All Roles">All Roles</option>
                 <option value="ADMIN">Admin</option>
                 <option value="EMPLOYEE">Employee</option>
                 <option value="MANAGER">Manager</option>
@@ -16,7 +16,6 @@
         </div>
         <div class="filter-item">
             <select id="filter-department-select" style="width:200px;" class="operator">
-                <option value="" selected=>All Departments</option>
                 <!-- <option value="">All Departments</option>
                 <option value="alpha">alpha</option> 
                 <option value="beta">beta</option>
@@ -42,10 +41,10 @@
                 </div>
 
                 <div class="add-sync-del-btn">
-                    <a href="#" data-toggle="tooltip" title="Refresh" onclick="refreshAccountList()">
+                    <a href="#" data-toggle="tooltip" title="Refresh" onclick="refreshAccountTable()">
                         <i class="fas fa-sync"></i>
                     </a>
-                    <a href="#" data-toggle="tooltip" title="Add" onclick="showAddAccountModal()">
+                    <a href="#" data-toggle="tooltip" title="Add" onclick="openAddAccountModal()">
                         <i class="fa-solid fa-square-plus"></i>
                     </a>
                     <a href="#" data-toggle="tooltip" title="Delete" onclick="showDeleteMultipleAccountsModal()">
@@ -57,6 +56,11 @@
                 <thead>
                     <tr>
                         <th style="width: 45px;">
+                            <span class="account-checkbox" style="margin-left: 5px;">
+                                <input type="checkbox" id="account-checkbox-all" name="checkbox-all"
+                                    onclick="onChangeAccountCheckboxAll()">
+                                <label></label>
+                            </span>
                         </th>
                         <th style="width: auto;" id="th-username">
                             <a href="#" onclick="changeAccountSort('username')">
@@ -110,61 +114,51 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title" id="addAndUpdateAccount-modal-title" style="text-align: center; font-size: 25px;">
-
+                        Title
                     </h4>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="account-id" name="id" value="">
 
-                    <label for="username"><b>Username:</b></label>
-                    <input class="form-control" type="text" placeholder="Username" name="username" id="modal-username" required>
+                    <div class="input-item">
+                        <label for="username" style="margin-left: 4px;"><b>Username:</b></label>
+                        <input class="form-control" type="text" placeholder="Username" name="username" id="modal-username">
+                        <div id="modal-input-errMess-username" class="input-errMess"></div>
+                    </div>
+                    <div class="input-item">
+                        <label for="first-name"><b>First Name:</b></label>
+                        <input class="form-control" type="text" placeholder="First Name" name="first-name" id="modal-first-name">
 
-                    <label for="first-name"><b>First Name:</b></label>
-                    <input class="form-control" type="text" placeholder="First Name" name="first-name" id="modal-first-name" required>
+                        <label for="last-name"><b>Last Name:</b></label>
+                        <input class="form-control" type="text" placeholder="Last Name" name="last-name" id="modal-last-name">
 
-                    <label for="last-name"><b>Last Name:</b></label>
-                    <input class="form-control" type="text" placeholder="Last Name" name="last-name" id="modal-last-name" required>
-
-                    <label for="role" id="role-label"><b>Role:</b></label>
-                    <select class="form-control" name="role" id="modal-role-select" required>
-                        <option value="PickARole" disabled selected>- Pick a role -</option>
-                        <option value="Admin">Admin</option>
-                        <option value="Manager">Manager</option>
-                        <option value="Employee">Employee</option>
-                    </select>
-
-                    <label id="department-lable" for="department"><b>Department:</b></label>
-                    <select class="form-control" name="department" id="modal-department-select" required>
-
-                    </select>
-
-                    <div id="modal-input-errMess" class="input-errMess">
+                        <div id="modal-input-errMess-name" class="input-errMess"></div>
+                    </div>
+                    <div class="input-item" id="input-item-role">
+                        <label for="role" id="role-label"><b>Role:</b></label>
+                        <select class="form-control" name="role" id="modal-role-select">
+                            <option value=""></option> <!-- Default value-->
+                            <option value="ADMIN">Admin</option>
+                            <option value="EMPLOYEE">Employee</option>
+                            <option value="MANAGER">Manager</option>
+                         </select>
+                        <div id="modal-input-errMess-role" class="input-errMess"></div>
+                    </div>
+                    <div class="input-item" id="input-item-departmentName">
+                        <label id="department-lable" for="department"><b>Department:</b></label>
+                        <select class="form-control" name="department" id="modal-department-select">
+                            <!-- <option value="">- Pick a department -</option>
+                                <option value="alpha">alpha</option> 
+                                <option value="beta">beta</option>
+                                <option value="theta">theta</option>
+                                <option value="omega">omega</option> -->
+                        </select>
+                        <div id="modal-input-errMess-department" class="input-errMess"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-default save-btn" onclick="saveAccount()">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Accounts delete modal HTML -->
-    <div class="modal fade" id="deleteMultipleAccountsModal" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" style="text-align: center; font-size: 24px;">Delete Account</i>
-                    </h4>
-                </div>
-                <div class="modal-body" id="delete-accounts-confirm-mess">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button id="delete-multiple-accounts-btn" type="button" class="btn btn-default delete-btn" onclick="deleteMultipleAccounts()">Delete</button>
                 </div>
             </div>
         </div>
@@ -186,7 +180,32 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button id="delete-single-account-btn" type="button" class="btn btn-default delete-btn" onclick="deleteSingleAccount()">Delete</button>
+                    <button id="delete-single-account-btn" type="button" class="btn btn-default delete-btn">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accounts delete modal HTML -->
+    <div class="modal fade" id="deleteMultipleAccountsModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="text-align: center; font-size: 24px;">Delete Account</i>
+                    </h4>
+                </div>
+                <div class="modal-body" id="delete-accounts-confirm-mess">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="delete-multiple-accounts-btn" type="button" class="btn btn-default delete-btn">
+                        Delete
+                    </button>
                 </div>
             </div>
         </div>
